@@ -7,19 +7,25 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration; // Thêm using này
+using System.IO; // Thêm using này
 namespace Infrastructure
 {
     public class AppDbContext: DbContext
     {
         private readonly EntitySaveChangesInterceptor _saveChangesInterceptor;
 
+   
         public AppDbContext(
         DbContextOptions options,
         EntitySaveChangesInterceptor saveChangesInterceptor)
         : base(options)
         {
             _saveChangesInterceptor = saveChangesInterceptor;
+            //SQLitePCL.Batteries.Init(); // Hoặc SQLitePCL.Batteries_V2.Init(); tùy thuộc vào gói bạn dùng
+
+
         }
 
         public DbSet<User> Users { get; set; }
@@ -34,7 +40,6 @@ namespace Infrastructure
         public DbSet<SleepLog> SleepLogs { get; set; }
         public DbSet<Goal> Goals { get; set; }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

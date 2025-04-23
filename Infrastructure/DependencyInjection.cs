@@ -1,5 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Interfaces;
+using Infrastructure.Interceptors;
 using Infrastructure.Persistence.Repositories;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,8 @@ namespace Infrastructure
             this IServiceCollection services,
             IConfiguration configuration)
         {
+            services.AddScoped<EntitySaveChangesInterceptor>();
+
             // Configure DbContext
             var connectionString = configuration.GetConnectionString("DefaultConnection"); // Get from appsettings.json
             services.AddDbContext<AppDbContext>(options =>
@@ -36,10 +39,13 @@ namespace Infrastructure
             //                                                                           // ... Register other repositories
             //                                                                           // services.AddScoped<IUnitOfWork, UnitOfWork>(); // If using Unit of Work pattern
 
+
             //// Register other Infrastructure services
             //services.AddSingleton<IDateTimeProvider, DateTimeProvider>(); // Example
             services.AddSingleton<IDateTimeService, DateTimeService>();
-
+            services.AddScoped<AppDbContextInitialiser>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
     }
