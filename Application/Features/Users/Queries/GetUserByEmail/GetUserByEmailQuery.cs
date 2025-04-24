@@ -1,4 +1,4 @@
-﻿using Application.Features.Users.Queries.GetUserById;
+﻿using Application.Responses.Dtos;
 using Application.Responses.Interfaces;
 using MediatR;
 using System;

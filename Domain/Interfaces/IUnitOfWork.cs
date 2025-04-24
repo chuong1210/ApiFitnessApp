@@ -30,6 +30,7 @@ namespace Domain.Interfaces
         ISleepLogRepository SleepLogs { get; } // Giả sử bạn có interface này
         IGoalRepository Goals { get; } // Giả sử bạn có interface này
                                        // ... Thêm các interface repository khác nếu cần
+        IPaymentTransactionRepository PaymentTransactions { get; }
 
 
         // --- Phương thức Lưu thay đổi ---

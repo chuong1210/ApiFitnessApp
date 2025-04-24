@@ -1,4 +1,5 @@
-﻿using Application.Responses.Interfaces;
+﻿using Application.Responses.Dtos;
+using Application.Responses.Interfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;

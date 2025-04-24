@@ -14,6 +14,7 @@ using System.Net;
 
 using FitnessApp.Contracts.Requests;
 using Microsoft.AspNetCore.Authorization;
+using Application.Responses.Dtos;
 namespace FitnessApp.Controllers
 {
 

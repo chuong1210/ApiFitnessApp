@@ -26,6 +26,7 @@ namespace Infrastructure.Persistence.Repositories
         private IScheduledMealRepository? _scheduledMealRepository;
         private ISleepLogRepository? _sleepLogRepositssory;
         private IGoalRepository? _goalRepository;
+        private IPaymentTransactionRepository? _paymentTransactionRepository;
         // ... thêm các backing fields khác
 
         // Inject AppDbContext
@@ -49,6 +50,8 @@ namespace Infrastructure.Persistence.Repositories
         public ISleepLogRepository SleepLogs => _sleepLogRepositssory ??= new SleepLogRepository(_context); // Cần tạo lớp SleepLogRepository
         public IGoalRepository Goals => _goalRepository ??= new GoalRepository(_context); // Cần tạo lớp GoalRepository
                                                                                           // ... implement các properties khác
+        public IPaymentTransactionRepository PaymentTransactions =>
+              _paymentTransactionRepository ??= new PaymentTransactionRepository(_context);
 
         // Implement SaveChangesAsync
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

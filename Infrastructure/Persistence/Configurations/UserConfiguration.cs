@@ -21,6 +21,15 @@ namespace Infrastructure.Persistence.Configurations
             builder.Property(u => u.Name)
                 .IsRequired()
                 .HasMaxLength(100);
+            builder.Property(u => u.EmailVerified)
+           .IsRequired()
+           .HasColumnType("INTEGER") // SQLite lưu bool thành INTEGER (0 hoặc 1)
+           .HasDefaultValue(0); // Mặc định là false (0)
+
+            builder.Property(u => u.IsPremium)
+          .IsRequired()
+          .HasColumnType("INTEGER") // SQLite lưu bool thành INTEGER (0 hoặc 1)
+          .HasDefaultValue(0);
 
             builder.Property(u => u.Email)
                 .HasMaxLength(150);

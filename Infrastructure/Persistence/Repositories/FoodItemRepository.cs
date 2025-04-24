@@ -32,8 +32,18 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<IEnumerable<FoodItem>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            return await _context.FoodItems.OrderBy(fi => fi.Name).ToListAsync(cancellationToken);
+            return await GetAllQueryable().OrderBy(fi => fi.Name).ToListAsync(cancellationToken);
+            //return await _context.FoodItems.OrderBy(fi => fi.Name).ToListAsync(cancellationToken);
         }
+
+        public IQueryable<FoodItem> GetAllQueryable()
+        {
+            // Sử dụng AsNoTracking() vì IQueryable thường dùng cho các truy vấn
+            // phức tạp hơn mà không cần theo dõi thay đổi (cải thiện hiệu năng).
+            // Nếu bạn cần tracking, bỏ AsNoTracking() đi.
+            return _context.FoodItems.AsNoTracking();
+        }
+        // -
 
         public async Task<IEnumerable<FoodItem>> SearchByNameAsync(string searchTerm, CancellationToken cancellationToken = default)
         {
@@ -42,7 +52,8 @@ namespace Infrastructure.Persistence.Repositories
                 return await GetAllAsync(cancellationToken);
             }
             var lowerSearchTerm = searchTerm.Trim().ToLower();
-            return await _context.FoodItems
+            // Sử dụng lại GetAllQueryable
+            return await GetAllQueryable()
                                  .Where(fi => fi.Name.ToLower().Contains(lowerSearchTerm))
                                  .OrderBy(fi => fi.Name)
                                  .ToListAsync(cancellationToken);
@@ -50,8 +61,15 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task<IEnumerable<FoodItem>> GetByCategoryAsync(string category, CancellationToken cancellationToken = default)
         {
-            return await _context.FoodItems
-                                 .Where(fi => fi.Category != null && fi.Category.ToLower() == category.ToLower())
+            //return await _context.FoodItems
+            //                     .Where(fi => fi.Category != null && fi.Category.ToLower() == category.ToLower())
+            //                     .OrderBy(fi => fi.Name)
+            //                     .ToListAsync(cancellationToken);
+
+            var lowerCategory = category.Trim().ToLower();
+            // Sử dụng lại GetAllQueryable
+            return await GetAllQueryable()
+                                 .Where(fi => fi.Category != null && fi.Category.ToLower() == lowerCategory)
                                  .OrderBy(fi => fi.Name)
                                  .ToListAsync(cancellationToken);
         }

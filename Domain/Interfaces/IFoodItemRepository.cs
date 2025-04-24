@@ -25,6 +25,12 @@ namespace Domain.Interfaces
         Task<IEnumerable<FoodItem>> GetAllAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
+        /// Gets all food items from the library.
+        /// </summary>
+        IQueryable<FoodItem> GetAllQueryable();
+
+
+        /// <summary>
         /// Searches for food items where the name contains the search term (case-insensitive).
         /// </summary>
         Task<IEnumerable<FoodItem>> SearchByNameAsync(string searchTerm, CancellationToken cancellationToken = default);

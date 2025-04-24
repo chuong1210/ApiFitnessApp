@@ -3,6 +3,7 @@ using Domain.Interfaces;
 using Infrastructure.Interceptors;
 using Infrastructure.Persistence.Repositories;
 using Infrastructure.Services;
+using Infrastructure.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,19 +34,26 @@ namespace Infrastructure
                 })); // Use SQLite provider
 
             // Register Repositories
-            //services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             //services.AddScoped<IDailyActivityRepository, DailyActivityRepository>();
             //services.AddScoped<IWorkoutSessionRepository, WorkoutSessionRepository>(); // Add this
             //                                                                           // ... Register other repositories
-            //                                                                           // services.AddScoped<IUnitOfWork, UnitOfWork>(); // If using Unit of Work pattern
-
+            services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
+            services.AddScoped<ICloudinaryService, CloudinaryService>(); // Scoped hoặc Transient đều ổn
 
             //// Register other Infrastructure services
-            //services.AddSingleton<IDateTimeProvider, DateTimeProvider>(); // Example
             services.AddSingleton<IDateTimeService, DateTimeService>();
             services.AddScoped<AppDbContextInitialiser>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IVnpayService, VnpayService>();
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
+
+
+            services.Configure<VnpaySettings>(configuration.GetSection("Vnpay"));
+
+            // Đăng ký VnpayService
+            services.AddScoped<IVnpayService, VnpayService>(); // Scoped 
             return services;
         }
     }

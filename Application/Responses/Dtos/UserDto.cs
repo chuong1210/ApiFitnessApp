@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Users.Queries.GetUserById
+namespace Application.Responses.Dtos
 {
     public record UserDto(
        int UserId,
@@ -15,6 +15,8 @@ namespace Application.Features.Users.Queries.GetUserById
        Gender? Gender,
        double? HeightCm,
        double? WeightKg,
-       DateTime CreatedAt
+       DateTime CreatedAt,
+        bool IsPremium, // Thêm trường này nếu chưa có
+    bool EmailVerified // Thêm trường mới
    );
 }

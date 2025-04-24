@@ -19,6 +19,9 @@ namespace Domain.Entities
         public double? HeightCm { get; private set; }
         public double? WeightKg { get; private set; } // Can be updated frequently
         public DateTime CreatedAt { get; private set; }
+        public bool IsPremium { get; private set; } = false; // Hoặc dùng Enum SubscriptionType
+        public bool EmailVerified { get; private set; } = false; // Mặc định là chưa xác thực
+
 
         // Navigation properties
         public virtual ICollection<WorkoutSession> WorkoutSessions { get; private set; } = new List<WorkoutSession>();
@@ -47,7 +50,9 @@ namespace Domain.Entities
                 HeightCm = heightCm > 0 ? heightCm : null, // Ensure positive height
                 WeightKg = weightKg > 0 ? weightKg : null, // Ensure positive weight
                 PasswordHash = passwordHash,
-                CreatedAt = DateTime.UtcNow // Consider using an IDateTimeProvider
+                CreatedAt = DateTime.UtcNow ,// Consider using an IDateTimeProvider,
+                IsPremium = false, // Giữ nguyên mặc định
+                EmailVerified = false // Đặt mặc định là false khi tạo mới
             };
         }
 
@@ -60,7 +65,21 @@ namespace Domain.Entities
             Gender = gender;
             HeightCm = heightCm > 0 ? heightCm : null;
         }
+        public void SetPremiumStatus(bool isPremium)
+        {
+            IsPremium = isPremium;
+            // Có thể thêm logic khác ở đây (domain events?)
+        }
 
+        public void MarkEmailAsVerified()
+        {
+            if (!EmailVerified) // Chỉ thay đổi nếu chưa được xác thực
+            {
+                EmailVerified = true;
+                // Có thể thêm Domain Event ở đây nếu cần xử lý logic khác khi email được xác thực
+                // AddDomainEvent(new UserEmailVerifiedEvent(this.UserId));
+            }
+        }
         public void UpdateWeight(double weightKg)
         {
             if (weightKg <= 0) throw new ArgumentException("Weight must be positive.", nameof(weightKg));

@@ -1,5 +1,5 @@
-﻿using Application.Features.Users.Queries.GetUserById;
-using Application.Responses;
+﻿using Application.Responses;
+using Application.Responses.Dtos;
 using MediatR;
 using System;
 using System.Collections.Generic;

@@ -1,5 +1,4 @@
-﻿using Application.Features.Users.Queries.GetUserById;
-using Application.Responses.Interfaces;
+﻿using Application.Responses.Interfaces;
 using Application.Responses;
 using AutoMapper;
 using Domain.Interfaces;
@@ -11,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Responses.Dtos;
 
 namespace Application.Features.Users.Queries.GetUserByEmail
 {

@@ -108,9 +108,17 @@
               "target": "Package",
               "version": "[13.0.3, )"
             },
+            "Ocelot": {
+              "target": "Package",
+              "version": "[24.0.0, )"
+            },
             "SQLitePCLRaw.bundle_e_sqlite3": {
               "target": "Package",
               "version": "[2.1.11, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.8.0, )"
             }
           },
           "imports": [
@@ -228,6 +236,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.8.0, )"
             }
           },
           "imports": [

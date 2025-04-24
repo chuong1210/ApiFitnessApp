@@ -15,6 +15,7 @@
         public const string FacultyId = "facultyId";
 
         public const string Permission = "permission";
+        public const string SubscriptionTier = "sub_tier"; // Có thể thêm claim về loại user
     }
 
     public static class CLAIMS_VALUES

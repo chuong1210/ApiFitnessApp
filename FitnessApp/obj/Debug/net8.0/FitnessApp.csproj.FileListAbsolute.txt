@@ -167,3 +167,13 @@ C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\runtimes\linu
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\runtimes\linux-musl-s390x\native\libe_sqlite3.so
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\runtimes\linux-riscv64\native\libe_sqlite3.so
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
+C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\ocelot.json
+C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\IPAddressRange.dll
+C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Microsoft.AspNetCore.MiddlewareAnalysis.dll
+C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Microsoft.Extensions.DiagnosticAdapter.dll
+C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Ocelot.dll
+C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\CloudinaryDotNet.dll

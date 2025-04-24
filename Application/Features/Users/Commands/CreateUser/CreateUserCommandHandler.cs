@@ -1,5 +1,4 @@
-﻿using Application.Features.Users.Queries.GetUserById;
-using Application.Responses.Interfaces;
+﻿using Application.Responses.Interfaces;
 using Application.Responses;
 using AutoMapper;
 using Domain.Entities;
@@ -15,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
+using Application.Responses.Dtos;
 
 namespace Application.Features.Users.Commands.CreateUser
 {

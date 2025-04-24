@@ -33,6 +33,9 @@ namespace Infrastructure.Persistence.Configurations
             builder.Property(fi => fi.ServingSizeDescription)
                 .IsRequired()
                 .HasMaxLength(100);
+            // --- THÊM CẤU HÌNH CHO ImagePublicId ---
+            builder.Property(fi => fi.ImagePublicId)
+                .HasMaxLength(255); // Độ dài phù hợp cho Public ID của Cloudinary (có thể điều chỉnh)
 
             builder.Property(fi => fi.ProteinGrams).HasColumnType("REAL");
             builder.Property(fi => fi.CarbGrams).HasColumnType("REAL");

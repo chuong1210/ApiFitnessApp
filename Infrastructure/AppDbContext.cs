@@ -39,6 +39,8 @@ namespace Infrastructure
         public DbSet<ScheduledMeal> ScheduledMeals { get; set; }
         public DbSet<SleepLog> SleepLogs { get; set; }
         public DbSet<Goal> Goals { get; set; }
+        // Infrastructure/Persistence/AppDbContext.cs
+        public DbSet<PaymentTransaction> PaymentTransactions { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

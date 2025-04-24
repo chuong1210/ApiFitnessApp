@@ -81,6 +81,10 @@ namespace Infrastructure.Migrations
                     b.Property<double?>("FatGrams")
                         .HasColumnType("REAL");
 
+                    b.Property<string>("ImagePublicId")
+                        .HasMaxLength(255)
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ImageUrl")
                         .HasMaxLength(500)
                         .HasColumnType("TEXT");
@@ -180,6 +184,66 @@ namespace Infrastructure.Migrations
                     b.ToTable("MealLog", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.Entities.PaymentTransaction", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("LastUpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OrderId")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("OrderInfo")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Provider")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("VnpayBankCode")
+                        .HasMaxLength(20)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("VnpayResponseCode")
+                        .HasMaxLength(2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("VnpayTransactionNo")
+                        .HasMaxLength(50)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PaymentTransactions", (string)null);
+                });
+
             modelBuilder.Entity("Domain.Entities.ScheduledMeal", b =>
                 {
                     b.Property<int>("ScheduleId")
@@ -270,12 +334,22 @@ namespace Infrastructure.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("EmailVerified")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(false);
+
                     b.Property<string>("Gender")
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
                     b.Property<double?>("HeightCm")
                         .HasColumnType("REAL");
+
+                    b.Property<bool>("IsPremium")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -486,6 +560,17 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("FoodItem");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.Entities.PaymentTransaction", b =>
+                {
+                    b.HasOne("Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("User");
                 });

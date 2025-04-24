@@ -17,6 +17,8 @@ namespace Domain.Entities
         public double? CarbGrams { get; private set; }
         public double? FatGrams { get; private set; }
         public string? ImageUrl { get; private set; }
+        public string? ImagePublicId { get; private set; }
+
 
         // Navigation property for logs using this item
         public virtual ICollection<MealLog> MealLogs { get; private set; } = new List<MealLog>();
@@ -40,7 +42,9 @@ namespace Domain.Entities
                 ProteinGrams = proteinGrams >= 0 ? proteinGrams : null,
                 CarbGrams = carbGrams >= 0 ? carbGrams : null,
                 FatGrams = fatGrams >= 0 ? fatGrams : null,
-                ImageUrl = imageUrl
+                ImageUrl = imageUrl,
+                ImagePublicId = null // Khởi tạo là null
+
             };
         }
 
@@ -58,6 +62,10 @@ namespace Domain.Entities
             CarbGrams = carbGrams >= 0 ? carbGrams : null;
             FatGrams = fatGrams >= 0 ? fatGrams : null;
             ImageUrl = imageUrl;
+        }
+        public void SetImagePublicId(string? publicId)
+        {
+            ImagePublicId = publicId;
         }
     }
 

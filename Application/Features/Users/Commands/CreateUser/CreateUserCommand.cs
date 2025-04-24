@@ -1,4 +1,4 @@
-﻿using Application.Features.Users.Queries.GetUserById;
+﻿using Application.Responses.Dtos;
 using Application.Responses.Interfaces;
 using Domain.Enums;
 using MediatR;
@@ -18,6 +18,7 @@ namespace Application.Features.Users.Commands.CreateUser
         DateOnly? BirthDate,
         Gender? Gender,
         double? HeightCm,
-        double? WeightKg) : IRequest<IResult<UserDto>>;
+        double? WeightKg
+        ) : IRequest<IResult<UserDto>>;
 
 }

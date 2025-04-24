@@ -1,4 +1,5 @@
-﻿using Application.Features.Users.Queries.GetUserById;
+﻿using Application.Features.Auth.Commands.Register;
+using Application.Responses.Dtos;
 using AutoMapper;
 using Domain.Entities;
 using System;
@@ -14,7 +15,11 @@ namespace Application.Common.Mappings
         public ModuleMappingProfile()
         {
             // Mapping từ User Entity sang UserDto
-            CreateMap<User, UserDto>();
+            CreateMap<User, UserDto>().ReverseMap();
+            CreateMap<RegisterUserCommand, User>().ReverseMap();
+            CreateMap<FoodItem, FoodItemDto>().ReverseMap();
+
+
 
             // Thêm các mapping khác cho các features khác ở đây
             // CreateMap<Workout, WorkoutDto>();
