@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -61,6 +62,9 @@ namespace Domain.Interfaces
         Task<IEnumerable<User>> GetAllAsync(CancellationToken cancellationToken = default);
 
         Task<(IEnumerable<User> Users, int TotalCount)> GetPagedListAsync(int pageNumber, int pageSize, string? searchTerm = null, CancellationToken cancellationToken = default);
+
+        Task<User?> FindByGoogleIdAsync(string googleId, CancellationToken cancellationToken = default);
+        Task<bool> AnyAsync(Expression<Func<User, bool>> predicate, CancellationToken cancellationToken = default);
 
     }
 }

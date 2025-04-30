@@ -7,10 +7,11 @@ using Application.Responses.Dtos;
 namespace Application.Features.Auth.Dtos
 {
     // DTO trả về khi đăng nhập thành công
-    public record LoginResponseDto(
-        string Token,      // JWT Token
-        DateTime ExpiresAt, // Thời gian hết hạn token
-                           // Có thể thêm thông tin UserDto nếu muốn
-             UserDto? UserDetails
-    );
+    public record LoginResponseDto
+    {
+        public string Token { get; init; } = default!;
+        public DateTime? ExpiresAt { get; init; }
+        public UserDto? UserDetails { get; init; }
+    }
+
 }

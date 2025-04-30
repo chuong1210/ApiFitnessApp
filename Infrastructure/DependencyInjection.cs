@@ -7,6 +7,7 @@ using Infrastructure.Settings;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,15 +23,17 @@ namespace Infrastructure
             this IServiceCollection services,
             IConfiguration configuration)
         {
+            var redisConfig = configuration.GetSection("RedisSettings");
+
             services.AddScoped<EntitySaveChangesInterceptor>();
 
             // Configure DbContext
             var connectionString = configuration.GetConnectionString("DefaultConnection"); // Get from appsettings.json
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlite(connectionString, builder =>
+                options.UseSqlServer(connectionString, builder =>
                 {
                     builder.MigrationsAssembly(typeof(DependencyInjection).Assembly.FullName);
-                    //builder.EnableRetryOnFailure();
+                    builder.EnableRetryOnFailure();
                 })); // Use SQLite provider
 
             // Register Repositories
@@ -54,6 +57,43 @@ namespace Infrastructure
 
             // Đăng ký VnpayService
             services.AddScoped<IVnpayService, VnpayService>(); // Scoped 
+            services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
+            services.Configure<RedisSettings>(configuration.GetSection("RedisSettings"));
+            services.AddScoped<IEmailService, EmailService>();
+
+
+            services.Configure<RedisSettings>(configuration.GetSection("RedisSettings")); // Vẫn giữ để inject vào OtpService
+
+            // Lấy cấu hình Redis để xây dựng ConnectionString
+            var redisHost = configuration.GetValue<string>("RedisSettings:Host");
+            var redisPort = configuration.GetValue<int?>("RedisSettings:Port"); // Dùng int? để kiểm tra null
+            if (string.IsNullOrEmpty(redisHost) || !redisPort.HasValue)
+            {
+                throw new InvalidOperationException("Redis Host or Port is not configured correctly in RedisSettings section.");
+            }
+
+            // Tạo ConnectionString hoàn chỉnh
+            var redisConnectionString = $"{redisHost}:{redisPort.Value}";
+
+         
+            //services.AddSingleton<IConnectionMultiplexer>(provider =>
+            //{
+
+            //    var configuration = ConfigurationOptions.Parse($"localhost:{redisConfig["Port"]}", true); 
+            //    return ConnectionMultiplexer.Connect(redisConnectionString);
+            //});
+
+            services.AddStackExchangeRedisCache(options =>
+            {
+                // Lấy ConnectionString từ cấu hình
+                options.Configuration = redisConnectionString
+                   ?? throw new InvalidOperationException("Redis ConnectionString is not configured in RedisSettings section."); // Ném lỗi nếu không có cấu hình
+
+                options.InstanceName = "fitness_app_"; // Optional: prefix cho keys nếu dùng chung Redis server
+            });
+            // -----
+            services.AddScoped<IOtpService, RedisOtpService>();
+
             return services;
         }
     }

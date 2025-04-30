@@ -15,6 +15,7 @@ namespace Application.Responses.Dtos
         double? ProteinGrams,
         double? CarbGrams,
         double? FatGrams,
-        string? ImageUrl
+        string? ImageUrl,
+        string? ImagePublicId
     );
 }

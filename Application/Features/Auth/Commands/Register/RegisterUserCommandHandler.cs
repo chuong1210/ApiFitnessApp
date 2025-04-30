@@ -12,6 +12,10 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Application.Responses.Dtos;
+using Application.Common.Interfaces;
+using Microsoft.Extensions.Logging;
+using Application.Common.Dtos;
+using Hangfire;
 
 namespace Application.Features.Auth.Commands.Register
 {
@@ -19,15 +23,30 @@ namespace Application.Features.Auth.Commands.Register
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IPasswordHasher<User> _passwordHasher;
-         private readonly IMapper _mapper; 
+         private readonly IMapper _mapper;
+        private readonly IEmailService _emailService; // Inject
+        private readonly IOtpService _otpService;     // Inject
+        private readonly ILogger<RegisterUserCommandHandler> _logger; // Inject
+        private readonly IBackgroundJobClient _backgroundJobClient; // Inject Hangfire client
 
-        public RegisterUserCommandHandler(IUnitOfWork unitOfWork, IPasswordHasher<User> passwordHasher,IMapper mapper)
+        public RegisterUserCommandHandler(
+       IUnitOfWork unitOfWork,
+       IPasswordHasher<User> passwordHasher,
+       IEmailService emailService, // Inject
+       IOtpService otpService,     // Inject
+       ILogger<RegisterUserCommandHandler> logger,
+       IMapper mapper,
+               IBackgroundJobClient backgroundJobClient) // Inject Hangfire client
         {
             _unitOfWork = unitOfWork;
             _passwordHasher = passwordHasher;
-            _mapper = mapper;
-        }
+            _emailService = emailService; // Gán
+            _otpService = otpService;     // Gán
+            _logger = logger;             // Gán
+            _backgroundJobClient = backgroundJobClient; // Gán client
+            _mapper= mapper;
 
+        }
         public async Task<IResult<int>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             // 1. Validate input (FluentValidation nên được dùng ở pipeline behavior)
@@ -71,6 +90,7 @@ namespace Application.Features.Auth.Commands.Register
             // --> Cách tạm thời nếu không sửa User.Create (Không khuyến khích cho production):
             var tempUserWithHash = User.Create(request.Name, request.Email, request.BirthDate, request.Gender, request.HeightCm, request.WeightKg, hashedPassword);
 
+            var otpCode = _otpService.GenerateOtp();
 
             try
             {
@@ -79,11 +99,44 @@ namespace Application.Features.Auth.Commands.Register
 
                 // 6. Save changes
                 await _unitOfWork.SaveChangesAsync(cancellationToken);
+
+                // 5. Lưu OTP vào Redis (dùng UserId làm key)
+                //    Cần xử lý nếu bước này lỗi sau khi đã lưu user
+                string otpKey = tempUserWithHash.UserId.ToString(); // Key là UserId
+
+                  EmailDto mailDto = new EmailDto(
+                   tempUserWithHash.Email,
+                   "Your Account Verification Code",
+                   otpCode
+               );
+
+                // 6. Gửi Email chứa OTP (chạy ngầm, không cần await hoàn thành nếu không muốn block response)
+                //    Không nên để lỗi gửi mail làm hỏng quá trình đăng ký
+                //                _ = _emailService.SendOtpEmailAsync(
+                //mailDto
+                //                ); // Dùng discard (_) để chạy background task
+
+
+                // --- Gửi Email bằng Hangfire ---
+                // Thay vì gọi trực tiếp: await _emailService.SendOtpEmailAsync(...)
+                // Chúng ta Enqueue công việc này
+                var jobId = _backgroundJobClient.Enqueue<IEmailService>( // Chỉ định service sẽ thực thi
+                    emailService => emailService.SendOtpEmailAsync(mailDto
+                    ));
+
+                _logger.LogInformation("Enqueued email OTP job {JobId} for User {UserId} to email {Email}.", jobId, user.UserId, user.Email);
                 var userDetailsDto = _mapper.Map<UserDto>(user); // Sử dụng AutoMapper
 
 
                 // 7. Return success result with UserId
                 return await Task.FromResult(Result<int>.Success(tempUserWithHash.UserId, StatusCodes.Status201Created));
+            }
+            catch (StackExchange.Redis.RedisConnectionException redisEx) // Bắt lỗi Redis cụ thể
+            {
+                _logger.LogError(redisEx, "Redis connection error during registration for email {Email}.", request.Email);
+                // Có thể cần xóa user vừa tạo nếu lưu OTP lỗi? (Phức tạp)
+                // Hoặc chỉ báo lỗi chung
+                return Result<int>.Failure("Registration failed due to a temporary issue storing verification code.", StatusCodes.Status500InternalServerError);
             }
             catch (Exception ex)
             {

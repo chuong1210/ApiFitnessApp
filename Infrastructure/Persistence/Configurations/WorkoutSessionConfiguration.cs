@@ -18,12 +18,12 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasKey(ws => ws.SessionId);
 
             builder.Property(ws => ws.StartTime)
-                .IsRequired()
-                .HasColumnType("TEXT"); // Store DateTime as TEXT
+                .IsRequired();
+                //.HasColumnType("TEXT"); // Store DateTime as TEXT
 
             builder.Property(ws => ws.EndTime)
-                .IsRequired()
-                .HasColumnType("TEXT");
+                .IsRequired();
+                //.HasColumnType("TEXT");
 
             builder.Property(ws => ws.DurationSeconds)
                 .IsRequired()

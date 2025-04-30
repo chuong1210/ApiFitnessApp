@@ -18,8 +18,8 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasKey(da => da.ActivityId);
 
             builder.Property(da => da.Date)
-                .IsRequired()
-                .HasColumnType("TEXT"); // Store DateOnly as TEXT
+                .IsRequired();
+                //.HasColumnType("TEXT"); // Store DateOnly as TEXT
 
             builder.Property(da => da.StepsCount)
                 .IsRequired()

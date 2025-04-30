@@ -19,8 +19,8 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasKey(ml => ml.LogId);
 
             builder.Property(ml => ml.Timestamp)
-                .IsRequired()
-                .HasColumnType("TEXT"); // Store DateTime as TEXT
+                .IsRequired();
+                //.HasColumnType("TEXT"); // Store DateTime as TEXT
 
             builder.Property(ml => ml.MealType)
                 .IsRequired()
@@ -28,12 +28,12 @@ namespace Infrastructure.Persistence.Configurations
                 .HasMaxLength(20);
 
             builder.Property(ml => ml.Quantity)
-                .IsRequired()
-                .HasColumnType("REAL");
+                .IsRequired();
+            //.HasColumnType("REAL");
 
             builder.Property(ml => ml.TotalCalories)
-                .IsRequired()
-                .HasColumnType("REAL");
+                .IsRequired();
+                //.HasColumnType("REAL");
 
             builder.Property(ml => ml.Notes)
                 .HasMaxLength(1000);

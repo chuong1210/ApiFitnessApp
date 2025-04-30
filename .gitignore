@@ -1,0 +1,19 @@
+# Application Settings
+appsettings.json
+appsettings.*.json
+secrets.json
+
+# User Secrets (nếu dùng)
+secrets.xml
+*.user
+*.secrets.json
+
+# Build output
+[Bb]in/
+[Oo]bj/
+
+# IDE specific files
+.vs/
+*.suo
+*.userprefs
+# ... các file khác ...

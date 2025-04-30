@@ -23,8 +23,8 @@ namespace Infrastructure.Persistence.Configurations
             builder.Property(pt => pt.OrderInfo).IsRequired().HasMaxLength(255);
             builder.Property(pt => pt.Provider).IsRequired().HasConversion<string>().HasMaxLength(20);
             builder.Property(pt => pt.Status).IsRequired().HasConversion<string>().HasMaxLength(20);
-            builder.Property(pt => pt.CreatedAt).IsRequired().HasColumnType("TEXT");
-            builder.Property(pt => pt.LastUpdatedAt).HasColumnType("TEXT");
+            builder.Property(pt => pt.CreatedAt).IsRequired();
+            builder.Property(pt => pt.LastUpdatedAt);
 
             builder.Property(pt => pt.VnpayTransactionNo).HasMaxLength(50);
             builder.Property(pt => pt.VnpayResponseCode).HasMaxLength(2);

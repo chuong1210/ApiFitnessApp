@@ -18,12 +18,12 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasKey(sl => sl.SleepLogId);
 
             builder.Property(sl => sl.StartTime)
-                .IsRequired()
-                .HasColumnType("TEXT");
+                .IsRequired();
+            //.HasColumnType("TEXT");
 
             builder.Property(sl => sl.EndTime)
-                .IsRequired()
-                .HasColumnType("TEXT");
+                .IsRequired();
+                //.HasColumnType("TEXT");
 
             builder.Property(sl => sl.DurationMinutes)
                 .IsRequired()

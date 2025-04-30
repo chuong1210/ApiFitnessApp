@@ -124,7 +124,7 @@ namespace Application.Features.Auth.Commands.Login
 
                 var userDetailsDto = _mapper.Map<UserDto>(user); // Sử dụng AutoMapper
                 // 4. Tạo response
-                var response = new LoginResponseDto(accessToken, expires,userDetailsDto);
+                var response = new LoginResponseDto { Token= accessToken, ExpiresAt= expires,UserDetails= userDetailsDto };
 
                 _logger.LogInformation("User logged in successfully: UserId={UserId}, Email={Email}", user.UserId, user.Email);
                 var result = Result<LoginResponseDto>.Success(response, StatusCodes.Status200OK);

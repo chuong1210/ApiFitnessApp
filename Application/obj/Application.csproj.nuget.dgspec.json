@@ -66,9 +66,29 @@
               "target": "Package",
               "version": "[11.11.0, )"
             },
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.69.0, )"
+            },
+            "Hangfire": {
+              "target": "Package",
+              "version": "[1.8.18, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.18, )"
+            },
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.8.18, )"
+            },
             "JsonConverter.Newtonsoft.Json": {
               "target": "Package",
               "version": "[0.7.1, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.11.0, )"
             },
             "MediatR": {
               "target": "Package",
@@ -96,13 +116,17 @@
               "target": "Package",
               "version": "[8.0.15, )"
             },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.15, )"
             },
             "Microsoft.Extensions.DependencyInjection": {
               "target": "Package",
               "version": "[8.0.1, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.11.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -115,6 +139,10 @@
             "SQLitePCLRaw.bundle_e_sqlite3": {
               "target": "Package",
               "version": "[2.1.11, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.8.31, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
@@ -225,7 +253,7 @@
               "target": "Package",
               "version": "[8.0.15, )"
             },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.15, )"
             },

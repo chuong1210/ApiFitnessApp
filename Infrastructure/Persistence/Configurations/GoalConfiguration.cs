@@ -27,16 +27,16 @@ namespace Infrastructure.Persistence.Configurations
                 .HasColumnType("REAL");
 
             builder.Property(g => g.StartDate)
-                .IsRequired()
-                .HasColumnType("TEXT"); // Store DateOnly as TEXT
+                .IsRequired();
+            //.HasColumnType("TEXT"); // Store DateOnly as TEXT
 
-            builder.Property(g => g.EndDate)
-                .HasColumnType("TEXT"); // Nullable DateOnly stored as TEXT
+            builder.Property(g => g.EndDate);
+                //.HasColumnType("TEXT"); // Nullable DateOnly stored as TEXT
 
             builder.Property(g => g.IsActive)
                 .IsRequired()
-                .HasColumnType("INTEGER") // Store boolean as INTEGER (0 or 1)
-                .HasDefaultValue(1); // Default to active (true)
+                //.HasColumnType("INTEGER") // Store boolean as INTEGER (0 or 1)
+                .HasDefaultValue(true); // Default to active (true)
 
             // --- Relationships ---
 

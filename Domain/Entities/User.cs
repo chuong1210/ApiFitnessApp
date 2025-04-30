@@ -22,6 +22,7 @@ namespace Domain.Entities
         public bool IsPremium { get; private set; } = false; // Hoặc dùng Enum SubscriptionType
         public bool EmailVerified { get; private set; } = false; // Mặc định là chưa xác thực
 
+        public string? GoogleId { get; private set; } // Thêm trường này
 
         // Navigation properties
         public virtual ICollection<WorkoutSession> WorkoutSessions { get; private set; } = new List<WorkoutSession>();
@@ -92,7 +93,18 @@ namespace Domain.Entities
             if (string.IsNullOrWhiteSpace(newPasswordHash)) throw new ArgumentException("Password hash cannot be empty.", nameof(newPasswordHash));
             PasswordHash = newPasswordHash;
         }
-    }
+
+
+        public void LinkGoogleId(string googleId)
+        {
+            if (string.IsNullOrWhiteSpace(GoogleId) && !string.IsNullOrWhiteSpace(googleId))
+            {
+                GoogleId = googleId;
+            }
+            // Có thể thêm logic nếu GoogleId đã tồn tại và khác giá trị mới
+        }
+    
+}
 
     // FitnessAp
 }

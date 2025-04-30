@@ -23,13 +23,13 @@ namespace Infrastructure.Persistence.Configurations
                 .HasMaxLength(100);
             builder.Property(u => u.EmailVerified)
            .IsRequired()
-           .HasColumnType("INTEGER") // SQLite lưu bool thành INTEGER (0 hoặc 1)
-           .HasDefaultValue(0); // Mặc định là false (0)
+           //.HasColumnType("INTEGER") // SQLite lưu bool thành INTEGER (0 hoặc 1)
+           .HasDefaultValue(false); // Mặc định là false (0)
 
             builder.Property(u => u.IsPremium)
           .IsRequired()
-          .HasColumnType("INTEGER") // SQLite lưu bool thành INTEGER (0 hoặc 1)
-          .HasDefaultValue(0);
+          //.HasColumnType("INTEGER") 
+          .HasDefaultValue(false);
 
             builder.Property(u => u.Email)
                 .HasMaxLength(150);
@@ -37,28 +37,46 @@ namespace Infrastructure.Persistence.Configurations
             // Unique index for non-null emails
             builder.HasIndex(u => u.Email)
                 .IsUnique()
-                .HasFilter("[Email] IS NOT NULL"); // SQLite specific filter syntax might vary, this is common SQL syntax
+                            //.HasFilter("WHERE Email IS NOT NULL");
+                               .HasFilter("[Email] IS NOT NULL"); // Cú pháp filter có thể khác tùy DB
+
+
+            //.HasFilter("[Email] IS NOT NULL"); // SQLite specific filter syntax might vary, this is common SQL syntax
+
 
             builder.Property(u => u.PasswordHash)
                 .HasMaxLength(255); // Store hash, length depends on hashing algorithm
 
             builder.Property(u => u.BirthDate)
-                .HasColumnType("TEXT"); // Store DateOnly as TEXT in YYYY-MM-DD format
+             .HasColumnType("date");
+            //builder.Property(u => u.Gender)
+            //    .HasConversion<string>() // Store enum as string
+            //    .HasMaxLength(20);
 
             builder.Property(u => u.Gender)
-                .HasConversion<string>() // Store enum as string
-                .HasMaxLength(20);
+                   // .HasConversion<string>() // <-- XÓA DÒNG NÀY
+                   // .HasMaxLength(20)      // <-- XÓA DÒNG NÀY
+                   .HasColumnType("int")      // <-- CHỈ ĐỊNH LƯU LÀ INT
+                   .IsRequired(false);        // Giữ lại nếu Gender là nullable (Gender?)
 
-            builder.Property(u => u.HeightCm)
-                .HasColumnType("REAL");
+            builder.Property(u => u.HeightCm);
+            //.HasColumnType("REAL");
 
-            builder.Property(u => u.WeightKg)
-                .HasColumnType("REAL");
+            builder.Property(u => u.WeightKg);
+            //.HasColumnType("REAL");
+            builder.Property(u => u.CreatedAt).IsRequired().HasColumnType("datetime2").HasDefaultValueSql("GETUTCDATE()");
 
-            builder.Property(u => u.CreatedAt)
-                .IsRequired()
-                .HasColumnType("TEXT") // Store DateTime as TEXT (ISO 8601)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP"); // SQLite default for current timestamp
+
+            // --- Thêm cấu hình cho GoogleId ---
+            builder.Property(u => u.GoogleId)
+                   .HasMaxLength(255); // Google ID thường dài
+
+            // Tùy chọn: Đảm bảo GoogleId là duy nhất nếu nó không null
+            builder.HasIndex(u => u.GoogleId)
+                   .IsUnique()
+                   .HasFilter("[GoogleId] IS NOT NULL"); // Cú pháp filter có thể khác tùy DB
+                                                         //.HasFilter("WHERE GoogleId IS NOT NULL");
+
 
             // --- Relationships ---
 

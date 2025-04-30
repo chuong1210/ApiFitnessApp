@@ -13,6 +13,9 @@ namespace FitnessApp.Contracts.Requests
       double? WeightKg
   );
 
+    public record GoogleLoginRequestDto(string IdToken);
+
+
     // DTO cho body của request cập nhật profile
     public record UpdateUserProfileRequestDto(
         [Required] string Name,

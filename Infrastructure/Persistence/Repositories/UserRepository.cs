@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -59,9 +60,18 @@ namespace Infrastructure.Persistence.Repositories
             // Consider adding .AsNoTracking() if just reading
         }
 
+        public async Task<User?> FindByGoogleIdAsync(string googleId, CancellationToken cancellationToken = default)
+        {
+            if (string.IsNullOrWhiteSpace(googleId))
+            {
+                return null; // Không tìm kiếm nếu googleId rỗng
+            }
+            // Tìm bản ghi User đầu tiên có GoogleId khớp
+            return await _context.Users
+                                 .FirstOrDefaultAsync(u => u.GoogleId == googleId, cancellationToken);
+        }
 
-        
-public async Task<(IEnumerable<User> Users, int TotalCount)> GetPagedListAsync(int pageNumber, int pageSize, string? searchTerm = null, CancellationToken cancellationToken = default)
+        public async Task<(IEnumerable<User> Users, int TotalCount)> GetPagedListAsync(int pageNumber, int pageSize, string? searchTerm = null, CancellationToken cancellationToken = default)
         {
             IQueryable<User> query = _context.Users;
 
@@ -84,6 +94,18 @@ public async Task<(IEnumerable<User> Users, int TotalCount)> GetPagedListAsync(i
                 .ToListAsync(cancellationToken);
 
             return (users, totalCount);
+        }
+
+        /// <summary>
+        /// Checks if any user exists that matches the specified predicate.
+        /// </summary>
+        /// <param name="predicate">The condition to test users against.</param>
+        /// <param name="cancellationToken">Cancellation token.</param>
+        /// <returns>True if any user matches the predicate, otherwise false.</returns>
+        public async Task<bool> AnyAsync(Expression<Func<User, bool>> predicate, CancellationToken cancellationToken = default)
+        {
+            // Sử dụng phương thức AnyAsync của EF Core trên DbSet<User>
+            return await _context.Users.AnyAsync(predicate, cancellationToken);
         }
     }
     }

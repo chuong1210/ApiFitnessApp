@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Application.Features.Auth.Dtos;
 namespace Application.Common.Mappings
 {
     public class ModuleMappingProfile : Profile
@@ -17,6 +17,8 @@ namespace Application.Common.Mappings
             // Mapping từ User Entity sang UserDto
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<RegisterUserCommand, User>().ReverseMap();
+            CreateMap<RegisterRequestDto, RegisterUserCommand>().ReverseMap();
+
             CreateMap<FoodItem, FoodItemDto>().ReverseMap();
 
 

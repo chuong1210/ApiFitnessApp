@@ -1,12 +1,19 @@
-﻿using Application.Features.Auth.Commands.Login;
+﻿using Application.Features.Auth.Commands.GoogleLogin;
+using Application.Features.Auth.Commands.Login;
 using Application.Features.Auth.Dtos;
+using Application.Responses;
 using Application.Responses.Interfaces;
+using FitnessApp.Contracts.Requests;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
-
+using FitnessApp.Contracts.Requests;
+using Application.Features.Auth.Commands.ResendOtp;
+using Application.Features.Auth.Commands.Register;
+using AutoMapper;
+using Application.Features.Auth.Commands.VerifyOtp;
 namespace FitnessApp.Controllers
 {
     [Route("api/[controller]")]
@@ -15,10 +22,11 @@ namespace FitnessApp.Controllers
     public class AuthController : ControllerBase
     {
         private readonly ISender _mediator;
-
-        public AuthController(ISender mediator)
+        private readonly IMapper _mapper;
+        public AuthController(ISender mediator,IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         // POST: api/auth/login
@@ -39,15 +47,106 @@ namespace FitnessApp.Controllers
             return HandleResult(result); // Dùng lại helper từ UsersController hoặc tạo riêng
         }
 
+//        {
+//  "name": "Test User",
+//  "email": "chuongvo1012@gmail.com",
+//  "password": "Password@123",
+//  "birthDate": "1995-08-15", // Định dạng YYYY-MM-DD cho DateOnly
+//  "gender": 0,            // Giá trị số của enum Gender (ví dụ: 0 = Male, 1 = Female)
+//  "heightCm": 175.5,
+//  "weightKg": 72.3
+//}
+    [HttpPost("register")]
+        [ProducesResponseType(typeof(IResult<int>), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)] // Trả về lỗi validation chuẩn
+        [ProducesResponseType(typeof(IResult<int>), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> Register([FromBody] RegisterRequestDto requestDto)
+        {
+            // Model binding của ASP.NET Core đã tự động validate các DataAnnotations trên DTO.
+            // Nếu không hợp lệ, ModelState.IsValid sẽ là false và action sẽ tự động trả về 400 Bad Request
+            // với chi tiết lỗi validation (trừ khi bạn cấu hình khác).
+
+            // Map từ DTO sang Command (nếu dùng AutoMapper)
+            var command = _mapper.Map<RegisterUserCommand>(requestDto);
+
+            // Hoặc map thủ công:
+            // var command = new RegisterUserCommand(
+            //     requestDto.Name,
+            //     requestDto.Email,
+            //     requestDto.Password,
+            //     requestDto.BirthDate,
+            //     requestDto.Gender,
+            //     requestDto.HeightCm,
+            //     requestDto.WeightKg
+            // );
+
+            var result = await _mediator.Send(command);
+
+            // FluentValidation errors (nếu có) sẽ được bắt bởi middleware và trả về 400.
+            // Các lỗi khác từ handler sẽ trả về code tương ứng.
+            return StatusCode(result.Code, result);
+        }
+        /// <summary>
+        /// Verifies the OTP code sent to the user's email after registration.
+        /// </summary>
+        /// <param name="request">Request containing UserId and OtpCode.</param>
+        /// <returns>Login response with JWT token if verification is successful.</returns>
+        [HttpPost("verify-otp")]
+        [ProducesResponseType(typeof(IResult<LoginResponseDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IResult<LoginResponseDto>), StatusCodes.Status400BadRequest)] // OTP sai/hết hạn, validation lỗi
+        [ProducesResponseType(typeof(IResult<LoginResponseDto>), StatusCodes.Status404NotFound)] // User không tồn tại
+        [ProducesResponseType(typeof(IResult<LoginResponseDto>), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> VerifyOtp([FromBody] VerifyOtpCommand request)
+        {
+            var result = await _mediator.Send(request);
+            return StatusCode(result.Code, result);
+        }
         // Endpoint đăng ký có thể đặt ở UsersController hoặc ở đây tùy bạn
         // Nếu đặt ở đây:
         // POST: api/auth/register
         // [HttpPost("register")]
         // ... gọi CreateUserCommand ...
+        /// <summary>
+        /// Authenticates a user using Google ID Token or registers them if they don't exist.
+        /// </summary>
+        /// <param name="request">Request containing the Google ID Token.</param>
+        /// <returns>The application's JWT token.</returns>
+        [HttpPost("google-login")]
+        [ProducesResponseType(typeof(IResult<LoginResponseDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IResult<LoginResponseDto>), StatusCodes.Status201Created)] // Nếu user mới
+        [ProducesResponseType(typeof(IResult<LoginResponseDto>), StatusCodes.Status400BadRequest)] // Email không verified, lỗi token...
+        [ProducesResponseType(typeof(IResult<LoginResponseDto>), StatusCodes.Status401Unauthorized)] // Token không hợp lệ
+        [ProducesResponseType(typeof(IResult<LoginResponseDto>), StatusCodes.Status409Conflict)] // Account conflict
+        [ProducesResponseType(typeof(IResult<LoginResponseDto>), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> GoogleLogin([FromBody] GoogleLoginRequestDto request) // Tạo DTO cho request body
+        {
+            if (string.IsNullOrEmpty(request.IdToken))
+            {
+                return BadRequest(Result<LoginResponseDto>.Failure("ID Token is required.", StatusCodes.Status400BadRequest));
+            }
+            var command = new GoogleLoginCommand(request.IdToken);
+            var result = await _mediator.Send(command);
+            return StatusCode(result.Code, result);
+        }
 
 
-        // --- Helper Method (Tương tự UsersController) ---
-        private IActionResult HandleResult<T>(IResult<T> result)
+        /// <summary>
+        /// Resends the OTP verification code to the user's email.
+        /// </summary>
+        /// <param name="request">Request containing the UserId.</param>
+        [HttpPost("resend-otp")]
+        [ProducesResponseType(typeof(IResult<string>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IResult<string>), StatusCodes.Status400BadRequest)] // User đã verified hoặc validation lỗi
+        [ProducesResponseType(typeof(IResult<string>), StatusCodes.Status404NotFound)] // User không tồn tại
+        [ProducesResponseType(typeof(IResult<string>), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> ResendOtp([FromBody] ResendOtpCommand command) // DTO cho body
+        {
+            var result = await _mediator.Send(command);
+            return StatusCode(result.Code, result);
+        }
+    
+    // --- Helper Method (Tương tự UsersController) ---
+    private IActionResult HandleResult<T>(IResult<T> result)
         {
             if (result.Succeeded)
             {
@@ -68,4 +167,5 @@ namespace FitnessApp.Controllers
             };
         }
     }
+
 }

@@ -20,8 +20,8 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasKey(sm => sm.ScheduleId);
 
             builder.Property(sm => sm.Date)
-                .IsRequired()
-                .HasColumnType("TEXT"); // Store DateOnly as TEXT
+                .IsRequired();
+                //.HasColumnType("TEXT"); // Store DateOnly as TEXT
 
             builder.Property(sm => sm.MealType)
                 .IsRequired()

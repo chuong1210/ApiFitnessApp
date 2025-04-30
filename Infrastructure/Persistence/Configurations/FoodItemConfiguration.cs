@@ -27,8 +27,8 @@ namespace Infrastructure.Persistence.Configurations
                 .HasMaxLength(100);
 
             builder.Property(fi => fi.CaloriesPerServing)
-                .IsRequired()
-                .HasColumnType("REAL");
+                .IsRequired();
+                //.HasColumnType("REAL");
 
             builder.Property(fi => fi.ServingSizeDescription)
                 .IsRequired()
@@ -37,9 +37,9 @@ namespace Infrastructure.Persistence.Configurations
             builder.Property(fi => fi.ImagePublicId)
                 .HasMaxLength(255); // Độ dài phù hợp cho Public ID của Cloudinary (có thể điều chỉnh)
 
-            builder.Property(fi => fi.ProteinGrams).HasColumnType("REAL");
-            builder.Property(fi => fi.CarbGrams).HasColumnType("REAL");
-            builder.Property(fi => fi.FatGrams).HasColumnType("REAL");
+            builder.Property(fi => fi.ProteinGrams);
+            builder.Property(fi => fi.CarbGrams);
+            builder.Property(fi => fi.FatGrams);
 
             builder.Property(fi => fi.ImageUrl)
                 .HasMaxLength(500);

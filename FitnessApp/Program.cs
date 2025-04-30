@@ -9,13 +9,20 @@ using FitnessApp.Middleware;
 using System.Reflection;
 using Microsoft.AspNetCore.Authorization;
 using Ocelot.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.Google;
+using Hangfire;
+using Hangfire.SqlServer;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
 builder.Services.AddOcelot(builder.Configuration);
 // Add services to the container.
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-
+var redisConfig = builder.Configuration.GetSection("Redis");
+var configuration = builder.Configuration;
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+
 var jwtKey = jwtSettings["Key"];
 var jwtIssuer = jwtSettings["Issuer"];
 var jwtAudience = jwtSettings["Audience"];
@@ -88,9 +95,55 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
         ClockSkew = TimeSpan.Zero // Không cho phép sai lệch thời gian
     };
-});
+})
+       // options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme; // Nếu dùng cookie
+        // options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme; // Chỉ khi dùng server-side flow
+    // .AddCookie() // Nếu dùng cookie
+    .AddGoogle(GoogleDefaults.AuthenticationScheme, options => // Đăng ký handler Google
+     {
+         // Lấy thông tin từ cấu hình
+         IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
+         options.ClientId = googleAuthNSection["ClientId"]!;
+         options.ClientSecret = googleAuthNSection["ClientSecret"]!;
+         // options.CallbackPath = "/signin-google"; // Callback mặc định nếu dùng server-side flow
+     });
 
 // --- Cấu hình Authorization (nếu cần policy) ---
+//builder.Services.AddStackExchangeRedisCach(options =>
+//{
+//    options.Configuration = $"{redisConfig["Host"]}:{redisConfig["Port"]}";
+//    if (!string.IsNullOrEmpty(redisConfig["Password"]))
+//    {
+//        options.ConfigurationOptions = new StackExchange.Redis.ConfigurationOptions
+//        {
+//            EndPoints = { $"{redisConfig["Host"]}:{redisConfig["Port"]}" },
+//            Password = redisConfig["Password"]
+//        };
+//    }
+//});
+
+// --- Cấu hình Hangfire ---
+// 1. Thêm Hangfire Services và cấu hình Storage (SQL Server)
+builder.Services.AddHangfire(config => config
+    .SetDataCompatibilityLevel(CompatibilityLevel.Version_180) // Đặt mức tương thích
+    .UseSimpleAssemblyNameTypeSerializer()
+.UseRecommendedSerializerSettings()
+    .UseSqlServerStorage(configuration.GetConnectionString("DefaultConnection"), new SqlServerStorageOptions // Dùng connection string của DB chính hoặc DB riêng cho Hangfire
+    {
+        CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
+        SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
+        QueuePollInterval = TimeSpan.Zero, // Giảm độ trễ polling
+        UseRecommendedIsolationLevel = true,
+        DisableGlobalLocks = true // Khuyến nghị cho SQL Server để tránh deadlock
+    }));
+// 2. Thêm Hangfire Server vào services (để chạy background jobs)
+builder.Services.AddHangfireServer(options =>
+{
+    options.WorkerCount = Environment.ProcessorCount * 2; // Số worker xử lý job (tùy chỉnh)
+    // options.Queues = new[] { "default", "emails", "reports" }; // Định nghĩa các queue nếu cần
+});
+
+builder.Services.AddSingleton<IAuthorizationHandler, PermissionRequirementHandler>();
 
 builder.Services.AddSingleton<IAuthorizationHandler, PermissionRequirementHandler>();
 builder.Services.AddAuthorization(options =>
@@ -116,6 +169,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseHangfireDashboard("/hangfire", new DashboardOptions // Endpoint truy cập dashboard
+{
+    // --- CẤU HÌNH AUTHORIZATION CHO DASHBOARD ---
+    // Cách 1: Đơn giản (chỉ cho phép local access - KHÔNG AN TOÀN cho production)
+    // Authorization = new[] { new Hangfire.Dashboard.LocalRequestsOnlyAuthorizationFilter() }
+
+    // Cách 2: Custom (Yêu cầu đăng nhập và có quyền cụ thể)
+    Authorization = new[] { new HangfireDashboardAuthorizationFilter() } // Xem implementation bên dưới
+    // ------------------------------------------------
+});
 app.UseCors("AllowSpecificOrigin");
 
 app.UseAuthentication();
@@ -136,6 +199,6 @@ async Task InitializePermissions(IServiceProvider serviceProvider)
     await permissionService.Create(permissions);
 }
 
-//dotnet ef migrations add AddImagePublicIdToFoodItem --context AppDbContext --project Infrastructure --startup-project FitnessApp --output-dir Migrations
+//dotnet ef migrations add InitialCreateSqlServerIntGender  --context AppDbContext --project Infrastructure --startup-project FitnessApp --output-dir Migrations
 
 //dotnet ef database update --project Infrastructure --startup-project FitnessApp

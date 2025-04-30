@@ -24,6 +24,7 @@ namespace Infrastructure.Services
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
 
+       // CreatePaymentUrlRequest
         public string GeneratePaymentUrl(decimal amount, string orderId, string orderInfo, HttpContext httpContext)
         {
             var pay = new VnpayLibrary();
