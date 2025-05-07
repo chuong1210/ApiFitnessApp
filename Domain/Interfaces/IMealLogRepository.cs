@@ -38,5 +38,9 @@ namespace Domain.Interfaces
         /// Marks a meal log entity for removal.
         /// </summary>
         void Remove(MealLog mealLog);
+
+
+      IQueryable<MealLog> GetQueryableByUserId(int userId);
+
     }
 }

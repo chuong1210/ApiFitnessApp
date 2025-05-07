@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chào mừng bạn đến với Premium!</title>
+    <style>
+        /* Một số style cơ bản cho các client hỗ trợ <style> */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+            .header img {
+                max-width: 150px;
+            }
+        /* Logo app */
+        .content {
+            padding: 20px 0;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+            .content h1 {
+                color: #6a11cb; /* Màu tím gradient */
+                background: linear-gradient(45deg, #6a11cb, #2575fc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-size: 28px;
+                text-align: center;
+                margin-bottom: 15px;
+                animation: glow 1.5s ease-in-out infinite alternate;
+            }
+
+            .content p {
+                margin-bottom: 15px;
+            }
+
+        .highlight {
+            background-color: #e8f4fd;
+            padding: 15px;
+            border-left: 4px solid #2575fc;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .cta-button {
+            display: block;
+            width: max-content;
+            margin: 30px auto;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: #ffffff !important; /* Quan trọng */
+            padding: 15px 30px;
+            text-decoration: none !important; /* Quan trọng */
+            border-radius: 25px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+            transition: transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+            .cta-button:hover {
+                transform: translateY(-2px);
+            }
+
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #eeeeee;
+            font-size: 12px;
+            color: #888888;
+        }
+
+            .footer a {
+                color: #2575fc;
+                text-decoration: none;
+            }
+
+        /* Hiệu ứng đơn giản */
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #b9a2e8, 0 0 10px #a5d6f1;
+            }
+
+            to {
+                text-shadow: 0 0 10px #b9a2e8, 0 0 20px #a5d6f1;
+            }
+        }
+        /* Responsive (hỗ trợ hạn chế) */
+        @media screen and (max-width: 600px) {
+            .container {
+                width: 90% !important;
+                padding: 20px;
+            }
+
+            .content h1 {
+                font-size: 24px;
+            }
+
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f4f4f4">
+        <tr>
+            <td align="center" style="padding: 20px 0;">
+                <!-- Container chính -->
+                <table class="container" width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                    <tr>
+                        <td style="padding: 30px;">
+                            <!-- Header -->
+                            <table class="header" width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center; padding-bottom: 20px; border-bottom: 1px solid #eeeeee;">
+                                <tr>
+                                    <td>
+                                        <img src="~/Assets/EmailTemplates/Images/logo.png" alt="App Logo" style="max-width: 150px; border:0;" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- Content -->
+                            <table class="content" width="100%" border="0" cellspacing="0" cellpadding="0" style="padding: 20px 0; color: #333333; line-height: 1.6;">
+                                <tr>
+                                    <td>
+                                        <h1 style="color: #6a11cb; font-size: 28px; text-align: center; margin-bottom: 15px;">✨ Chúc Mừng Nâng Cấp Thành Công! ✨</h1>
+                                        <p style="margin-bottom: 15px; text-align:center;">Xin chào <strong>{{UserName}}</strong>,</p>
+                                        <p style="margin-bottom: 15px; text-align:center;">Tài khoản của bạn đã được nâng cấp thành công lên gói <strong>Premium</strong> tại Fitness App!</p>
+                                        <p style="margin-bottom: 15px; text-align:center;">Giờ đây bạn có thể tận hưởng toàn bộ các tính năng cao cấp:</p>
+                                        <div class="highlight" style="background-color: #e8f4fd; padding: 15px; border-left: 4px solid #2575fc; margin: 20px 0; border-radius: 4px;">
+                                            <ul style="margin: 0; padding-left: 20px;">
+                                                <li>Truy cập không giới hạn các kế hoạch tập luyện Premium.</li>
+                                                <li>Xem thống kê và báo cáo chi tiết về tiến trình.</li>
+                                                <li>Theo dõi dinh dưỡng nâng cao.</li>
+                                                <li>Trải nghiệm không quảng cáo.</li>
+                                                <li>Và nhiều hơn thế nữa!</li>
+                                            </ul>
+                                        </div>
+                                        <p style="margin-bottom: 15px; text-align:center;">Chúng tôi rất vui khi có bạn đồng hành trên hành trình sức khỏe này.</p>
+                                        <!-- Call to Action Button -->
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td align="center" style="padding-top: 15px; padding-bottom: 15px;">
+                                                    <a href="/" target="_blank" class="cta-button" style="background: linear-gradient(45deg, #6a11cb, #2575fc); color: #ffffff !important; padding: 15px 30px; text-decoration: none !important; border-radius: 25px; font-weight: bold; text-align: center; font-size: 16px; display: inline-block; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);">Khám phá Tính Năng Premium Ngay!</a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <p style="margin-bottom: 15px; text-align:center; font-size: 13px;">Nếu bạn không thực hiện việc nâng cấp này, vui lòng liên hệ bộ phận hỗ trợ của chúng tôi ngay lập tức.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- Footer -->
+                            <table class="footer" width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align: center; padding-top: 20px; border-top: 1px solid #eeeeee; font-size: 12px; color: #888888;">
+                                <tr>
+                                    <td>
+                                        <p>Bạn nhận được email này vì đã nâng cấp tài khoản tại Fitness App.</p>
+                                        <p>© {{CurrentYear}} Fitness App. All rights reserved.</p>
+                                        <p>
+                                            <a href="URL_UNSUBSCRIBE" style="color: #2575fc; text-decoration: none;">Unsubscribe</a> |
+                                            <a href="URL_PRIVACY_POLICY" style="color: #2575fc; text-decoration: none;">Privacy Policy</a>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <!-- /Container chính -->
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

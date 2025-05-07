@@ -11,7 +11,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Hangfire;
+using Application.Common.Dtos;
 namespace Application.Features.Users.Commands.UpgradeToPremium
 {
     public class UpgradeToPremiumCommandHandler : IRequestHandler<UpgradeToPremiumCommand, IResult<string>>
@@ -19,18 +20,22 @@ namespace Application.Features.Users.Commands.UpgradeToPremium
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICurrentUserService _currentUserService;
         private readonly ILogger<UpgradeToPremiumCommandHandler> _logger;
-        // private readonly IPaymentService _paymentService; // Inject dịch vụ thanh toán thật
+        private readonly IBackgroundJobClient _backgroundJobClient; // Inject Hangfire
+
+         private readonly IVnpayService _paymentService; // Inject dịch vụ thanh toán thật
 
         public UpgradeToPremiumCommandHandler(
             IUnitOfWork unitOfWork,
             ICurrentUserService currentUserService,
             ILogger<UpgradeToPremiumCommandHandler> logger
-            /*, IPaymentService paymentService */) // Inject dịch vụ thanh toán thật
+            , IVnpayService paymentService, IBackgroundJobClient backgroundJobClient // Inject Hangfire
+                ) // Inject dịch vụ thanh toán thật
         {
             _unitOfWork = unitOfWork;
             _currentUserService = currentUserService;
             _logger = logger;
-            // _paymentService = paymentService;
+             _paymentService = paymentService;
+            _backgroundJobClient = backgroundJobClient;
         }
 
         public async Task<IResult<string>> Handle(UpgradeToPremiumCommand request, CancellationToken cancellationToken)
@@ -91,7 +96,22 @@ namespace Application.Features.Users.Commands.UpgradeToPremium
                 await _unitOfWork.SaveChangesAsync(cancellationToken);
 
                 _logger.LogInformation("UpgradeToPremium: User {UserId} successfully upgraded to premium.", userId.Value);
-
+                // --- Enqueue Email gửi lời chúc mừng ---
+                try
+                {
+                    var userMail = new PremiumUpgradeEmailDto(toEmail: user.Email!, userName: user.Name);
+                    var jobId = _backgroundJobClient.Enqueue<IEmailService>(
+                        emailService => emailService.SendPremiumUpgradeEmailAsync(
+                        userMail
+                        )
+                    );
+                    _logger.LogInformation("Enqueued premium upgrade confirmation email job {JobId} for User {UserId}.", jobId, user.UserId);
+                }
+                catch (Exception emailEx)
+                {
+                    // Ghi log lỗi enqueue email nhưng không làm quá trình nâng cấp thất bại
+                    _logger.LogError(emailEx, "Failed to enqueue premium upgrade email for User {UserId}.", user.UserId);
+                }
                 // 8. Trả về kết quả thành công
                 // QUAN TRỌNG: Token hiện tại của người dùng KHÔNG có quyền premium mới.
                 // Cần thông báo cho client biết điều này.

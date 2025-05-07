@@ -21,6 +21,7 @@ namespace Application.Common.Mappings
 
             CreateMap<FoodItem, FoodItemDto>().ReverseMap();
 
+            CreateMap<MealLog, MealLogDto>().ReverseMap();
 
 
             // Thêm các mapping khác cho các features khác ở đây

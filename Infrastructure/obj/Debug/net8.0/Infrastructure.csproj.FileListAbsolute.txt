@@ -24,3 +24,6 @@ C:\Users\chuon\source\repos\FitnessApp\Infrastructure\obj\Debug\net8.0\refint\In
 C:\Users\chuon\source\repos\FitnessApp\Infrastructure\obj\Debug\net8.0\Infrastructure.pdb
 C:\Users\chuon\source\repos\FitnessApp\Infrastructure\obj\Debug\net8.0\Infrastructure.genruntimeconfig.cache
 C:\Users\chuon\source\repos\FitnessApp\Infrastructure\obj\Debug\net8.0\ref\Infrastructure.dll
+C:\Users\chuon\source\repos\FitnessApp\Infrastructure\bin\Debug\net8.0\Assets\EmailTemplates\Images\banner_premium.jpg
+C:\Users\chuon\source\repos\FitnessApp\Infrastructure\bin\Debug\net8.0\Assets\EmailTemplates\Images\logo.png
+C:\Users\chuon\source\repos\FitnessApp\Infrastructure\bin\Debug\net8.0\Assets\EmailTemplates\PremiumUpgradeConfirmation.html

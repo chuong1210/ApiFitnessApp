@@ -11,4 +11,8 @@ namespace Application.Common.Dtos
      string? subject,
      string otpCode
  );
+
+    public record PremiumUpgradeEmailDto(
+ string toEmail,
+ string? userName);
 }

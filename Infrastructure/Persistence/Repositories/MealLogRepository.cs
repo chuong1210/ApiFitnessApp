@@ -56,5 +56,8 @@ namespace Infrastructure.Persistence.Repositories
         {
             _context.MealLogs.Remove(mealLog);
         }
+
+        public IQueryable<MealLog> GetQueryableByUserId(int userId) =>
+          _context.MealLogs.Where(ml => ml.UserId == userId).AsNoTracking(); // AsNoTracking vì chỉ đọc
     }
-    }
+}

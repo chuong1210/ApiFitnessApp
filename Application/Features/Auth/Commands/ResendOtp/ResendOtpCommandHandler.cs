@@ -41,6 +41,12 @@ namespace Application.Features.Auth.Commands.ResendOtp
                 return Result<string>.Failure("User or user email not found.", StatusCodes.Status404NotFound);
             }
 
+            if(user?.EmailVerified==true)
+            {
+                return Result<string>.Failure("User email has been verified.", StatusCodes.Status404NotFound);
+
+            }
+
             // Tạo OTP mới
             var newOtpCode = _otpService.GenerateOtp();
             string otpKey = user.UserId.ToString();

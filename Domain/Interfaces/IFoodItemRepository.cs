@@ -54,5 +54,6 @@ namespace Domain.Interfaces
         /// Marks a food item entity for removal.
         /// </summary>
         void Remove(FoodItem foodItem);
+        Task<bool> IsNameUniqueAsync(string name, int currentIdToExclude = 0, CancellationToken cancellationToken = default);
     }
 }

@@ -11,6 +11,7 @@ namespace Application.Common.Interfaces
         //Task SendOtpEmailAsync(string toEmail, string subject, string otpCode);
         Task SendOtpEmailAsync(EmailDto mail);
 
-        // Thêm các phương thức gửi email khác nếu cần
+        Task SendPremiumUpgradeEmailAsync(PremiumUpgradeEmailDto mail); 
+
     }
 }

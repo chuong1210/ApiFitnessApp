@@ -13,8 +13,6 @@
     <Folder Include="Features\DailyActivities\Queries\" />
     <Folder Include="Features\Goals\Commands\" />
     <Folder Include="Features\Goals\Queries\" />
-    <Folder Include="Features\Meals\Commands\" />
-    <Folder Include="Features\Meals\Queries\" />
     <Folder Include="Features\Sleep\Commands\" />
     <Folder Include="Features\Sleep\Queries\" />
   </ItemGroup>

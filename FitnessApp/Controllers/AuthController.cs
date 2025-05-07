@@ -14,6 +14,9 @@ using Application.Features.Auth.Commands.ResendOtp;
 using Application.Features.Auth.Commands.Register;
 using AutoMapper;
 using Application.Features.Auth.Commands.VerifyOtp;
+using Application.Features.Users.Commands.UpgradeToPremium;
+using Application.Features.Users.Queries.GetMe;
+using Application.Responses.Dtos;
 namespace FitnessApp.Controllers
 {
     [Route("api/[controller]")]
@@ -144,9 +147,64 @@ namespace FitnessApp.Controllers
             var result = await _mediator.Send(command);
             return StatusCode(result.Code, result);
         }
-    
-    // --- Helper Method (Tương tự UsersController) ---
-    private IActionResult HandleResult<T>(IResult<T> result)
+
+        /// <summary>
+        /// Upgrades the currently authenticated user's account to Premium.
+        /// </summary>
+        /// <remarks>
+        /// Requires the user to be authenticated.
+        /// This endpoint typically initiates or follows a successful payment process.
+        /// On successful upgrade, an email confirmation is sent in the background.
+        /// The user might need to re-login or refresh their session to get updated permissions/token.
+        /// </remarks>
+        /// <returns>A result indicating the outcome of the upgrade attempt.</returns>
+        /// <response code="200">Account successfully upgraded. Check message for details.</response>
+        /// <response code="400">Bad Request. User might already be premium, validation failed, or payment failed.</response>
+        /// <response code="401">Unauthorized. User is not logged in.</response>
+        /// <response code="402">Payment Required. Payment processing failed (if applicable).</response>
+        /// <response code="404">Not Found. User associated with the token was not found in the database.</response>
+        /// <response code="500">Internal Server Error. An unexpected error occurred.</response>
+        [HttpPost("me/upgrade-premium")] // Sử dụng route rõ ràng hơn, ví dụ /api/users/me/upgrade-premium
+        [Authorize] // Chỉ người dùng đã đăng nhập mới có thể gọi endpoint này
+                    // [Permission(Permissions.CanUpgrade)] // Có thể thêm quyền cụ thể nếu cần (ít phổ biến)
+        [ProducesResponseType(typeof(IResult<string>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(IResult<string>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)] // Không cần typeof vì không có body
+        [ProducesResponseType(typeof(IResult<string>), StatusCodes.Status402PaymentRequired)]
+        [ProducesResponseType(typeof(IResult<string>), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(IResult<string>), StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UpgradeToPremium()
+        {
+            // Tạo command. Không cần tham số vì UserId lấy từ CurrentUserService trong Handler.
+            var command = new UpgradeToPremiumCommand();
+
+            // Gửi command đến MediatR để Handler xử lý
+            var result = await _mediator.Send(command);
+
+            // Trả về kết quả với Status Code được đóng gói trong IResult
+            // Controller không cần biết logic xử lý thành công/thất bại cụ thể ra sao,
+            // nó chỉ cần chuyển tiếp kết quả từ tầng Application.
+            return StatusCode(result.Code, result);
+        }
+        /// <summary>
+        /// Gets the profile details of the currently authenticated user.
+        /// </summary>
+        /// <returns>The current user's profile information.</returns>
+        [HttpGet("me")] // Route: GET /api/auth/me (hoặc /api/users/me)
+        [Authorize] // !! Quan trọng: Yêu cầu người dùng phải đăng nhập (có token hợp lệ)
+        [ProducesResponseType(typeof(IResult<UserDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)] // Nếu chưa đăng nhập hoặc token hết hạn/không hợp lệ
+        [ProducesResponseType(typeof(IResult<UserDto>), StatusCodes.Status404NotFound)] // Nếu user trong token không tìm thấy trong DB
+        public async Task<IActionResult> GetMe()
+        {
+            var query = new GetMeQuery(); // Tạo query object (không có tham số)
+            var result = await _mediator.Send(query); // Gửi query qua MediatR
+
+            // Trả về kết quả với Status Code được set trong Result object
+            return StatusCode(result.Code, result);
+        }
+        // --- Helper Method (Tương tự UsersController) ---
+        private IActionResult HandleResult<T>(IResult<T> result)
         {
             if (result.Succeeded)
             {

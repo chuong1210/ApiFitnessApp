@@ -88,5 +88,29 @@ namespace Infrastructure.Persistence.Repositories
         {
             _context.FoodItems.Remove(foodItem);
         }
+
+
+        // --- THÊM IMPLEMENTATION CHO PHƯƠNG THỨC MỚI ---
+        public async Task<bool> IsNameUniqueAsync(string name, int currentIdToExclude = 0, CancellationToken cancellationToken = default)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                // Tên rỗng/trắng thường không được coi là "tên" để kiểm tra duy nhất,
+                // hoặc bạn có thể ném ArgumentException tùy theo logic nghiệp vụ.
+                // [Required] validator nên xử lý việc tên không được rỗng.
+                return true; // Hoặc false nếu bạn muốn tên rỗng là không duy nhất nếu đã có item tên rỗng
+            }
+
+            var lowerName = name.ToLower(); // So sánh không phân biệt hoa thường
+
+            // Kiểm tra xem có bất kỳ FoodItem nào khác (không phải item hiện tại đang update)
+            // có cùng tên hay không.
+            bool nameExists = await _context.FoodItems
+                .AnyAsync(fi => fi.Name.ToLower() == lowerName &&
+                                 (currentIdToExclude <= 0 || fi.FoodId != currentIdToExclude), // Loại trừ chính nó khi update
+                          cancellationToken);
+
+            return !nameExists; // Trả về true nếu KHÔNG tồn tại tên trùng (tức là tên này là unique)
+        }
     }
 }
