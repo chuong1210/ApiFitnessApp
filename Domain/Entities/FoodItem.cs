@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class FoodItem
+    public class FoodItem : AuditableEntity
     {
         public int FoodId { get; private set; }
         public string Name { get; private set; } = string.Empty;

@@ -29,13 +29,25 @@ namespace Infrastructure
 
             // Configure DbContext
             var connectionString = configuration.GetConnectionString("DefaultConnection"); // Get from appsettings.json
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(connectionString, builder =>
+            services.AddDbContext<AppDbContext>((sp, options) =>
+               {
+                   var interceptor = sp.GetRequiredService<EntitySaveChangesInterceptor>();
+
+                   options.UseSqlServer(connectionString, builder =>
                 {
+
                     builder.MigrationsAssembly(typeof(DependencyInjection).Assembly.FullName);
                     builder.EnableRetryOnFailure();
-                })); // Use SQLite provider
 
+                }
+                )
+               .AddInterceptors(interceptor); 
+
+                   
+               });
+                
+                
+                
             // Register Repositories
             services.AddScoped<IUserRepository, UserRepository>();
             //services.AddScoped<IDailyActivityRepository, DailyActivityRepository>();

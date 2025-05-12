@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class DailyActivity
+    public class DailyActivity : AuditableEntity
     {
         public int ActivityId { get; private set; }
         public int UserId { get; private set; }

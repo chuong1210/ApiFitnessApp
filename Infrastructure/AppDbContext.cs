@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration; // Thêm using này
 using System.IO; // Thêm using này
+using Domain.Interfaces;
 namespace Infrastructure
 {
     public class AppDbContext: DbContext
@@ -23,7 +24,6 @@ namespace Infrastructure
         : base(options)
         {
             _saveChangesInterceptor = saveChangesInterceptor;
-            //SQLitePCL.Batteries.Init(); // Hoặc SQLitePCL.Batteries_V2.Init(); tùy thuộc vào gói bạn dùng
 
 
         }
@@ -48,6 +48,56 @@ namespace Infrastructure
             // Apply all configurations from the current assembly (Infrastructure)
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
+
+            // --- ÁP DỤNG CONVENTION CHO CÁC TRƯỜNG AUDIT ---
+            foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+            {
+                // Kiểm tra xem entity có implement IAuditableEntity không
+                if (typeof(IAuditableEntity).IsAssignableFrom(entityType.ClrType))
+                {
+                    // Cấu hình cho CreatedAt và UpdatedAt
+                    modelBuilder.Entity(entityType.ClrType)
+                        .Property(nameof(IAuditableEntity.CreatedAt))
+                        .HasColumnType("datetime2");
+
+                    modelBuilder.Entity(entityType.ClrType)
+                        .Property(nameof(IAuditableEntity.UpdatedAt))
+                        .HasColumnType("datetime2");
+
+                    // Cấu hình cho CreatedBy và UpdatedBy
+                    modelBuilder.Entity(entityType.ClrType)
+                        .Property(nameof(IAuditableEntity.CreatedBy))
+                        .HasMaxLength(256) // Độ dài phù hợp cho UserId/Username
+                        .HasColumnType("nvarchar(256)"); // Đảm bảo kiểu nvarchar
+
+                    modelBuilder.Entity(entityType.ClrType)
+                        .Property(nameof(IAuditableEntity.UpdatedBy))
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+                }
+
+                // --- (Tùy chọn) CONVENTION CHO CÁC THUỘC TÍNH KHÁC ---
+                // Ví dụ: Tất cả các thuộc tính kiểu string có tên kết thúc bằng "Description"
+                // sẽ có kiểu nvarchar(max)
+                foreach (var property in entityType.GetProperties())
+                {
+                    if (property.ClrType == typeof(string) && property.Name.EndsWith("Description"))
+                    {
+                        // property.SetMaxLength(1000); // Giới hạn độ dài nếu cần
+                        property.SetIsUnicode(true); // Đảm bảo là nvarchar
+                                                     // Nếu muốn nvarchar(max) và EF Core không tự làm, có thể cần cách khác hoặc dùng HasColumnType
+                    }
+
+                    // Ví dụ: Tất cả các thuộc tính kiểu decimal sẽ có precision và scale mặc định
+                    if (property.ClrType == typeof(decimal) || property.ClrType == typeof(decimal?))
+                    {
+                        property.SetPrecision(18); // Tổng số chữ số
+                        property.SetScale(2);    // Số chữ số sau dấu phẩy
+                                                 // Hoặc dùng: property.SetColumnType("decimal(18,2)");
+                    }
+                }
+            }
+            // --- KẾT THÚC ÁP DỤNG CONVENTION ---
 
             base.OnModelCreating(modelBuilder);
         }

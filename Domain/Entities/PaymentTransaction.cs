@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Domain.Entities
 {
 
-    public class PaymentTransaction
+    public class PaymentTransaction : AuditableEntity
     {
         public Guid Id { get; private set; } // Dùng Guid làm khóa chính
         public int UserId { get; private set; }

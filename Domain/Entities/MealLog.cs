@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class MealLog
+    public class MealLog : AuditableEntity
     {
         public int LogId { get; private set; }
         public int UserId { get; private set; }

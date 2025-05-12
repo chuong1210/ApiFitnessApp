@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Features.Auth.Dtos;
+using Application.Features.ScheduledMeals.Dtos;
+using Application.Features.Goals.Dtos;
 namespace Application.Common.Mappings
 {
     public class ModuleMappingProfile : Profile
@@ -23,10 +25,11 @@ namespace Application.Common.Mappings
 
             CreateMap<MealLog, MealLogDto>().ReverseMap();
 
+            CreateMap<ScheduledMeal, ScheduledMealDto>();
+            CreateMap<Goal, GoalDto>();
+            ;
 
-            // Thêm các mapping khác cho các features khác ở đây
-            // CreateMap<Workout, WorkoutDto>();
-            // ...
+            //CreateMap<Workout, WorkoutDto>();
         }
     }
 }

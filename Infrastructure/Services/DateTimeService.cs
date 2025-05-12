@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Services
 {
-    public class DateTimeService : IDateTimeService { }
+    public class DateTimeService : IDateTimeService {
+        //public DateTime UtcNow => DateTime.UtcNow; khỏi cần khai báo vì bên interace đã declare rồi
+
+    }
 
 }

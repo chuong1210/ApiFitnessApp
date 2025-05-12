@@ -49,6 +49,20 @@ namespace Infrastructure.Persistence.Repositories
                                  .ToListAsync(cancellationToken);
         }
 
+        public IQueryable<ScheduledMeal> GetQueryableByUserIdAndDate(int userId, DateOnly date)
+        {
+            return _context.ScheduledMeals
+                           .Where(sm => sm.UserId == userId && sm.Date == date)
+                           .AsNoTracking(); // Quan trọng: Dùng AsNoTracking() cho các query chỉ đọc để cải thiện hiệu năng
+                                            // EF Core sẽ không theo dõi thay đổi trên các entity này.
+        }
+
+        public IQueryable<ScheduledMeal> GetQueryableByUserIdAndDateRange(int userId, DateOnly startDate, DateOnly endDate)
+        {
+            return _context.ScheduledMeals
+                           .Where(sm => sm.UserId == userId && sm.Date >= startDate && sm.Date <= endDate)
+                           .AsNoTracking();
+        }
         public void Update(ScheduledMeal scheduledMeal)
         {
             _context.ScheduledMeals.Update(scheduledMeal);

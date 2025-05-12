@@ -44,5 +44,7 @@ namespace Domain.Interfaces
         /// Marks a goal entity for removal.
         /// </summary>
         void Remove(Goal goal);
+         IQueryable<Goal> GetQueryableByUserId(int userId);
+
     }
 }

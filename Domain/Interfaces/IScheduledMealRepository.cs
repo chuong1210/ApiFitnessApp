@@ -38,9 +38,22 @@ namespace Domain.Interfaces
         /// Marks a scheduled meal entity for removal.
         /// </summary>
         void Remove(ScheduledMeal scheduledMeal);
+        /// <summary>
+        /// Gets a queryable collection of scheduled meals for a specific user and date.
+        /// This allows for further server-side filtering, sorting, and pagination.
+        /// </summary>
+        /// <param name="userId">The ID of the user.</param>
+        /// <param name="date">The specific date to filter by.</param>
+        /// <returns>An IQueryable of ScheduledMeal entities.</returns>
+        IQueryable<ScheduledMeal> GetQueryableByUserIdAndDate(int userId, DateOnly date);
+
+        /// <summary>
+        /// Gets a queryable collection of scheduled meals for a specific user within a date range.
+        /// </summary>
+        IQueryable<ScheduledMeal> GetQueryableByUserIdAndDateRange(int userId, DateOnly startDate, DateOnly endDate);
     }
 
 
- 
-    }
+
+}
 

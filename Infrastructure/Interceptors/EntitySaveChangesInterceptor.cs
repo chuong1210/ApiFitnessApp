@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Application.Common.Interfaces;
+using Domain.Interfaces;
+using Infrastructure.Services;
 namespace Infrastructure.Interceptors
 {
     public class EntitySaveChangesInterceptor : SaveChangesInterceptor
@@ -38,35 +40,38 @@ namespace Infrastructure.Interceptors
             if (context is null)
                 return;
 
+            if (context == null) return;
 
-            foreach (var entry in context.ChangeTracker.Entries())
+            // Lấy UserId hoặc Username của người dùng hiện tại
+            // Nếu không có người dùng đăng nhập (ví dụ: background job), có thể để null hoặc một giá trị mặc định
+            var currentUserIdString = _currentUserService.UserId?.ToString(); // Lấy UserId dạng string
+                                                                              // Hoặc: var currentUsername = _currentUserService.Username; (nếu bạn có Username trong ICurrentUserService)
+
+            var utcNow = _dateTime.UtcNow; // Lấy thời gian UTC hiện tại từ service
+
+            // Duyệt qua tất cả các entity đang được theo dõi bởi DbContext
+            foreach (var entry in context.ChangeTracker.Entries<IAuditableEntity>()) // Chỉ xử lý các entity implement IAuditableEntity
             {
-                //if (entry.Entity is IAuditableEntity auditableEntity)
-                //{
-                //    auditableEntity.CreatedAt = _dateTime.Now;
-                //    auditableEntity.CreatedBy = _currentUserService.UserId.ToString();
-                //    auditableEntity.UpdatedAt = _dateTime.Now;
-                //    auditableEntity.UpdatedBy = _currentUserService.UserId.ToString();
+                // Nếu entity được thêm mới
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Entity.CreatedBy = currentUserIdString; // Gán người tạo
+                    entry.Entity.CreatedAt = utcNow;         // Gán thời gian tạo
+                                                             // UpdatedAt và UpdatedBy cũng có thể được gán giá trị giống Created khi tạo mới
+                    entry.Entity.UpdatedBy = currentUserIdString;
+                    entry.Entity.UpdatedAt = utcNow;
+                }
+                // Nếu entity được cập nhật
+                else if (entry.State == EntityState.Modified || // Entity được sửa đổi tường minh
+                         (entry.State == EntityState.Unchanged && entry.Properties.Any(p => p.IsModified))) // Hoặc một thuộc tính của nó bị sửa đổi (ít xảy ra nếu bạn dùng Update())
+                {
+                    entry.Entity.UpdatedBy = currentUserIdString; // Gán người cập nhật
+                    entry.Entity.UpdatedAt = utcNow;         // Gán thời gian cập nhật
 
-                //    if (entry.State == EntityState.Added)
-                //    {
-                //        auditableEntity.IsDeleted = false;
-                //    }
-                //    else if (entry.State == EntityState.Deleted &&
-                //        !CommonBusinessData.ImmediateDeleteTypes.Contains(entry.Entity.GetType()))
-                //    {
-                //        entry.State = EntityState.Unchanged;
-                //        auditableEntity.IsDeleted = true;
-                //    }}
-                
-
-                //if (entry.Entity is IHardDeleteEntity hardDeleteEntity && entry.State == EntityState.Added)
-                //{
-                //    hardDeleteEntity.CreatedAt = _dateTime.Now;
-                //    hardDeleteEntity.CreatedBy = _currentUserService.UserId.ToString();
-                //    hardDeleteEntity.UpdatedAt = _dateTime.Now;
-                //    hardDeleteEntity.UpdatedBy = _currentUserService.UserId.ToString();
-                //}
+                    // (Tùy chọn) Không cho phép thay đổi CreatedAt và CreatedBy khi update
+                    // entry.Property(e => e.CreatedAt).IsModified = false;
+                    // entry.Property(e => e.CreatedBy).IsModified = false;
+                }
             }
 
         }

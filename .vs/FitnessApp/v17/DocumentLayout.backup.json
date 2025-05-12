@@ -3,12 +3,164 @@
   "WorkspaceRootPath": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\common\\validationattributes\\ensurefuturedateattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\common\\validationattributes\\ensurefuturedateattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\fitnessapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|solutionrelative:fitnessapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\infrastructure\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\infrastructure\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\common\\interfaces\\idatetimeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\common\\interfaces\\idatetimeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\infrastructure\\services\\datetimeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\services\\datetimeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\infrastructure\\interceptors\\entitysavechangesinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\interceptors\\entitysavechangesinterceptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\entities\\workoutplanitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\workoutplanitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\entities\\workoutsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\workoutsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\entities\\workoutplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\workoutplan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\entities\\workout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\workout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\entities\\sleeplog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\sleeplog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\entities\\scheduledmeal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\scheduledmeal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\entities\\paymenttransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\paymenttransaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\entities\\meallog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\meallog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\entities\\goal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\goal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\entities\\fooditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\fooditem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\entities\\dailyactivity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\dailyactivity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\entities\\auditableentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\auditableentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\interfaces\\iauditableentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\interfaces\\iauditableentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\infrastructure\\persistence\\repositories\\scheduledmealrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\persistence\\repositories\\scheduledmealrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\scheduledmeals\\queries\\getscheduledmealsbydate\\getscheduledmealsbydatequeryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\features\\scheduledmeals\\queries\\getscheduledmealsbydate\\getscheduledmealsbydatequeryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\scheduledmeals\\commands\\createscheduledmeal\\createscheduledmealcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\features\\scheduledmeals\\commands\\createscheduledmeal\\createscheduledmealcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\scheduledmeals\\queries\\getscheduledmealsbydate\\getscheduledmealsbydatequery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\features\\scheduledmeals\\queries\\getscheduledmealsbydate\\getscheduledmealsbydatequery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\scheduledmeals\\commands\\createscheduledmeal\\createscheduledmealcommandvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\features\\scheduledmeals\\commands\\createscheduledmeal\\createscheduledmealcommandvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\scheduledmeals\\commands\\createscheduledmeal\\createscheduledmealcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\features\\scheduledmeals\\commands\\createscheduledmeal\\createscheduledmealcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\fitnessapp\\contracts\\requests\\updatescheduledmealrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|solutionrelative:fitnessapp\\contracts\\requests\\updatescheduledmealrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\fitnessapp\\contracts\\requests\\createscheduledmealrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|solutionrelative:fitnessapp\\contracts\\requests\\createscheduledmealrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\scheduledmeals\\dtos\\scheduledmealrequestbasedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\features\\scheduledmeals\\dtos\\scheduledmealrequestbasedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\fitnessapp\\controllers\\meallogscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|solutionrelative:fitnessapp\\controllers\\meallogscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\infrastructure\\persistence\\repositories\\meallogrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\persistence\\repositories\\meallogrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\interfaces\\imeallogrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\interfaces\\imeallogrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\users\\queries\\getusers\\getmealloghistoryqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\features\\users\\queries\\getusers\\getmealloghistoryqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\meals\\commands\\logmeal\\logmealcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\features\\meals\\commands\\logmeal\\logmealcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\users\\queries\\getusers\\getusersqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\features\\users\\queries\\getusers\\getusersqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\meals\\commands\\logmeal\\logmealcommandvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\features\\meals\\commands\\logmeal\\logmealcommandvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\meals\\commands\\logmeal\\logmealcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\features\\meals\\commands\\logmeal\\logmealcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\fitnessapp\\contracts\\requests\\logmealrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|solutionrelative:fitnessapp\\contracts\\requests\\logmealrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\fitnessapp\\contracts\\requests\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|solutionrelative:fitnessapp\\contracts\\requests\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\responses\\dtos\\meallogdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\responses\\dtos\\meallogdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\fitnessapp\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,6 +169,38 @@
     {
       "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\users\\queries\\getme\\getmequeryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\features\\users\\queries\\getme\\getmequeryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\infrastructure\\persistence\\repositories\\fooditemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\persistence\\repositories\\fooditemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\interfaces\\ifooditemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\interfaces\\ifooditemrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\interfaces\\iunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\common\\validationattributes\\mustbeuniquefoodnameattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\common\\validationattributes\\mustbeuniquefoodnameattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\fooditems\\commands\\createfooditem\\createfooditemcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\features\\fooditems\\commands\\createfooditem\\createfooditemcommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\common\\validationattributes\\ensurefuturedateattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\common\\validationattributes\\ensurefuturedateattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\common\\validationattributes\\allowedvaluesattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\common\\validationattributes\\allowedvaluesattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\infrastructure\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\services\\emailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\users\\queries\\getme\\getmequery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -29,10 +213,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\responses\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\responses\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\users\\queries\\getusers\\getusersqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\features\\users\\queries\\getusers\\getusersqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\features\\users\\queries\\getuserbyid\\getuserbyidquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -75,10 +255,6 @@
       "RelativeMoniker": "D:0:0:{F4796595-DDD1-4BF9-BB31-76381BD2A745}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\persistence\\configurations\\userconfiguration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\fitnessapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BB08B5ED-8970-4D8E-B78A-98C505401977}|FitnessApp\\FitnessApp.csproj|solutionrelative:fitnessapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\enums\\goaltype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\enums\\goaltype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -89,10 +265,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\domain\\enums\\gender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D63F464C-C23F-4A68-AAE7-C311D1774FC1}|Domain\\Domain.csproj|solutionrelative:domain\\enums\\gender.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|c:\\users\\chuon\\source\\repos\\fitnessapp\\application\\common\\mappings\\modulemappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F77FB382-CF9A-4B90-B26B-115BB17033AF}|Application\\Application.csproj|solutionrelative:application\\common\\mappings\\modulemappingprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -102,8 +274,47 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 12,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DependencyInjection.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\DependencyInjection.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\DependencyInjection.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\DependencyInjection.cs",
+              "RelativeToolTip": "Infrastructure\\DependencyInjection.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAiwC0AAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T06:21:41.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\AppDbContext.cs",
+              "RelativeToolTip": "Infrastructure\\AppDbContext.cs",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T06:21:22.037Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IDateTimeService.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Common\\Interfaces\\IDateTimeService.cs",
+              "RelativeDocumentMoniker": "Application\\Common\\Interfaces\\IDateTimeService.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Common\\Interfaces\\IDateTimeService.cs",
+              "RelativeToolTip": "Application\\Common\\Interfaces\\IDateTimeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAwAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T06:00:08.612Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -134,33 +345,576 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "EnsureFutureDateAttribute.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Common\\ValidationAttributes\\EnsureFutureDateAttribute.cs",
-              "RelativeDocumentMoniker": "Application\\Common\\ValidationAttributes\\EnsureFutureDateAttribute.cs",
-              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Common\\ValidationAttributes\\EnsureFutureDateAttribute.cs",
-              "RelativeToolTip": "Application\\Common\\ValidationAttributes\\EnsureFutureDateAttribute.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "DateTimeService.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\Services\\DateTimeService.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Services\\DateTimeService.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\Services\\DateTimeService.cs",
+              "RelativeToolTip": "Infrastructure\\Services\\DateTimeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T17:55:26.271Z",
+              "WhenOpened": "2025-05-12T05:59:06.473Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
+              "Title": "WorkoutPlanItem.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\WorkoutPlanItem.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\WorkoutPlanItem.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\WorkoutPlanItem.cs",
+              "RelativeToolTip": "Domain\\Entities\\WorkoutPlanItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T05:53:57.407Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Program.cs",
+              "RelativeDocumentMoniker": "FitnessApp\\Program.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Program.cs",
+              "RelativeToolTip": "FitnessApp\\Program.cs",
+              "ViewState": "AgIAAL0AAAAAAAAAAAAuwMwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T14:01:07.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "WorkoutSession.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\WorkoutSession.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\WorkoutSession.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\WorkoutSession.cs",
+              "RelativeToolTip": "Domain\\Entities\\WorkoutSession.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T05:54:02.373Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "WorkoutPlan.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\WorkoutPlan.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\WorkoutPlan.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\WorkoutPlan.cs",
+              "RelativeToolTip": "Domain\\Entities\\WorkoutPlan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T05:53:55.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Workout.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\Workout.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Workout.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\Workout.cs",
+              "RelativeToolTip": "Domain\\Entities\\Workout.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T05:53:52.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "EntitySaveChangesInterceptor.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\Interceptors\\EntitySaveChangesInterceptor.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Interceptors\\EntitySaveChangesInterceptor.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\Interceptors\\EntitySaveChangesInterceptor.cs",
+              "RelativeToolTip": "Infrastructure\\Interceptors\\EntitySaveChangesInterceptor.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwDEAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T15:29:44.839Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\User.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\User.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\User.cs",
+              "RelativeToolTip": "Domain\\Entities\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T05:53:50.079Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SleepLog.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\SleepLog.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\SleepLog.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\SleepLog.cs",
+              "RelativeToolTip": "Domain\\Entities\\SleepLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T05:53:47.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ScheduledMeal.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\ScheduledMeal.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\ScheduledMeal.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\ScheduledMeal.cs",
+              "RelativeToolTip": "Domain\\Entities\\ScheduledMeal.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T05:53:45.689Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "PaymentTransaction.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\PaymentTransaction.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\PaymentTransaction.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\PaymentTransaction.cs",
+              "RelativeToolTip": "Domain\\Entities\\PaymentTransaction.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T05:53:43.525Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MealLog.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\MealLog.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\MealLog.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\MealLog.cs",
+              "RelativeToolTip": "Domain\\Entities\\MealLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T05:53:40.487Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Goal.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\Goal.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Goal.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\Goal.cs",
+              "RelativeToolTip": "Domain\\Entities\\Goal.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T05:53:38.015Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "FoodItem.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\FoodItem.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\FoodItem.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\FoodItem.cs",
+              "RelativeToolTip": "Domain\\Entities\\FoodItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T05:53:35.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "DailyActivity.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\DailyActivity.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\DailyActivity.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\DailyActivity.cs",
+              "RelativeToolTip": "Domain\\Entities\\DailyActivity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T05:53:17.221Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "AuditableEntity.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\AuditableEntity.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\AuditableEntity.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Entities\\AuditableEntity.cs",
+              "RelativeToolTip": "Domain\\Entities\\AuditableEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T05:53:08.054Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "IAuditableEntity.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Interfaces\\IAuditableEntity.cs",
+              "RelativeDocumentMoniker": "Domain\\Interfaces\\IAuditableEntity.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Interfaces\\IAuditableEntity.cs",
+              "RelativeToolTip": "Domain\\Interfaces\\IAuditableEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T05:52:41.257Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "ScheduledMealRepository.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\Persistence\\Repositories\\ScheduledMealRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\Repositories\\ScheduledMealRepository.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\Persistence\\Repositories\\ScheduledMealRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Persistence\\Repositories\\ScheduledMealRepository.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAmwCoAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T14:15:05.963Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "GetScheduledMealsByDateQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\ScheduledMeals\\Queries\\GetScheduledMealsByDate\\GetScheduledMealsByDateQueryHandler.cs",
+              "RelativeDocumentMoniker": "Application\\Features\\ScheduledMeals\\Queries\\GetScheduledMealsByDate\\GetScheduledMealsByDateQueryHandler.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\ScheduledMeals\\Queries\\GetScheduledMealsByDate\\GetScheduledMealsByDateQueryHandler.cs",
+              "RelativeToolTip": "Application\\Features\\ScheduledMeals\\Queries\\GetScheduledMealsByDate\\GetScheduledMealsByDateQueryHandler.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAAuwDEAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T14:11:16.471Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "GetScheduledMealsByDateQuery.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\ScheduledMeals\\Queries\\GetScheduledMealsByDate\\GetScheduledMealsByDateQuery.cs",
+              "RelativeDocumentMoniker": "Application\\Features\\ScheduledMeals\\Queries\\GetScheduledMealsByDate\\GetScheduledMealsByDateQuery.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\ScheduledMeals\\Queries\\GetScheduledMealsByDate\\GetScheduledMealsByDateQuery.cs",
+              "RelativeToolTip": "Application\\Features\\ScheduledMeals\\Queries\\GetScheduledMealsByDate\\GetScheduledMealsByDateQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T14:10:59.852Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "CreateScheduledMealCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\ScheduledMeals\\Commands\\CreateScheduledMeal\\CreateScheduledMealCommandHandler.cs",
+              "RelativeDocumentMoniker": "Application\\Features\\ScheduledMeals\\Commands\\CreateScheduledMeal\\CreateScheduledMealCommandHandler.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\ScheduledMeals\\Commands\\CreateScheduledMeal\\CreateScheduledMealCommandHandler.cs",
+              "RelativeToolTip": "Application\\Features\\ScheduledMeals\\Commands\\CreateScheduledMeal\\CreateScheduledMealCommandHandler.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAYwFwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T14:09:51.275Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "CreateScheduledMealCommandValidator.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\ScheduledMeals\\Commands\\CreateScheduledMeal\\CreateScheduledMealCommandValidator.cs",
+              "RelativeDocumentMoniker": "Application\\Features\\ScheduledMeals\\Commands\\CreateScheduledMeal\\CreateScheduledMealCommandValidator.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\ScheduledMeals\\Commands\\CreateScheduledMeal\\CreateScheduledMealCommandValidator.cs",
+              "RelativeToolTip": "Application\\Features\\ScheduledMeals\\Commands\\CreateScheduledMeal\\CreateScheduledMealCommandValidator.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwC4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T14:08:53.253Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "CreateScheduledMealCommand.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\ScheduledMeals\\Commands\\CreateScheduledMeal\\CreateScheduledMealCommand.cs",
+              "RelativeDocumentMoniker": "Application\\Features\\ScheduledMeals\\Commands\\CreateScheduledMeal\\CreateScheduledMealCommand.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\ScheduledMeals\\Commands\\CreateScheduledMeal\\CreateScheduledMealCommand.cs",
+              "RelativeToolTip": "Application\\Features\\ScheduledMeals\\Commands\\CreateScheduledMeal\\CreateScheduledMealCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T14:08:31.746Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "UpdateScheduledMealRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Contracts\\Requests\\UpdateScheduledMealRequestDto.cs",
+              "RelativeDocumentMoniker": "FitnessApp\\Contracts\\Requests\\UpdateScheduledMealRequestDto.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Contracts\\Requests\\UpdateScheduledMealRequestDto.cs",
+              "RelativeToolTip": "FitnessApp\\Contracts\\Requests\\UpdateScheduledMealRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T14:07:02.292Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "CreateScheduledMealRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Contracts\\Requests\\CreateScheduledMealRequestDto.cs",
+              "RelativeDocumentMoniker": "FitnessApp\\Contracts\\Requests\\CreateScheduledMealRequestDto.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Contracts\\Requests\\CreateScheduledMealRequestDto.cs",
+              "RelativeToolTip": "FitnessApp\\Contracts\\Requests\\CreateScheduledMealRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T14:06:34.337Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ScheduledMealRequestBaseDto.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\ScheduledMeals\\Dtos\\ScheduledMealRequestBaseDto.cs",
+              "RelativeDocumentMoniker": "Application\\Features\\ScheduledMeals\\Dtos\\ScheduledMealRequestBaseDto.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\ScheduledMeals\\Dtos\\ScheduledMealRequestBaseDto.cs",
+              "RelativeToolTip": "Application\\Features\\ScheduledMeals\\Dtos\\ScheduledMealRequestBaseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-10T14:05:28.712Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "MealLogRepository.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\Persistence\\Repositories\\MealLogRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\Repositories\\MealLogRepository.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\Persistence\\Repositories\\MealLogRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Persistence\\Repositories\\MealLogRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:51:58.893Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "IMealLogRepository.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Interfaces\\IMealLogRepository.cs",
+              "RelativeDocumentMoniker": "Domain\\Interfaces\\IMealLogRepository.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Interfaces\\IMealLogRepository.cs",
+              "RelativeToolTip": "Domain\\Interfaces\\IMealLogRepository.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAywCgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:51:26.787Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "GetMealLogHistoryQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Users\\Queries\\GetUsers\\GetMealLogHistoryQueryHandler.cs",
+              "RelativeDocumentMoniker": "Application\\Features\\Users\\Queries\\GetUsers\\GetMealLogHistoryQueryHandler.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Users\\Queries\\GetUsers\\GetMealLogHistoryQueryHandler.cs",
+              "RelativeToolTip": "Application\\Features\\Users\\Queries\\GetUsers\\GetMealLogHistoryQueryHandler.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAmwFYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:51:03.043Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "MealLogsController.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Controllers\\MealLogsController.cs",
+              "RelativeDocumentMoniker": "FitnessApp\\Controllers\\MealLogsController.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Controllers\\MealLogsController.cs",
+              "RelativeToolTip": "FitnessApp\\Controllers\\MealLogsController.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAYwEYAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:49:19.228Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "LogMealCommandHandler.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Meals\\Commands\\LogMeal\\LogMealCommandHandler.cs",
+              "RelativeDocumentMoniker": "Application\\Features\\Meals\\Commands\\LogMeal\\LogMealCommandHandler.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Meals\\Commands\\LogMeal\\LogMealCommandHandler.cs",
+              "RelativeToolTip": "Application\\Features\\Meals\\Commands\\LogMeal\\LogMealCommandHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:48:36.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "GetUsersQueryHandler.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Users\\Queries\\GetUsers\\GetUsersQueryHandler.cs",
+              "RelativeDocumentMoniker": "Application\\Features\\Users\\Queries\\GetUsers\\GetUsersQueryHandler.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Users\\Queries\\GetUsers\\GetUsersQueryHandler.cs",
+              "RelativeToolTip": "Application\\Features\\Users\\Queries\\GetUsers\\GetUsersQueryHandler.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAQwB0AAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T17:44:03.965Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "LogMealCommandValidator.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Meals\\Commands\\LogMeal\\LogMealCommandValidator.cs",
+              "RelativeDocumentMoniker": "Application\\Features\\Meals\\Commands\\LogMeal\\LogMealCommandValidator.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Meals\\Commands\\LogMeal\\LogMealCommandValidator.cs",
+              "RelativeToolTip": "Application\\Features\\Meals\\Commands\\LogMeal\\LogMealCommandValidator.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:48:15.426Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "LogMealCommand.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Meals\\Commands\\LogMeal\\LogMealCommand.cs",
+              "RelativeDocumentMoniker": "Application\\Features\\Meals\\Commands\\LogMeal\\LogMealCommand.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Meals\\Commands\\LogMeal\\LogMealCommand.cs",
+              "RelativeToolTip": "Application\\Features\\Meals\\Commands\\LogMeal\\LogMealCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:46:22.179Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "UserDTO.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Contracts\\Requests\\UserDTO.cs",
+              "RelativeDocumentMoniker": "FitnessApp\\Contracts\\Requests\\UserDTO.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Contracts\\Requests\\UserDTO.cs",
+              "RelativeToolTip": "FitnessApp\\Contracts\\Requests\\UserDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:43:44.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "LogMealRequestDto.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Contracts\\Requests\\LogMealRequestDto.cs",
+              "RelativeDocumentMoniker": "FitnessApp\\Contracts\\Requests\\LogMealRequestDto.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Contracts\\Requests\\LogMealRequestDto.cs",
+              "RelativeToolTip": "FitnessApp\\Contracts\\Requests\\LogMealRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:41:49.172Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "MealLogDto.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Responses\\Dtos\\MealLogDto.cs",
+              "RelativeDocumentMoniker": "Application\\Responses\\Dtos\\MealLogDto.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Responses\\Dtos\\MealLogDto.cs",
+              "RelativeToolTip": "Application\\Responses\\Dtos\\MealLogDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:39:23.395Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "FoodItemRepository.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\Persistence\\Repositories\\FoodItemRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Persistence\\Repositories\\FoodItemRepository.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\Persistence\\Repositories\\FoodItemRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Persistence\\Repositories\\FoodItemRepository.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAADwv3EAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:33:40.737Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "IFoodItemRepository.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Interfaces\\IFoodItemRepository.cs",
+              "RelativeDocumentMoniker": "Domain\\Interfaces\\IFoodItemRepository.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Interfaces\\IFoodItemRepository.cs",
+              "RelativeToolTip": "Domain\\Interfaces\\IFoodItemRepository.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAwwDgAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:31:59.779Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
               "Title": "GetMeQueryHandler.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Users\\Queries\\GetMe\\GetMeQueryHandler.cs",
               "RelativeDocumentMoniker": "Application\\Features\\Users\\Queries\\GetMe\\GetMeQueryHandler.cs",
               "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Users\\Queries\\GetMe\\GetMeQueryHandler.cs",
               "RelativeToolTip": "Application\\Features\\Users\\Queries\\GetMe\\GetMeQueryHandler.cs",
-              "ViewState": "AgIAAD4AAAAAAAAAAAAmwE0AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAACIAAAAAAAAAAAAQwE0AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T17:50:27.419Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T17:50:27.419Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 40,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "FitnessApp\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "FitnessApp\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAK8AAAAAAAAAAAA6wMwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-30T15:25:05.611Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "IUnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Interfaces\\IUnitOfWork.cs",
+              "RelativeDocumentMoniker": "Domain\\Interfaces\\IUnitOfWork.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Interfaces\\IUnitOfWork.cs",
+              "RelativeToolTip": "Domain\\Interfaces\\IUnitOfWork.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:31:51.525Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
+              "Title": "CreateFoodItemCommand.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\FoodItems\\Commands\\CreateFoodItem\\CreateFoodItemCommand.cs",
+              "RelativeDocumentMoniker": "Application\\Features\\FoodItems\\Commands\\CreateFoodItem\\CreateFoodItemCommand.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\FoodItems\\Commands\\CreateFoodItem\\CreateFoodItemCommand.cs",
+              "RelativeToolTip": "Application\\Features\\FoodItems\\Commands\\CreateFoodItem\\CreateFoodItemCommand.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABcAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:24:20.431Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
+              "Title": "MustBeUniqueFoodNameAttribute.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Common\\ValidationAttributes\\MustBeUniqueFoodNameAttribute.cs",
+              "RelativeDocumentMoniker": "Application\\Common\\ValidationAttributes\\MustBeUniqueFoodNameAttribute.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Common\\ValidationAttributes\\MustBeUniqueFoodNameAttribute.cs",
+              "RelativeToolTip": "Application\\Common\\ValidationAttributes\\MustBeUniqueFoodNameAttribute.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwEAAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:17:46.797Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 48,
+              "Title": "AllowedValuesAttribute.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Common\\ValidationAttributes\\AllowedValuesAttribute.cs",
+              "RelativeDocumentMoniker": "Application\\Common\\ValidationAttributes\\AllowedValuesAttribute.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Common\\ValidationAttributes\\AllowedValuesAttribute.cs",
+              "RelativeToolTip": "Application\\Common\\ValidationAttributes\\AllowedValuesAttribute.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAmwDcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T06:09:43.85Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 47,
+              "Title": "EnsureFutureDateAttribute.cs",
+              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Common\\ValidationAttributes\\EnsureFutureDateAttribute.cs",
+              "RelativeDocumentMoniker": "Application\\Common\\ValidationAttributes\\EnsureFutureDateAttribute.cs",
+              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Common\\ValidationAttributes\\EnsureFutureDateAttribute.cs",
+              "RelativeToolTip": "Application\\Common\\ValidationAttributes\\EnsureFutureDateAttribute.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwFgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T17:55:26.271Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 50,
               "Title": "GetMeQuery.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Users\\Queries\\GetMe\\GetMeQuery.cs",
               "RelativeDocumentMoniker": "Application\\Features\\Users\\Queries\\GetMe\\GetMeQuery.cs",
@@ -168,25 +922,11 @@
               "RelativeToolTip": "Application\\Features\\Users\\Queries\\GetMe\\GetMeQuery.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T17:50:03.619Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T17:50:03.619Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "FitnessApp\\Controllers\\AuthController.cs",
-              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "FitnessApp\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAL4AAAAAAAAAAAAmwMwAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T15:25:05.611Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 49,
               "Title": "EmailService.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\Services\\EmailService.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Services\\EmailService.cs",
@@ -194,12 +934,11 @@
               "RelativeToolTip": "Infrastructure\\Services\\EmailService.cs",
               "ViewState": "AgIAAO4AAAAAAAAAAAAuwOcAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T13:55:53.539Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T13:55:53.539Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 51,
               "Title": "GetUserByIdQueryHandler.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Users\\Queries\\GetUserById\\GetUserByIdQueryHandler.cs",
               "RelativeDocumentMoniker": "Application\\Features\\Users\\Queries\\GetUserById\\GetUserByIdQueryHandler.cs",
@@ -207,12 +946,11 @@
               "RelativeToolTip": "Application\\Features\\Users\\Queries\\GetUserById\\GetUserByIdQueryHandler.cs",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T17:49:29.157Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T17:49:29.157Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 52,
               "Title": "UserDto.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Responses\\Dtos\\UserDto.cs",
               "RelativeDocumentMoniker": "Application\\Responses\\Dtos\\UserDto.cs",
@@ -220,25 +958,11 @@
               "RelativeToolTip": "Application\\Responses\\Dtos\\UserDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T17:49:06.63Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T17:49:06.63Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "GetUsersQueryHandler.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Users\\Queries\\GetUsers\\GetUsersQueryHandler.cs",
-              "RelativeDocumentMoniker": "Application\\Features\\Users\\Queries\\GetUsers\\GetUsersQueryHandler.cs",
-              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Users\\Queries\\GetUsers\\GetUsersQueryHandler.cs",
-              "RelativeToolTip": "Application\\Features\\Users\\Queries\\GetUsers\\GetUsersQueryHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T17:44:03.965Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 53,
               "Title": "GetUserByIdQuery.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Users\\Queries\\GetUserById\\GetUserByIdQuery.cs",
               "RelativeDocumentMoniker": "Application\\Features\\Users\\Queries\\GetUserById\\GetUserByIdQuery.cs",
@@ -246,12 +970,11 @@
               "RelativeToolTip": "Application\\Features\\Users\\Queries\\GetUserById\\GetUserByIdQuery.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T17:43:57.862Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T17:43:57.862Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 55,
               "Title": "UpgradeToPremiumCommandHandler.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Users\\Commands\\UpgradeToPremium\\UpgradeToPremiumCommandHandler.cs",
               "RelativeDocumentMoniker": "Application\\Features\\Users\\Commands\\UpgradeToPremium\\UpgradeToPremiumCommandHandler.cs",
@@ -263,7 +986,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 54,
               "Title": "PremiumUpgradeConfirmation.html",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\Assets\\EmailTemplates\\PremiumUpgradeConfirmation.html",
               "RelativeDocumentMoniker": "Infrastructure\\Assets\\EmailTemplates\\PremiumUpgradeConfirmation.html",
@@ -271,12 +994,11 @@
               "RelativeToolTip": "Infrastructure\\Assets\\EmailTemplates\\PremiumUpgradeConfirmation.html",
               "ViewState": "AgIAAHUAAAAAAAAAAAAAAIgAAABaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-05-01T17:56:39.931Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-01T17:56:39.931Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 56,
               "Title": "CreateVnpayPaymentCommandHandler.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Payments\\Commands\\CreateVnpayPayment\\CreateVnpayPaymentCommandHandler.cs",
               "RelativeDocumentMoniker": "Application\\Features\\Payments\\Commands\\CreateVnpayPayment\\CreateVnpayPaymentCommandHandler.cs",
@@ -288,7 +1010,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 57,
               "Title": "ResendOtpCommandHandler.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Auth\\Commands\\ResendOtp\\ResendOtpCommandHandler.cs",
               "RelativeDocumentMoniker": "Application\\Features\\Auth\\Commands\\ResendOtp\\ResendOtpCommandHandler.cs",
@@ -296,12 +1018,11 @@
               "RelativeToolTip": "Application\\Features\\Auth\\Commands\\ResendOtp\\ResendOtpCommandHandler.cs",
               "ViewState": "AgIAAC0AAAAAAAAAAAAqwC0AAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T15:30:56.142Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-30T15:30:56.142Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 59,
               "Title": "VerifyOtpCommand.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Auth\\Commands\\VerifyOtp\\VerifyOtpCommand.cs",
               "RelativeDocumentMoniker": "Application\\Features\\Auth\\Commands\\VerifyOtp\\VerifyOtpCommand.cs",
@@ -313,7 +1034,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 58,
               "Title": "VerifyOtpCommandHandler.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Auth\\Commands\\VerifyOtp\\VerifyOtpCommandHandler.cs",
               "RelativeDocumentMoniker": "Application\\Features\\Auth\\Commands\\VerifyOtp\\VerifyOtpCommandHandler.cs",
@@ -325,7 +1046,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 65,
               "Title": "Gender.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Enums\\Gender.cs",
               "RelativeDocumentMoniker": "Domain\\Enums\\Gender.cs",
@@ -337,19 +1058,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Program.cs",
-              "RelativeDocumentMoniker": "FitnessApp\\Program.cs",
-              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\FitnessApp\\Program.cs",
-              "RelativeToolTip": "FitnessApp\\Program.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAuwMkAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T14:01:07.383Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 62,
               "Title": "UserConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\Persistence\\Configurations\\UserConfiguration.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Persistence\\Configurations\\UserConfiguration.cs",
@@ -361,7 +1070,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 60,
               "Title": "RedisOtpService.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Infrastructure\\Services\\RedisOtpService.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Services\\RedisOtpService.cs",
@@ -373,7 +1082,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 61,
               "Title": "RegisterUserCommandHandler.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Features\\Auth\\Commands\\Register\\RegisterUserCommandHandler.cs",
               "RelativeDocumentMoniker": "Application\\Features\\Auth\\Commands\\Register\\RegisterUserCommandHandler.cs",
@@ -385,7 +1094,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 64,
               "Title": "MealType.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Enums\\MealType.cs",
               "RelativeDocumentMoniker": "Domain\\Enums\\MealType.cs",
@@ -397,7 +1106,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 63,
               "Title": "GoalType.cs",
               "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Domain\\Enums\\GoalType.cs",
               "RelativeDocumentMoniker": "Domain\\Enums\\GoalType.cs",
@@ -406,18 +1115,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-30T14:10:38.433Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "ModuleMappingProfile.cs",
-              "DocumentMoniker": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Common\\Mappings\\ModuleMappingProfile.cs",
-              "RelativeDocumentMoniker": "Application\\Common\\Mappings\\ModuleMappingProfile.cs",
-              "ToolTip": "C:\\Users\\chuon\\source\\repos\\FitnessApp\\Application\\Common\\Mappings\\ModuleMappingProfile.cs",
-              "RelativeToolTip": "Application\\Common\\Mappings\\ModuleMappingProfile.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAADwvxEAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-30T13:51:58.104Z"
             }
           ]
         }

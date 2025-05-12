@@ -8,6 +8,9 @@ namespace Application.Common.Interfaces
 {
     public interface IDateTimeService
     {
-        public DateTime Now => DateTime.Now;
+        public DateTime UtcNow => DateTime.UtcNow;
+
+        //DateTime UtcNow { get; } dùng như này thì bên implement phải khai báo
+
     }
 }

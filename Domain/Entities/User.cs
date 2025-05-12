@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Domain.Entities
 {
 
-    public class User
+    public class User : AuditableEntity
     {
         public int UserId { get; private set; }
         public string Name { get; private set; } = string.Empty;

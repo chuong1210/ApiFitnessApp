@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class WorkoutSession
+    public class WorkoutSession : AuditableEntity
     {
         public int SessionId { get; private set; }
         public int UserId { get; private set; }

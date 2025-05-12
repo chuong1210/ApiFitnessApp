@@ -9,7 +9,7 @@ namespace Domain.Entities
 {
 
    
-    public class Goal
+    public class Goal : AuditableEntity
     {
         public int GoalId { get; private set; }
         public int UserId { get; private set; }

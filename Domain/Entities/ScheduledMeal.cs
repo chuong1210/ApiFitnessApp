@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class ScheduledMeal
+    public class ScheduledMeal : AuditableEntity
     {
         public int ScheduleId { get; private set; }
         public int UserId { get; private set; }
@@ -50,13 +50,15 @@ namespace Domain.Entities
             Date = date;
             MealType = mealType;
             PlannedFoodId = plannedFoodId;
-            PlannedDescription = plannedDescription;
+            UpdatedAt = DateTime.UtcNow; // Cần thêm LastUpdatedAt vào Entity
+
             // Status might be updated separately
         }
 
         public void UpdateStatus(ScheduleStatus newStatus)
         {
             Status = newStatus;
+            UpdatedAt= DateTime.UtcNow;
         }
     }
 

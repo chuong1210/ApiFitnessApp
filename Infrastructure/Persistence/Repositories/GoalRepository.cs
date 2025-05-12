@@ -61,5 +61,12 @@ namespace Infrastructure.Persistence.Repositories
         {
             _context.Goals.Remove(goal);
         }
+        public IQueryable<Goal> GetQueryableByUserId(int userId)
+        {
+            return _context.Goals
+                           .Where(g => g.UserId == userId)
+                           .AsNoTracking(); // Dùng AsNoTracking() vì đây là query chỉ đọc
+        }
+        /
     }
-    }
+}

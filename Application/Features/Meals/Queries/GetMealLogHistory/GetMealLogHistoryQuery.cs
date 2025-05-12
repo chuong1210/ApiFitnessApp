@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Enums;
 
 namespace Application.Features.Meals.Queries.GetMealLogHistory
 {
@@ -15,7 +16,7 @@ namespace Application.Features.Meals.Queries.GetMealLogHistory
         DateOnly? StartDate, // Lọc theo ngày bắt đầu (bao gồm)
         DateOnly? EndDate,   // Lọc theo ngày kết thúc (bao gồm)
         int? PageNumber = 1,
-        int? PageSize = 20 // Hiển thị ít hơn cho lịch sử
-                           // Thêm tham số lọc khác nếu cần: MealType? mealTypeFilter
+        int? PageSize = 20, // Hiển thị ít hơn cho lịch sử
+        MealType? mealTypeFilter =null
     ) : IRequest<PaginatedResult<List<MealLogDto>>>; // Trả về kết quả phân trang
 }
