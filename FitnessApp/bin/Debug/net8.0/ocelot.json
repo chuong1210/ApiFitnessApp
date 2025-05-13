@@ -1,18 +1,18 @@
 ﻿{
   "Routes": [
-    // --- Identity Service (.NET) ---
+    // --- Backend Service A (ASP.NET Core - User, Auth, Food, Goal) ---
+    // --- Authentication Routes ---
     {
-      "DownstreamPathTemplate": "/api/auth/register", // Đường dẫn thực tế của Identity Service
-      "DownstreamScheme": "http", // Hoặc https nếu dùng SSL nội bộ
+      "DownstreamPathTemplate": "/api/Auth/register",
+      "DownstreamScheme": "https", // Hoặc https nếu Service A dùng HTTPS nội bộ
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 5001
-        } // Port của Identity Service
+          "Host": "localhost", // Host của Service A
+          "Port": 7271 // Port của Service A (ví dụ)
+        }
       ],
-      "UpstreamPathTemplate": "/api/auth/register", // Đường dẫn client gọi đến Gateway
+      "UpstreamPathTemplate": "/gateway/auth/register",
       "UpstreamHttpMethod": [ "POST" ]
-      // Thêm AuthenticationOptions nếu muốn gateway xác thực trước
     },
     {
       "DownstreamPathTemplate": "/api/auth/login",
@@ -20,14 +20,14 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 5001
+          "Port": 5065
         }
       ],
-      "UpstreamPathTemplate": "/api/auth/login",
+      "UpstreamPathTemplate": "/gateway/auth/login",
       "UpstreamHttpMethod": [ "POST" ]
     },
     {
-      "DownstreamPathTemplate": "/api/users/me",
+      "DownstreamPathTemplate": "/api/auth/google-login",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -35,146 +35,229 @@
           "Port": 5001
         }
       ],
-      "UpstreamPathTemplate": "/api/auth/me", // Đổi upstream route cho gọn hơn
+      "UpstreamPathTemplate": "/gateway/auth/google-login",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/verify-otp",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/auth/verify-otp",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/resend-otp",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/auth/resend-otp",
+      "UpstreamHttpMethod": [ "POST" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/me",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/auth/me",
       "UpstreamHttpMethod": [ "GET" ],
-      "AuthenticationOptions": { // Yêu cầu xác thực tại Gateway
-        "AuthenticationProviderKey": "Bearer", // Khớp với scheme đã cấu hình
-        "AllowedScopes": [] // Bỏ trống nếu không dùng scope
+      "AuthenticationOptions": { // Yêu cầu xác thực JWT
+        "AuthenticationProviderKey": "FitnessAppBearer", // Phải khớp với key trong Program.cs
+        "AllowedScopes": [] // Để trống nếu không dùng scope cụ thể
       },
-      "AddHeadersToRequest": {
-        "X-User-Id": "Claims[sub] > value", // Lấy claim 'sub' (subject/UserId)
-        "X-Email": "Claims[email] > value", // Lấy claim 'email'
-        "X-Permissions": "Claims[permission] > value|,,", // Lấy các quyền, nối bằng dấu phẩy
-        "X-Subscription-Tier": "Claims[sub_tier] > value" // Lấy loại tài khoản
+      "AddHeadersToRequest": { // Chuyển tiếp UserId claim thành header
+        "X-User-Id": "Claims[sub] > value", // Lấy giá trị từ claim "sub" (UserId)
+        "X-User-Email": "Claims[email] > value" // Lấy giá trị từ claim "email"
+        // Bạn có thể chuyển tiếp các claims khác theo cách tương tự
       }
+      // "RouteClaimsRequirement": { // (Tùy chọn nâng cao) Phân quyền cơ bản tại Gateway
+      //   "IsPremium": "true" // Yêu cầu claim "IsPremium" có giá trị "true"
+      // }
+    },
+    // --- User Profile Routes (ví dụ: nâng cấp premium) ---
+    {
+      "DownstreamPathTemplate": "/api/users/me/upgrade",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/users/me/upgrade",
+      "UpstreamHttpMethod": [ "POST" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+    },
+    // --- Food & Nutrition Routes ---
+    {
+      "DownstreamPathTemplate": "/api/fooditems/{everything}", // {everything} để bắt tất cả path con
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/fooditems/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+    },
+    {
+      "DownstreamPathTemplate": "/api/meallogs/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/meallogs/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ], // Giả sử có PUT/DELETE
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+    },
+    {
+      "DownstreamPathTemplate": "/api/scheduledmeals/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/scheduledmeals/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+    },
+    // --- Goal Routes ---
+    {
+      "DownstreamPathTemplate": "/api/goals/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/goals/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+    },
+    // --- Payment Callback (VNPAY) - Thường không cần Auth từ Gateway ---
+    {
+      "DownstreamPathTemplate": "/api/vnpay/callback",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5001
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/vnpay/callback",
+      "UpstreamHttpMethod": [ "GET" ]
+      // "Priority": 1 // Đặt priority cao hơn nếu có route chung chung hơn khớp với path này
     },
 
-      {
-        "DownstreamPathTemplate": "/api/users/me/upgrade",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 5001
-          }
-        ],
-        "UpstreamPathTemplate": "/api/auth/me/upgrade", // Đổi upstream route
-        "UpstreamHttpMethod": [ "POST" ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
+    // --- Backend Service B (Node.js - Workout, Activity, Sleep) ---
+    // Giả sử Service B chạy trên port 5002
+    // --- Workout Routes ---
+    {
+      "DownstreamPathTemplate": "/api/workouts/{everything}",
+      "DownstreamScheme": "http", // Hoặc https nếu Service B dùng HTTPS nội bộ
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost", // Host của Service B
+          "Port": 5002 // Port của Service B (ví dụ)
         }
+      ],
+      "UpstreamPathTemplate": "/gateway/workouts/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { // Chuyển tiếp các claims cần thiết cho Service B
+        "X-User-Id": "Claims[sub] > value",
+        "X-User-Email": "Claims[email] > value",
+        "X-Subscription-Tier": "Claims[sub_tier] > value" // Ví dụ claim về loại tài khoản
+        // Chuyển tiếp tất cả permission claims (nếu Service B cần tự kiểm tra)
+        // "X-Permissions": "Claims[permission]" // Ocelot sẽ nối các giá trị claim 'permission' thành chuỗi cách nhau bởi dấu phẩy
       },
-
-      // --- Nutrition Service (.NET) ---
-      {
-        "DownstreamPathTemplate": "/api/fooditems/{everything}", // Bắt tất cả các route con
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 5002
-          }
-        ], // Port của Nutrition Service
-        "UpstreamPathTemplate": "/api/nutrition/fooditems/{everything}",
-        "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-        "AuthenticationOptions": { // Yêu cầu xác thực
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/meallogs", // Ví dụ
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 5002
-          }
-        ],
-        "UpstreamPathTemplate": "/api/nutrition/meallogs",
-        "UpstreamHttpMethod": [ "GET", "POST" ], // Chỉ cho phép GET, POST
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        }
-      },
-      // ... thêm các route khác cho Nutrition Service ...
-
-
-      // --- Workout Service (Node.js) ---
-      {
-        "DownstreamPathTemplate": "/api/workouts/{everything}",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 3001
-          }
-        ], // Port của Workout Service (Node)
-        "UpstreamPathTemplate": "/api/workouts/{everything}",
-        "UpstreamHttpMethod": [ "GET" ], // Chỉ GET cho thư viện?
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/workout-sessions",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 3001
-          }
-        ],
-        "UpstreamPathTemplate": "/api/workouts/sessions", // Đổi tên route upstream
-        "UpstreamHttpMethod": [ "GET", "POST" ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        }
-      },
-      // ... thêm các route khác cho Workout Service ...
-
-      // --- Activity Service (Node.js) ---
-      {
-        "DownstreamPathTemplate": "/api/daily-activity/{everything}",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 3002
-          }
-        ], // Port của Activity Service (Node)
-        "UpstreamPathTemplate": "/api/activity/{everything}",
-        "UpstreamHttpMethod": [ "GET", "PUT", "POST" ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        }
-      },
-      {
-        "DownstreamPathTemplate": "/api/goals/{everything}",
-        "DownstreamScheme": "http",
-        "DownstreamHostAndPorts": [
-          {
-            "Host": "localhost",
-            "Port": 3002
-          }
-        ],
-        "UpstreamPathTemplate": "/api/goals/{everything}",
-        "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
-        "AuthenticationOptions": {
-          "AuthenticationProviderKey": "Bearer",
-          "AllowedScopes": []
-        }
+      "RouteClaimsRequirement": { // (Tùy chọn) Ví dụ: Chỉ Premium mới vào được 1 route Workout nào đó
+        // "permission": "Permissions.WorkoutPlans.AccessPremium" // Yêu cầu claim permission cụ thể
       }
-      // ... thêm các route khác cho Activity Service ...
-
+    },
+    {
+      "DownstreamPathTemplate": "/api/workout-sessions/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/workout-sessions/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+    },
+    // --- Activity & Sleep Routes ---
+    {
+      "DownstreamPathTemplate": "/api/daily-activities/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/daily-activities/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+    },
+    {
+      "DownstreamPathTemplate": "/api/sleep-logs/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/sleep-logs/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+    }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "http://localhost:5000" // Port mà Gateway lắng nghe
-    // Thêm cấu hình global khác nếu cần (RequestIdKey, etc.)
+    "BaseUrl": "https://localhost:7272", // URL mà API Gateway sẽ lắng nghe
+    // "ServiceDiscoveryProvider": { // Cấu hình nếu dùng Consul, Eureka, Kubernetes
+    //   "Host": "localhost",
+    //   "Port": 8500,
+    //   "Type": "Consul" // Hoặc "Kubernetes"
+    // },
+    "RequestIdKey": "OcRequestId", // Key cho Request ID header (dùng cho tracing)
+    "DownstreamScheme": "https" // Scheme mặc định cho downstream nếu không khai báo
+     //"RateLimitOptions": { // Cấu hình cơ bản cho Rate Limiting (nếu dùng AspNetCoreRateLimit)
+    //   "ClientIdHeader": "X-ClientId", // Header để xác định client
+    //   "DisableRateLimitHeaders": false,
+    //   "HttpStatusCode": 429,
+    //   "QuotaExceededMessage": "API rate limit exceeded."
+    // }
   }
 }

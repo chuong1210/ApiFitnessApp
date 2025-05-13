@@ -1,6 +1,11 @@
-﻿namespace FitnessApp.Contracts.Requests
+﻿using Application.Features.Goals.Dtos;
+using Domain.Enums;
+
+namespace FitnessApp.Contracts.Requests
 {
-    public class CreateGoalRequestDto
+    public record CreateGoalRequestDto : GoalRequestBaseDto
     {
+        public CreateGoalRequestDto(GoalType GoalType, double TargetValue, DateOnly StartDate, DateOnly? EndDate)
+            : base(GoalType, TargetValue, StartDate, EndDate) { }
     }
 }

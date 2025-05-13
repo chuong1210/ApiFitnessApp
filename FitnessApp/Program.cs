@@ -96,17 +96,17 @@ builder.Services.AddAuthentication(options =>
         ClockSkew = TimeSpan.Zero // Không cho phép sai lệch thời gian
     };
 })
-       // options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme; // Nếu dùng cookie
-        // options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme; // Chỉ khi dùng server-side flow
+    // options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme; // Nếu dùng cookie
+    // options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme; // Chỉ khi dùng server-side flow
     // .AddCookie() // Nếu dùng cookie
     .AddGoogle(GoogleDefaults.AuthenticationScheme, options => // Đăng ký handler Google
-     {
-         // Lấy thông tin từ cấu hình
-         IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
-         options.ClientId = googleAuthNSection["ClientId"]!;
-         options.ClientSecret = googleAuthNSection["ClientSecret"]!;
-         // options.CallbackPath = "/signin-google"; // Callback mặc định nếu dùng server-side flow
-     });
+    {
+        // Lấy thông tin từ cấu hình
+        IConfigurationSection googleAuthNSection = builder.Configuration.GetSection("Authentication:Google");
+        options.ClientId = googleAuthNSection["ClientId"]!;
+        options.ClientSecret = googleAuthNSection["ClientSecret"]!;
+        // options.CallbackPath = "/signin-google"; // Callback mặc định nếu dùng server-side flow
+    });
 
 // --- Cấu hình Authorization (nếu cần policy) ---
 //builder.Services.AddStackExchangeRedisCach(options =>

@@ -239,3 +239,4 @@ C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\runtimes\win\
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Assets\EmailTemplates\Images\banner_premium.jpg
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Assets\EmailTemplates\Images\logo.png
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Assets\EmailTemplates\PremiumUpgradeConfirmation.html
+C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\ocelot1.json

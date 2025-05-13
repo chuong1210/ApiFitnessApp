@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Application.Features.Goals.Commands.DeleteGoal
+{ 
  public class DeleteGoalCommandHandler : IRequestHandler<DeleteGoalCommand, IResult<int>>
 {
     private readonly IUnitOfWork _unitOfWork;

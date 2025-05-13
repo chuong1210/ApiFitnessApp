@@ -11,8 +11,6 @@
     <Folder Include="Features\Base\Queries\ListBase\" />
     <Folder Include="Features\DailyActivities\Commands\" />
     <Folder Include="Features\DailyActivities\Queries\" />
-    <Folder Include="Features\Goals\Commands\" />
-    <Folder Include="Features\Goals\Queries\" />
     <Folder Include="Features\Sleep\Commands\" />
     <Folder Include="Features\Sleep\Queries\" />
   </ItemGroup>

@@ -47,7 +47,8 @@ namespace FitnessApp.Controllers
         {
             var command = new LoginCommand(requestDto.Email, requestDto.Password);
             var result = await _mediator.Send(command, cancellationToken);
-            return HandleResult(result); // Dùng lại helper từ UsersController hoặc tạo riêng
+            //return HandleResult(result); // Dùng lại helper từ UsersController hoặc tạo riêng
+            return Ok(result);
         }
 
 //        {

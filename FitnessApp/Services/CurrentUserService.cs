@@ -27,11 +27,29 @@ namespace FitnessApp.Services
 
 
         // Lấy UserId từ claim 'sub' (Subject) của token
-        public int? UserId => int.TryParse(_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier) // Hoặc JwtRegisteredClaimNames.Sub
-                                            ?? _httpContextAccessor.HttpContext?.User?.FindFirstValue(JwtRegisteredClaimNames.Sub), out var userId)
-                                ? userId
+
+        public int? UserId
+        {
+            get
+            {
+                // Ưu tiên đọc từ header do Gateway chuyển tiếp
+                var userIdFromHeader = _httpContextAccessor.HttpContext?.Request.Headers["X-User-Id"].FirstOrDefault();
+                if (int.TryParse(userIdFromHeader, out var id))
+                {
+                    return id;
+                }
+                // Nếu không có header, thử đọc từ claim (phòng trường hợp gọi trực tiếp service không qua Gateway)
+                return int.TryParse(_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier) ??
+                                    _httpContextAccessor.HttpContext?.User?.FindFirstValue(JwtRegisteredClaimNames.Sub), out var claimId)
+                                ? claimId
                                 : null;
-      
+            }
+        }
+        //public int? UserId => int.TryParse(_httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier) // Hoặc JwtRegisteredClaimNames.Sub
+        //                                    ?? _httpContextAccessor.HttpContext?.User?.FindFirstValue(JwtRegisteredClaimNames.Sub), out var userId)
+        //                        ? userId
+        //                        : int.Parse(_httpContextAccessor.HttpContext?.Request.Headers["X-User-Id"].FirstOrDefault());
+
         public string? Email => _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.Email) // Hoặc JwtRegisteredClaimNames.Email
                                 ?? _httpContextAccessor.HttpContext?.User?.FindFirstValue(JwtRegisteredClaimNames.Email);
 

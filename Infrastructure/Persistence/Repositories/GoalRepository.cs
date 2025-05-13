@@ -67,6 +67,6 @@ namespace Infrastructure.Persistence.Repositories
                            .Where(g => g.UserId == userId)
                            .AsNoTracking(); // Dùng AsNoTracking() vì đây là query chỉ đọc
         }
-        /
+        
     }
 }

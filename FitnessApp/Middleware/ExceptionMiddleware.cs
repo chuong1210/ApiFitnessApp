@@ -81,6 +81,7 @@ namespace FitnessApp.Middleware
                 else if (httpContext.Response.StatusCode == StatusCodes.Status403Forbidden)
                 {
                     await httpContext.Response.WriteAsync("Forbidden!");
+                    throw new ForbiddenException("You do not have permission to access this resource.");
                 }
                 else if (httpContext.Response.StatusCode == StatusCodes.Status500InternalServerError)
                 {

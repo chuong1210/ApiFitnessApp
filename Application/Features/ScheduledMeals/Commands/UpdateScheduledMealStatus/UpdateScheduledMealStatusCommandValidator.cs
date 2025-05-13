@@ -38,8 +38,25 @@ public class UpdateScheduledMealStatusCommandValidator : AbstractValidator<Updat
           .WithMessage(cmd => $"Cannot change status to '{cmd.NewStatus}' from the current status.")
           // Chỉ áp dụng rule này khi NewStatus là Planned (vì chỉ lo trường hợp chuyển về Planned)
           .When(cmd => cmd.NewStatus == ScheduleStatus.Planned, ApplyConditionTo.CurrentValidator);
-    
-}
+
+
+
+        //// Tất cả các rule bên trong khối When này chỉ chạy NẾU IsSpecialProduct là true
+        //When(cmd => cmd.IsSpecialProduct, () => {
+        //    RuleFor(x => x.SpecialNotes)
+        //        .NotEmpty().WithMessage("Special notes are required for special products.")
+        //        .MaximumLength(500).WithMessage("Special notes for special products cannot exceed 500 characters.");
+
+        //    RuleFor(x => x.Price)
+        //        .GreaterThan(50).WithMessage("Price for special products must be greater than 50.");
+        //    // Bất kỳ rule nào khác bạn thêm vào đây cũng sẽ chịu sự chi phối của When(cmd => cmd.IsSpecialProduct)
+        //});
+
+        //// Rule này nằm ngoài khối When, nên nó luôn chạy
+        //RuleFor(x => x.SpecialNotes)
+        //    .Must(notes => notes == null || !notes.Contains("forbidden_word"))
+        //    .WithMessage("Special notes cannot contain 'forbidden_word'.");
+    }
 
     /// <summary>
     /// Kiểm tra xem việc chuyển đổi trạng thái có hợp lệ không.

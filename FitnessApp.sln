@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessApp", "FitnessApp\FitnessApp.csproj", "{BB08B5ED-8970-4D8E-B78A-98C505401977}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessApp", "FitnessApp\FitnessApp.csproj", "{BB08B5ED-8970-4D8E-B78A-98C505401977}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{F77FB382-CF9A-4B90-B26B-115BB17033AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{F77FB382-CF9A-4B90-B26B-115BB17033AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{D63F464C-C23F-4A68-AAE7-C311D1774FC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{D63F464C-C23F-4A68-AAE7-C311D1774FC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F4796595-DDD1-4BF9-BB31-76381BD2A745}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{F4796595-DDD1-4BF9-BB31-76381BD2A745}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGatewayFitness", "ApiGatewayFItness\ApiGatewayFitness.csproj", "{CA04B584-72B7-4D63-AF9F-3645772BC1ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{F4796595-DDD1-4BF9-BB31-76381BD2A745}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4796595-DDD1-4BF9-BB31-76381BD2A745}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4796595-DDD1-4BF9-BB31-76381BD2A745}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA04B584-72B7-4D63-AF9F-3645772BC1ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA04B584-72B7-4D63-AF9F-3645772BC1ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA04B584-72B7-4D63-AF9F-3645772BC1ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA04B584-72B7-4D63-AF9F-3645772BC1ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
