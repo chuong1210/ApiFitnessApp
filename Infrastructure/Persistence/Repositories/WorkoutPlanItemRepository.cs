@@ -52,6 +52,12 @@ namespace Infrastructure.Persistence.Repositories
             _context.WorkoutPlanItems.Remove(item);
         }
 
+        public IQueryable<WorkoutPlanItem> GetAllQueryable()
+        {
+            // Sử dụng AsNoTracking() vì phương thức này được thiết kế cho các truy vấn
+            // chỉ đọc (read-only) và không cần EF Core theo dõi các thay đổi.
+            return _context.WorkoutPlanItems.AsNoTracking();
+        }
         public void RemoveRange(IEnumerable<WorkoutPlanItem> items)
         {
             _context.WorkoutPlanItems.RemoveRange(items);

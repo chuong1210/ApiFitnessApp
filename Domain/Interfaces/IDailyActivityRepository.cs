@@ -34,5 +34,13 @@ namespace Domain.Interfaces
         /// Marks a daily activity entity for removal.
         /// </summary>
         void Remove(DailyActivity activity);
+
+
+        /// <summary>
+        /// Gets an IQueryable of all workouts, allowing for further filtering/sorting before execution.
+        /// This is useful for building complex queries in the Application layer (e.g., for pagination).
+        /// </summary>
+        /// <returns>An IQueryable of Workout entities.</returns>
+        IQueryable<DailyActivity> GetAllQueryable();
     }
 }

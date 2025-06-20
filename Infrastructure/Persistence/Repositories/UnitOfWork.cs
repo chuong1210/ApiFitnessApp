@@ -28,6 +28,10 @@ namespace Infrastructure.Persistence.Repositories
         private IGoalRepository? _goalRepository;
         private IPaymentTransactionRepository? _paymentTransactionRepository;
         // ... thêm các backing fields khác
+        private INotificationRepository? _notificationRepository; // <<-- THÊM BACKING FIELD
+
+        public IHeartRateLogRepository _heartRateLogs;
+        public ISleepScheduleRepository? _sleepScheduleRepository;
 
         // Inject AppDbContext
         public UnitOfWork(AppDbContext context)
@@ -49,9 +53,17 @@ namespace Infrastructure.Persistence.Repositories
         public IScheduledMealRepository ScheduledMeals => _scheduledMealRepository ??= new ScheduledMealRepository(_context); // Cần tạo lớp ScheduledMealRepository
         public ISleepLogRepository SleepLogs => _sleepLogRepositssory ??= new SleepLogRepository(_context); // Cần tạo lớp SleepLogRepository
         public IGoalRepository Goals => _goalRepository ??= new GoalRepository(_context); // Cần tạo lớp GoalRepository
-                                                                                          // ... implement các properties khác
+        public INotificationRepository Notifications =>
+_notificationRepository ??= new NotificationRepository(_context);                                // ... implement các properties khác
         public IPaymentTransactionRepository PaymentTransactions =>
               _paymentTransactionRepository ??= new PaymentTransactionRepository(_context);
+        public IHeartRateLogRepository HeartRateLogs =>
+       _heartRateLogs ??= new HeartRateLogRepository(_context);
+
+        public ISleepScheduleRepository SleepSchedules => _sleepScheduleRepository ??= new SleepScheduleRepository(_context);
+
+
+
 
         // Implement SaveChangesAsync
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

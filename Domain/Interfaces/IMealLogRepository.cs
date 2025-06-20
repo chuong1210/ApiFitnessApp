@@ -41,6 +41,7 @@ namespace Domain.Interfaces
 
 
       IQueryable<MealLog> GetQueryableByUserId(int userId);
+        IQueryable<MealLog> GetQueryable();
 
     }
 }

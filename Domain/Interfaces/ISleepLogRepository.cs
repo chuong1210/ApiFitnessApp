@@ -7,9 +7,6 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-    public interface ISleepLogRepository
-    {
-        /// Interface for repository handling SleepLog entities.
         /// </summary>
         public interface ISleepLogRepository
         {
@@ -42,6 +39,8 @@ namespace Domain.Interfaces
             /// Marks a sleep log entity for removal.
             /// </summary>
             void Remove(SleepLog sleepLog);
-        }
+
+            IQueryable<SleepLog> GetAllQueryable();
+
         }
     }

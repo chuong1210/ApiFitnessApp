@@ -60,5 +60,13 @@ namespace Infrastructure.Persistence.Repositories
         {
             _context.WorkoutSessions.Remove(session);
         }
+
+
+        public IQueryable<WorkoutSession> GetQueryable()
+        {
+            // Sử dụng AsNoTracking() vì phương thức này thường được dùng cho các truy vấn chỉ đọc
+            // để xây dựng các query phức tạp ở tầng Application.
+            return _context.WorkoutSessions.AsNoTracking();
+        }
     }
     }

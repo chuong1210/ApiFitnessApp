@@ -15,6 +15,24 @@
       "UpstreamHttpMethod": [ "POST" ]
     },
     {
+      "DownstreamPathTemplate": "/api/payments/create-vnpay-premium-url",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271 // Port của Service A (.NET Core)
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/payments/create-vnpay-premium-url",
+      "UpstreamHttpMethod": [ "POST" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "FitnessAppBearer"
+      },
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      }
+    },
+    {
       "DownstreamPathTemplate": "/api/auth/login",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -78,8 +96,9 @@
         "AllowedScopes": [] // Để trống nếu không dùng scope cụ thể
       },
       "AddHeadersToRequest": { // Chuyển tiếp UserId claim thành header
-        "X-User-Id": "Claims[sub] > value", // Lấy giá trị từ claim "sub" (UserId)
-        "X-User-Email": "Claims[email] > value" // Lấy giá trị từ claim "email"
+        //"X-User-Id": "Claims[sub] > value", // Lấy giá trị từ claim "sub" (UserId)
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value", // Lấy giá trị từ claim "sub" (UserId)
+        "X-User-Email": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress]  > value" // Lấy giá trị từ claim "email"
         // Bạn có thể chuyển tiếp các claims khác theo cách tương tự
       }
       // "RouteClaimsRequirement": { // (Tùy chọn nâng cao) Phân quyền cơ bản tại Gateway
@@ -88,7 +107,7 @@
     },
     // --- User Profile Routes (ví dụ: nâng cấp premium) ---
     {
-      "DownstreamPathTemplate": "/api/users/me/upgrade",
+      "DownstreamPathTemplate": "/api/auth/me/upgrade-premium",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -99,11 +118,102 @@
       "UpstreamPathTemplate": "/gateway/users/me/upgrade",
       "UpstreamHttpMethod": [ "POST" ],
       "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
-      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+      "AddHeadersToRequest": { "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier]  > value" }
+    },
+    // --- User Profile Update Route ---
+    {
+      "DownstreamPathTemplate": "/api/users/{id}/profile", // Đường dẫn trên Backend Service A
+      "DownstreamScheme": "https", // Scheme của Service A
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost", // Host của Service A
+          "Port": 7271 // Port của Service A
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/users/{id}/profile", // Đường dẫn trên API Gateway
+      "UpstreamHttpMethod": [ "PUT" ], // Chỉ cho phép phương thức PUT
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "FitnessAppBearer", // Key của JWT Bearer scheme đã đăng ký trong Gateway
+        "AllowedScopes": []
+      },
+      "AddHeadersToRequest": { // Chuyển tiếp claim UserID thành header
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value" // Lấy giá trị từ claim "sub" (thường là UserID)
+        // Bạn có thể thêm các claims khác nếu cần
+        // "X-User-Email": "Claims[email] > value"
+      },
+      "RouteClaimsRequirement": { // (Tùy chọn) Phân quyền tại Gateway
+        // Ví dụ: Yêu cầu người dùng phải có permission cụ thể để sửa profile
+        // "permission": "Permissions.Profile.Edit"
+        // Hoặc kiểm tra xem {id} trong path có khớp với UserID trong token không (phức tạp hơn, cần custom authorizer)
+      },
+      "Priority": 0 // Đặt priority nếu có các route chung chung hơn có thể khớp
     },
     // --- Food & Nutrition Routes ---
     {
-      "DownstreamPathTemplate": "/api/fooditems/{everything}", // {everything} để bắt tất cả path con
+      "DownstreamPathTemplate": "/api/fooditems/categories",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/fooditems/categories",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value" },
+      "Priority": 1
+    },
+    {
+      "DownstreamPathTemplate": "/api/fooditems/recommendation",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/fooditems/recommendation",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value" },
+      "Priority": 1
+    },
+    {
+      "DownstreamPathTemplate": "/api/fooditems/popular",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/fooditems/popular",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value" },
+      "Priority": 1
+    },
+    // Search route cũng nên có priority cao hơn route {everything}
+    {
+      "DownstreamPathTemplate": "/api/fooditems/search",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/fooditems/search",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value" },
+      "Priority": 1
+    },
+
+    // --- Route chung chung cho FoodItems (đặt sau các route cụ thể) ---
+    {
+      "DownstreamPathTemplate": "/api/fooditems/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -114,7 +224,38 @@
       "UpstreamPathTemplate": "/gateway/fooditems/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
       "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
-      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      },
+      "Priority": 0 // Priority thấp hơn
+    },
+    {
+      "DownstreamPathTemplate": "/api/nutrition-summary/weekly",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/nutrition-summary/weekly",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value" }
+    },
+    {
+      "DownstreamPathTemplate": "/api/meallogs/today",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/meallogs/today",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": { "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value" }
     },
     {
       "DownstreamPathTemplate": "/api/meallogs/{everything}",
@@ -128,7 +269,9 @@
       "UpstreamPathTemplate": "/gateway/meallogs/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ], // Giả sử có PUT/DELETE
       "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
-      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/scheduledmeals/{everything}",
@@ -142,7 +285,9 @@
       "UpstreamPathTemplate": "/gateway/scheduledmeals/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ],
       "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
-      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      }
     },
     // --- Goal Routes ---
     {
@@ -157,7 +302,9 @@
       "UpstreamPathTemplate": "/gateway/goals/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ],
       "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
-      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      }
     },
     // --- Payment Callback (VNPAY) - Thường không cần Auth từ Gateway ---
     {
@@ -183,15 +330,18 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost", // Host của Service B
-          "Port": 5002 // Port của Service B (ví dụ)
+          "Port": 7271 // Port của Service B (ví dụ)
         }
       ],
       "UpstreamPathTemplate": "/gateway/workouts/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
       "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
       "AddHeadersToRequest": { // Chuyển tiếp các claims cần thiết cho Service B
-        "X-User-Id": "Claims[sub] > value",
-        "X-User-Email": "Claims[email] > value",
+        //"X-User-Id": "Claims[sub] > value",
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value",
+
+        "X-User-Email": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress]  > value", // Lấy giá trị từ claim "email"
+
         "X-Subscription-Tier": "Claims[sub_tier] > value" // Ví dụ claim về loại tài khoản
         // Chuyển tiếp tất cả permission claims (nếu Service B cần tự kiểm tra)
         // "X-Permissions": "Claims[permission]" // Ocelot sẽ nối các giá trị claim 'permission' thành chuỗi cách nhau bởi dấu phẩy
@@ -200,34 +350,157 @@
         // "permission": "Permissions.WorkoutPlans.AccessPremium" // Yêu cầu claim permission cụ thể
       }
     },
+
     {
-      "DownstreamPathTemplate": "/api/workout-sessions/{everything}",
+      "DownstreamPathTemplate": "/api/workoutplans/recommendations",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 5002
+          "Port": 7271
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/workout-plans/recommendations",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      },
+      "Priority": 1
+    },
+    {
+      "DownstreamPathTemplate": "/api/workoutplans/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271
+        }
+      ], // Port của Service A
+      "UpstreamPathTemplate": "/gateway/workout-plans/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/workoutsessions/schedule/date/{dateString}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271
+        }
+      ], // Port của Service A
+      "UpstreamPathTemplate": "/gateway/workout-sessions/schedule/date/{dateString}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      },
+      "Priority": 1 // Ưu tiên cao hơn
+    },
+    {
+      "DownstreamPathTemplate": "/api/workoutsessions/stats/weekly",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/workout-sessions/stats/weekly",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      },
+      "Priority": 1
+    },
+    {
+      "DownstreamPathTemplate": "/api/workoutsessions/upcoming",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/workout-sessions/upcoming",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+
+      },
+      "Priority": 1
+    },
+    {
+      "DownstreamPathTemplate": "/api/workoutsessions/latest",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271
+        }
+
+      ],
+      "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+
+      "UpstreamPathTemplate": "/gateway/workout-sessions/latest",
+      "UpstreamHttpMethod": [ "GET" ],
+      "Priority": 1
+    },
+    {
+      "DownstreamPathTemplate": "/api/workoutsessions/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271
         }
       ],
       "UpstreamPathTemplate": "/gateway/workout-sessions/{everything}",
+
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
       "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
-      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      }
     },
     // --- Activity & Sleep Routes ---
+    //{
+    //  "DownstreamPathTemplate": "/api/daily-activities/{everything}",
+    //  "DownstreamScheme": "https",
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "localhost",
+    //      "Port": 5002
+    //    }
+    //  ],
+    //  "UpstreamPathTemplate": "/gateway/daily-activities/{everything}",
+    //  "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+    //  "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
+    //  "AddHeadersToRequest": {
+    //    "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+    //  }
+    //},
     {
-      "DownstreamPathTemplate": "/api/daily-activities/{everything}",
+      "DownstreamPathTemplate": "/api/notifications/{everything}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 5002
+          "Port": 7271
         }
       ],
-      "UpstreamPathTemplate": "/gateway/daily-activities/{everything}",
-      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+      "UpstreamPathTemplate": "/gateway/notifications/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ], // Cho phép các phương thức cần thiết
       "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
-      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      }
     },
     {
       "DownstreamPathTemplate": "/api/sleep-logs/{everything}",
@@ -241,7 +514,84 @@
       "UpstreamPathTemplate": "/gateway/sleep-logs/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
       "AuthenticationOptions": { "AuthenticationProviderKey": "FitnessAppBearer" },
-      "AddHeadersToRequest": { "X-User-Id": "Claims[sub] > value" }
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      }
+    },
+
+    // Route này sẽ bắt các request như /gateway/sleep/schedule/date/YYYY-MM-DD
+    {
+      "DownstreamPathTemplate": "/api/sleep/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271 // Port của Service A (.NET Core) hoặc Service B (Node.js) nơi bạn implement logic này
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/sleep/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ], // Cho phép các phương thức cần thiết
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "FitnessAppBearer"
+      },
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/healthmetrics/heartrate/today",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271 // Port của Service A (.NET Core)
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/heartrate/today",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "FitnessAppBearer"
+      },
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/dailyactivities/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271 // Port của Service chứa controller này
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/daily-activities/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ], // Cho phép các phương thức cần thiết
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "FitnessAppBearer"
+      },
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      }
+    },
+    // Route riêng cho "latest" vì nó có path khác
+    {
+      "DownstreamPathTemplate": "/api/activities/latest",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7271
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/activities/latest",
+      "UpstreamHttpMethod": [ "GET" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "FitnessAppBearer"
+      },
+      "AddHeadersToRequest": {
+        "X-User-Id": "Claims[http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier] > value"
+      }
     }
   ]
   

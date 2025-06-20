@@ -54,16 +54,18 @@ namespace Application.Features.Auth.Commands.GoogleLogin
             {
                 // 1. Xác thực Google ID Token
                 var googleClientId = _configuration["Authentication:Google:ClientId"];
-                if (string.IsNullOrEmpty(googleClientId))
+                var androidClientId = _configuration["Authentication:Google:AndroidClientId"]; // Lấy Android Client ID
+
+                if (string.IsNullOrEmpty(androidClientId)) // Quan trọng nhất là phải có AndroidClientId
                 {
-                    _logger.LogError("Google ClientId is not configured in Authentication:Google:ClientId.");
-                    return Result<LoginResponseDto>.Failure("Google authentication is not configured correctly.", StatusCodes.Status500InternalServerError);
+                    _logger.LogError("Google AndroidClientId is not configured in Authentication:Google:AndroidClientId.");
+                    return Result<LoginResponseDto>.Failure("Google authentication (Android Client) is not configured correctly.", StatusCodes.Status500InternalServerError);
                 }
 
                 var validationSettings = new GoogleJsonWebSignature.ValidationSettings
                 {
-                    Audience = new[] { googleClientId } // Token phải dành cho Client ID của bạn
-                                                        // Có thể thêm Issuer validation nếu cần: Issuers = new[] { "https://accounts.google.com", "accounts.google.com" }
+                    Audience = new[] { googleClientId }
+                    // Có thể thêm Issuer validation nếu cần: Issuers = new[] { "https://accounts.google.com", "accounts.google.com" }
                 };
 
                 // ValidateAsync sẽ kiểm tra chữ ký, expiry, issuer, audience

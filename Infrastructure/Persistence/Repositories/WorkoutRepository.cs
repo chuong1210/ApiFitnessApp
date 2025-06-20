@@ -61,5 +61,28 @@ namespace Infrastructure.Persistence.Repositories
         {
             _context.Workouts.Remove(workout);
         }
+
+        /// <summary>
+        /// Gets an IQueryable of all workouts for read-only purposes.
+        /// </summary>
+        public IQueryable<Workout> GetAllQueryable()
+        {
+            // Sử dụng AsNoTracking() vì phương thức này được thiết kế cho các truy vấn
+            // chỉ đọc (read-only) và không cần EF Core theo dõi các thay đổi.
+            return _context.Workouts.AsNoTracking();
+        }
+
+        /// <summary>
+        /// Gets a workout by its ID, including its associated steps.
+        /// </summary>
+        public async Task<Workout?> GetByIdWithStepsAsync(int workoutId, CancellationToken cancellationToken = default)
+        {
+            // Giả định rằng Workout entity của bạn có một navigation property tên là "Steps"
+            // trỏ đến một collection các WorkoutStep entities.
+            // Ví dụ: public virtual ICollection<WorkoutStep> Steps { get; set; } = new List<WorkoutStep>();
+            return await _context.Workouts
+                                 .Include(w => w.Steps) // Eagerly load the related Steps
+                                 .FirstOrDefaultAsync(w => w.WorkoutId == workoutId, cancellationToken);
+        }
     }
 }

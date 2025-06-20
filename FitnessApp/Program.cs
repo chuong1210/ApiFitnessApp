@@ -14,9 +14,12 @@ using Hangfire;
 using Hangfire.SqlServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
+using VNPay.NetCore;
+using Infrastructure.Services;
+using Ocelot.Values;
 var builder = WebApplication.CreateBuilder(args);
-builder.Configuration.AddJsonFile("ocelot.json", optional: false, reloadOnChange: true);
-builder.Services.AddOcelot(builder.Configuration);
+
 // Add services to the container.
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 var redisConfig = builder.Configuration.GetSection("Redis");
@@ -150,18 +153,24 @@ builder.Services.AddAuthorization(options =>
 {
     options.AddPermissionPoliciesFromAttributes(Assembly.GetExecutingAssembly());
 });
+
+
+// Đăng ký lớp xử lý logic callback và IPN của bạn
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", policy =>
     {
         policy.WithOrigins("http://localhost:3000", "https://yourappdomain.com") // Frontend URLs
               .AllowAnyHeader()
-              .AllowAnyMethod();
+        .AllowAnyMethod();
     });
 });
 
+builder.Services.AddTransient<IVNPayProcessor, PremiumUpgradeProcessor>();
+builder.Services.AddVNPay(options => configuration.GetSection("VNPay").Bind(options));
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -169,6 +178,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+//app.UseStaticFiles(); // Dòng này cho phép phục vụ file từ wwwroot
+//app.UseStaticFiles(new StaticFileOptions
+//{
+//    FileProvider = new PhysicalFileProvider(
+//        Path.Combine(builder.Environment.ContentRootPath, "../Infrastructure/Assets")), // Đường dẫn đến thư mục Assets
+//    RequestPath = "/StaticAssets" // URL prefix để truy cập (ví dụ: /StaticAssets/EmailTemplates/Images/logo.png)
+//});
+
 app.UseHangfireDashboard("/hangfire", new DashboardOptions // Endpoint truy cập dashboard
 {
     // --- CẤU HÌNH AUTHORIZATION CHO DASHBOARD ---
@@ -186,6 +203,8 @@ app.UseAuthentication();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.MapVNPay();
+
 
 app.MapControllers();
 

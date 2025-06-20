@@ -44,11 +44,9 @@ namespace FitnessApp.Controllers
             // Tạo command từ DTO (UserId sẽ được set trong Handler)
             var command = new LogMealCommand(
                 requestDto.FoodId,
-                requestDto.Timestamp,
                 requestDto.MealType,
                 requestDto.Quantity,
-                requestDto.Notes,
-                0 // UserId sẽ được ghi đè trong Handler bằng CurrentUserService
+                requestDto.Notes
             );
 
             var result = await _mediator.Send(command);

@@ -15,6 +15,8 @@ using System.Net;
 using FitnessApp.Contracts.Requests;
 using Microsoft.AspNetCore.Authorization;
 using Application.Responses.Dtos;
+using Application.Common.Interfaces;
+
 namespace FitnessApp.Controllers
 {
 
@@ -24,10 +26,12 @@ namespace FitnessApp.Controllers
     public class UsersController : ControllerBase
     {
         private readonly ISender _mediator; // Sử dụng ISender
+        private readonly ICurrentUserService _currentUserService;
 
-        public UsersController(ISender mediator)
+        public UsersController(ISender mediator,ICurrentUserService currentUserService)
         {
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _currentUserService = currentUserService ?? throw new ArgumentNullException(nameof(currentUserService));
         }
 
         // POST: api/users
@@ -126,14 +130,15 @@ namespace FitnessApp.Controllers
         [ProducesResponseType(typeof(List<string>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(List<string>), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(List<string>), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateUserProfile(int id, [FromBody] UpdateUserProfileRequestDto requestDto, CancellationToken cancellationToken)
+        public async Task<IActionResult> UpdateUserProfile([FromRoute] int id, [FromBody] UpdateUserProfileRequestDto requestDto, CancellationToken cancellationToken)
         {
             var command = new UpdateUserProfileCommand(
                 id, // Lấy ID từ route
                 requestDto.Name,
                 requestDto.BirthDate,
                 requestDto.Gender,
-                requestDto.HeightCm
+                requestDto.HeightCm,
+                requestDto.WeightKg
             );
             var result = await _mediator.Send(command, cancellationToken);
             return HandleResult(result); // HandleResult sẽ trả về NoContent nếu thành công

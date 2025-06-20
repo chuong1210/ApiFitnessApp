@@ -4,6 +4,8 @@ using FitnessApp.Constants;
 using Domain.Exceptions;
 using System.IdentityModel.Tokens.Jwt;
 using Newtonsoft.Json;
+using Ocelot.Responses;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 namespace FitnessApp.Middleware
 {
     public class ExceptionMiddleware : IMiddleware
@@ -77,6 +79,7 @@ namespace FitnessApp.Middleware
                 if (httpContext.Response.StatusCode == StatusCodes.Status401Unauthorized)
                 {
                     await httpContext.Response.WriteAsync("Unauthorized!");
+
                 }
                 else if (httpContext.Response.StatusCode == StatusCodes.Status403Forbidden)
                 {
@@ -109,6 +112,8 @@ namespace FitnessApp.Middleware
                 ErrorMessage = exception.Message,
                 ErrorType = "Fail!"
             });
+            object errorResponse;
+
 
             switch (exception)
             {
@@ -118,9 +123,11 @@ namespace FitnessApp.Middleware
                 case ValidationException validationException:
                     statusCode = HttpStatusCode.BadRequest;
                     result = JsonConvert.SerializeObject(validationException.Errors);
+                    errorResponse = new { title = "Validation Error", status = statusCode, errors = validationException.Errors };
                     break;
                 case NotFoundException notFoundException:
                     statusCode = HttpStatusCode.NotFound;
+
                     break;
                 default:
                     break;

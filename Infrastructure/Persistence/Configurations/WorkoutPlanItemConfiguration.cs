@@ -29,6 +29,9 @@ namespace Infrastructure.Persistence.Configurations
             builder.Property(wpi => wpi.Reps).HasColumnType("INTEGER");
             builder.Property(wpi => wpi.DurationSeconds).HasColumnType("INTEGER");
             builder.Property(wpi => wpi.RestBetweenSetsSeconds).HasColumnType("INTEGER");
+            builder.Property(wpi => wpi.SetNumber)
+       .IsRequired()
+       .HasDefaultValue(1); // Đặt giá trị mặc định trong DB
 
             // --- Relationships --- (Define required relationships)
 

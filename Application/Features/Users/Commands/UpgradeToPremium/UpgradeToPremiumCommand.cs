@@ -8,6 +8,6 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Users.Commands.UpgradeToPremium
 {
-    public record UpgradeToPremiumCommand() : IRequest<IResult<string>>;
+    public record UpgradeToPremiumCommand( string? OrderCode) : IRequest<IResult<string>>;
 
 }

@@ -70,5 +70,23 @@ namespace Infrastructure.Persistence.Repositories
             // Cascade delete configuration should handle removing associated WorkoutPlanItems
             _context.WorkoutPlans.Remove(workoutPlan);
         }
+
+        public IQueryable<WorkoutPlan> GetAllQueryable()
+        {
+            // Sử dụng AsNoTracking() vì phương thức này được thiết kế cho các truy vấn
+            // chỉ đọc (read-only) và không cần EF Core theo dõi các thay đổi.
+            return _context.WorkoutPlans.AsNoTracking();
+        }
+
+        public async Task<WorkoutPlan?> GetByIdWithDetailsAsync(int planId, CancellationToken cancellationToken = default)
+        {
+            return await _context.WorkoutPlans
+                // Include danh sách các items (liên kết) trong plan
+                .Include(wp => wp.Items)
+                    // Với mỗi item, include thông tin chi tiết của bài tập (Workout) liên quan
+                    .ThenInclude(item => item.Workout)
+                .AsNoTracking() // Dùng AsNoTracking vì chỉ đọc
+                .FirstOrDefaultAsync(wp => wp.PlanId == planId, cancellationToken);
+        }
     }
     }

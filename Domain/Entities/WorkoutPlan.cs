@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,30 +15,35 @@ namespace Domain.Entities
         public int? EstimatedDurationMinutes { get; private set; }
         public int? EstimatedCaloriesBurned { get; private set; }
 
+        // --- THAY ĐỔI KIỂU DỮ LIỆU ---
+        public WorkoutDifficultyLevel? Difficulty { get; private set; }
         // Navigation property for the items (workouts) within this plan
         public virtual ICollection<WorkoutPlanItem> Items { get; private set; } = new List<WorkoutPlanItem>();
 
         private WorkoutPlan() { } // For EF Core
 
-        public static WorkoutPlan Create(string name, string? description, int? estimatedDurationMinutes, int? estimatedCaloriesBurned)
+        public static WorkoutPlan Create(
+              string name, string? description, int? duration,
+              int? calories, WorkoutDifficultyLevel? difficulty)
         {
-            if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Plan name is required.", nameof(name));
             return new WorkoutPlan
             {
                 Name = name,
                 Description = description,
-                EstimatedDurationMinutes = estimatedDurationMinutes > 0 ? estimatedDurationMinutes : null,
-                EstimatedCaloriesBurned = estimatedCaloriesBurned > 0 ? estimatedCaloriesBurned : null
+                EstimatedDurationMinutes = duration,
+                EstimatedCaloriesBurned = calories,
+                Difficulty = difficulty
             };
         }
 
-        public void UpdateDetails(string name, string? description, int? estimatedDurationMinutes, int? estimatedCaloriesBurned)
+        public void UpdateDetails(string name, string? description, int? estimatedDurationMinutes, int? estimatedCaloriesBurned, WorkoutDifficultyLevel? difficulty)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Plan name is required.", nameof(name));
             Name = name;
             Description = description;
             EstimatedDurationMinutes = estimatedDurationMinutes > 0 ? estimatedDurationMinutes : null;
             EstimatedCaloriesBurned = estimatedCaloriesBurned > 0 ? estimatedCaloriesBurned : null;
+            Difficulty = difficulty;
             // Note: Updating Items collection needs separate logic (Add/Remove Item methods)
         }
         // Methods to manage Items (e.g., AddWorkoutItem, RemoveWorkoutItem) would go here

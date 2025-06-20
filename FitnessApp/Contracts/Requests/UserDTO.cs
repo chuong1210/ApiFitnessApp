@@ -21,7 +21,9 @@ namespace FitnessApp.Contracts.Requests
         [Required] string Name,
         DateOnly? BirthDate,
         Gender? Gender,
-        double? HeightCm
+        double? HeightCm,
+        double? WeightKg
+
     );
 
     // DTO cho body của request cập nhật cân nặng

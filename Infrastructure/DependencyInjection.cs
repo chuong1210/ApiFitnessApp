@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VNPay.NetCore;
 
 namespace Infrastructure
 {
@@ -50,9 +51,24 @@ namespace Infrastructure
                 
             // Register Repositories
             services.AddScoped<IUserRepository, UserRepository>();
-            //services.AddScoped<IDailyActivityRepository, DailyActivityRepository>();
-            //services.AddScoped<IWorkoutSessionRepository, WorkoutSessionRepository>(); // Add this
-            //                                                                           // ... Register other repositories
+            services.AddScoped<IDailyActivityRepository, DailyActivityRepository>();
+            services.AddScoped<IWorkoutSessionRepository, WorkoutSessionRepository>(); // Add this
+                                                                                       // Infrastructure/DependencyInjection.cs
+            services.AddScoped<ISleepAutoLogService, SleepAutoLogService>();                                     //                                
+                                                                                                                 // ... Register other repositories
+            services.AddScoped<IWorkoutPlanRepository, WorkoutPlanRepository>(); // Add this
+
+            services.AddScoped<IWorkoutRepository, WorkoutRepository>(); // Add this
+            services.AddScoped<IWorkoutPlanItemRepository, WorkoutPlanItemRepository>(); // Add this
+            services.AddScoped<IHeartRateLogRepository, HeartRateLogRepository>(); // Add this
+            services.AddScoped<INotificationRepository, NotificationRepository>(); // Add this
+            services.AddScoped<IGoalRepository, GoalRepository>(); // Add this
+            services.AddScoped<IDailyActivityRepository, DailyActivityRepository>(); // Add this
+            services.AddScoped<IFoodItemRepository, FoodItemRepository>(); // Add this
+
+
+            services.AddScoped<INotificationService, NotificationService>(); // Add this
+
             services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
             services.AddScoped<ICloudinaryService, CloudinaryService>(); // Scoped hoặc Transient đều ổn
 
@@ -61,7 +77,6 @@ namespace Infrastructure
             services.AddScoped<AppDbContextInitialiser>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IVnpayService, VnpayService>();
             services.AddScoped<ICloudinaryService, CloudinaryService>();
 
 

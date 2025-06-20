@@ -25,6 +25,10 @@ namespace Infrastructure.Persistence.Repositories
 
         public void Update(PaymentTransaction transaction) =>
             _context.PaymentTransactions.Update(transaction);
-    }
 
-}
+
+        public async Task<PaymentTransaction?> FindByOrderIdAsync(string orderId) =>
+            await _context.PaymentTransactions.FirstOrDefaultAsync(p => p.OrderId == orderId);
+        }
+
+    }

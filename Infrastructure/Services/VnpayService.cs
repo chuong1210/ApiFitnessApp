@@ -10,6 +10,9 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Helpers;
+using Microsoft.Extensions.Logging;
+using System.Globalization;
+using VNPay.NetCore;
 namespace Infrastructure.Services
 {
 
@@ -17,11 +20,13 @@ namespace Infrastructure.Services
     {
         private readonly VnpaySettings _settings;
         private readonly IHttpContextAccessor _httpContextAccessor; // Lấy IP
+        private readonly ILogger<VnpayService> _logger; // <<--- KHAI BÁO LOGGER
 
-        public VnpayService(IOptions<VnpaySettings> settings, IHttpContextAccessor httpContextAccessor)
+        public VnpayService(IOptions<VnpaySettings> settings, IHttpContextAccessor httpContextAccessor,ILogger<VnpayService> logger)
         {
             _settings = settings.Value ?? throw new ArgumentNullException(nameof(settings));
             _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
+            _logger = logger;
         }
 
        // CreatePaymentUrlRequest
@@ -29,45 +34,57 @@ namespace Infrastructure.Services
         {
             var pay = new VnpayLibrary();
 
-            // Thêm các tham số cần thiết vào VnpayLibrary
+            var cleanOrderInfo = RemoveDiacritics(orderInfo); // Dùng hàm helper để bỏ dấu tiếng Việt
+
             pay.AddRequestData("vnp_Version", _settings.Version);
             pay.AddRequestData("vnp_Command", _settings.Command);
             pay.AddRequestData("vnp_TmnCode", _settings.TmnCode);
-            pay.AddRequestData("vnp_Amount", ((long)amount * 100).ToString()); // VNPAY yêu cầu Amount * 100
+            pay.AddRequestData("vnp_Amount", ((long)amount * 100).ToString());
             pay.AddRequestData("vnp_CreateDate", DateTime.UtcNow.ToString("yyyyMMddHHmmss"));
             pay.AddRequestData("vnp_CurrCode", _settings.CurrCode);
-            pay.AddRequestData("vnp_IpAddr", GetIpAddress(httpContext) ?? "127.0.0.1"); // Lấy IP từ request
+            pay.AddRequestData("vnp_IpAddr", GetIpAddress(httpContext) ?? "127.0.0.1");
             pay.AddRequestData("vnp_Locale", _settings.Locale);
-            pay.AddRequestData("vnp_OrderInfo", orderInfo);
-            pay.AddRequestData("vnp_OrderType", "other"); // Hoặc loại phù hợp: billpayment, fashion, etc.
+            //pay.AddRequestData("vnp_OrderInfo", cleanOrderInfo.Trim()); // <<-- SỬ DỤNG orderInfo đã được làm sạch
+            pay.AddRequestData("vnp_OrderInfo", "Nang-cap-Premium");
+
+            pay.AddRequestData("vnp_OrderType", "other");
             pay.AddRequestData("vnp_ReturnUrl", _settings.ReturnUrl);
-            pay.AddRequestData("vnp_TxnRef", orderId); // Mã tham chiếu của merchant
+            pay.AddRequestData("vnp_TxnRef", orderId);
 
             // --- Tạo URL thanh toán ---
             string paymentUrl = pay.CreateRequestUrl(_settings.BaseUrl, _settings.HashSecret);
+
+
             return paymentUrl;
         }
 
-        public bool ValidateSignature(IQueryCollection vnpayData, string inputHash)
+        // Hàm helper để loại bỏ dấu tiếng Việt
+        private static string RemoveDiacritics(string text)
         {
-            var pay = new VnpayLibrary();
-            foreach (var kvp in vnpayData)
+            if (string.IsNullOrWhiteSpace(text))
+                return text;
+
+            string normalizedString = text.Normalize(NormalizationForm.FormD);
+            var sb = new StringBuilder();
+
+            foreach (char c in normalizedString)
             {
-                if (!string.IsNullOrEmpty(kvp.Key) && kvp.Key.StartsWith("vnp_") && kvp.Key != "vnp_SecureHash")
+                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
                 {
-                    // Loại bỏ dấu '+' có thể được mã hóa thành khoảng trắng khi query string
-                    var value = kvp.Value.ToString().Replace('+', ' ');
-                    pay.AddResponseData(kvp.Key, value);
+                    sb.Append(c);
                 }
             }
 
-            // Sắp xếp và tạo chuỗi dữ liệu để kiểm tra hash
-            string checkData = pay.GetResponseDataForChecksum(_settings.HashSecret);
-            // Tạo hash từ dữ liệu nhận được
-            string calculatedHash = VnpayLibrary.HmacSHA512(_settings.HashSecret, checkData);
+            return sb.ToString().Normalize(NormalizationForm.FormC);
+        }
 
-            // So sánh hash nhận được với hash tính toán
-            return calculatedHash.Equals(inputHash, StringComparison.InvariantCultureIgnoreCase);
+        // Infrastructure/Services/VnpayService.cs
+        public bool ValidateSignature(IQueryCollection vnpayData, string inputHash)
+        {
+            var pay = new VnpayLibrary();
+            // Truyền trực tiếp IQueryCollection vào hàm validate của VnpayLibrary
+            return pay.ValidateSignature(inputHash, _settings.HashSecret, vnpayData);
         }
 
         // Helper lấy địa chỉ IP
@@ -80,6 +97,21 @@ namespace Infrastructure.Services
                                .FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork)?.ToString();
             }
             return ipAddress;
+        }
+
+        public Task<string> CreatePaymentLink(string type, VNPayRequest request, string returnUrl)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<(bool? result, IDictionary<string, string> data)> QueryDR(string requestCode, string orderCode, DateTime transactionDate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<(string type, VNPayResponse response, string returnUrl)> ProcessCallBack()
+        {
+            throw new NotImplementedException();
         }
     }
 }

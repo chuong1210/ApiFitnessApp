@@ -165,7 +165,6 @@ C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\runtimes\linu
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\runtimes\linux-riscv64\native\libe_sqlite3.so
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
-C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\ocelot.json
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\IPAddressRange.dll
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Microsoft.AspNetCore.MiddlewareAnalysis.dll
@@ -240,3 +239,4 @@ C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Assets\EmailT
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Assets\EmailTemplates\Images\logo.png
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\Assets\EmailTemplates\PremiumUpgradeConfirmation.html
 C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\ocelot1.json
+C:\Users\chuon\source\repos\FitnessApp\FitnessApp\bin\Debug\net8.0\VNPay.NetCore.dll

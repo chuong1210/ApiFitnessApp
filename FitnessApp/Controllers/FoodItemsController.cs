@@ -2,7 +2,10 @@
 using Application.Features.FoodItems.Commands.DeleteFoodItem;
 using Application.Features.FoodItems.Commands.UpdateFoodItem;
 using Application.Features.FoodItems.Queries.GetAllFoodItems;
+using Application.Features.FoodItems.Queries.GetFoodCategories;
 using Application.Features.FoodItems.Queries.GetFoodItemById;
+using Application.Features.FoodItems.Queries.GetPopularFoods;
+using Application.Features.FoodItems.Queries.GetRecommendedFoods;
 using Application.Features.FoodItems.Queries.SearchFoodItemsQuery;
 using Application.Responses;
 using Application.Responses.Dtos;
@@ -47,14 +50,14 @@ namespace FitnessApp.Controllers
         /// </summary>
         /// <param name="query">Search term and pagination parameters.</param>
         /// <returns>A paginated list of matching food items.</returns>
-        [HttpGet("search")]
-        [ProducesResponseType(typeof(PaginatedResult<List<FoodItemDto>>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> SearchFoodItems([FromQuery] SearchFoodItemsQuery query)
-        {
-            var result = await _mediator.Send(query);
-            return StatusCode(result.Code, result);
-        }
+        //[HttpGet("search")]
+        //[ProducesResponseType(typeof(PaginatedResult<List<FoodItemDto>>), StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        //public async Task<IActionResult> SearchFoodItems([FromQuery] SearchFoodItemsQuery query)
+        //{
+        //    var result = await _mediator.Send(query);
+        //    return StatusCode(result.Code, result);
+        //}
         /// <summary>
         /// Gets the details of a specific food item by its ID.
         /// </summary>
@@ -127,6 +130,55 @@ namespace FitnessApp.Controllers
             var command = new DeleteFoodItemCommand(id);
             var result = await _mediator.Send(command);
             return StatusCode(result.Code, result);
+        }
+
+
+        /// <summary>
+        /// Gets a list of all food categories.
+        /// </summary>
+        [HttpGet("categories")]
+        [ProducesResponseType(typeof(IResult<List<CategoryDto>>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetFoodCategories()
+        {
+            var result = await _mediator.Send(new GetFoodCategoriesQuery());
+            return StatusCode(result.Code, result);
+        }
+
+        /// <summary>
+        /// Gets a list of recommended food items.
+        /// </summary>
+        /// <param name="query">Query parameters like mealType and count.</param>
+        [HttpGet("recommendation")]
+        [ProducesResponseType(typeof(IResult<List<FoodItemDto>>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetRecommendedFoods([FromQuery] GetRecommendedFoodsQuery query)
+        {
+            var result = await _mediator.Send(query);
+            return StatusCode(result.Code, result);
+        }
+
+        /// <summary>
+        /// Gets a list of popular food items.
+        /// </summary>
+        /// <param name="query">Query parameters like mealType and count.</param>
+        [HttpGet("popular")]
+        [ProducesResponseType(typeof(IResult<List<FoodItemDto>>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetPopularFoods([FromQuery] GetPopularFoodsQuery query)
+        {
+            var result = await _mediator.Send(query);
+            return StatusCode(result.Code, result);
+        }
+
+        /// <summary>
+        /// Searches for food items by name and/or category (paginated).
+        /// </summary>
+        /// <param name="query">Search term, category, and pagination parameters.</param>
+        /// <returns>A paginated list of matching food items.</returns>
+        [HttpGet("search")] // Action Search đã được cập nhật
+        [ProducesResponseType(typeof(PaginatedResult<List<FoodItemDto>>), StatusCodes.Status200OK)]
+        public async Task<IActionResult> SearchFoodItems([FromQuery] SearchFoodItemsQuery query)
+        {
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
     }
     }

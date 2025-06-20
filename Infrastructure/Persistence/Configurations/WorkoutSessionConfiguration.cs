@@ -19,15 +19,23 @@ namespace Infrastructure.Persistence.Configurations
 
             builder.Property(ws => ws.StartTime)
                 .IsRequired();
-                //.HasColumnType("TEXT"); // Store DateTime as TEXT
+            //.HasColumnType("TEXT"); // Store DateTime as TEXT
 
             builder.Property(ws => ws.EndTime)
                 .IsRequired();
-                //.HasColumnType("TEXT");
+            //.HasColumnType("TEXT");
 
             builder.Property(ws => ws.DurationSeconds)
                 .IsRequired()
                 .HasColumnType("INTEGER");
+
+            builder.Property(ws => ws.CustomReps)
+              .IsRequired()
+              .HasColumnType("INTEGER");
+
+            builder.Property(ws => ws.CustomWeight)
+              .IsRequired()
+              .HasColumnType("float");
 
             builder.Property(ws => ws.CaloriesBurned).HasColumnType("INTEGER");
             builder.Property(ws => ws.AvgHeartRate).HasColumnType("INTEGER");
@@ -63,4 +71,4 @@ namespace Infrastructure.Persistence.Configurations
                    .OnDelete(DeleteBehavior.SetNull); // If single workout is deleted, keep the log but clear the reference
         }
     }
-    }
+}

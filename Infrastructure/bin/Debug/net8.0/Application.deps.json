@@ -32,7 +32,8 @@
           "Ocelot": "24.0.0",
           "SQLitePCLRaw.bundle_e_sqlite3": "2.1.11",
           "StackExchange.Redis": "2.8.31",
-          "System.IdentityModel.Tokens.Jwt": "8.8.0"
+          "System.IdentityModel.Tokens.Jwt": "8.8.0",
+          "VNPay.NetCore": "1.0.1"
         },
         "runtime": {
           "Application.dll": {}
@@ -1408,6 +1409,11 @@
           }
         }
       },
+      "System.Net.Http.Json/3.2.0": {
+        "dependencies": {
+          "System.Text.Json": "4.7.2"
+        }
+      },
       "System.Numerics.Vectors/4.5.0": {},
       "System.Reflection.Metadata/6.0.1": {
         "dependencies": {
@@ -1514,6 +1520,17 @@
             "assetType": "runtime",
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.21.52210"
+          }
+        }
+      },
+      "VNPay.NetCore/1.0.1": {
+        "dependencies": {
+          "System.Net.Http.Json": "3.2.0"
+        },
+        "runtime": {
+          "lib/net8.0/VNPay.NetCore.dll": {
+            "assemblyVersion": "1.0.1.0",
+            "fileVersion": "1.0.1.0"
           }
         }
       },
@@ -2227,6 +2244,13 @@
       "path": "system.memory.data/1.0.2",
       "hashPath": "system.memory.data.1.0.2.nupkg.sha512"
     },
+    "System.Net.Http.Json/3.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6VUCQKGS9A0RGkIIfLpvAbBOQdTgsffQJ0OOanEMuCC/couJtjRhK65/3kE97IYi6z5kvXYvQW4buZ2rH5zsDA==",
+      "path": "system.net.http.json/3.2.0",
+      "hashPath": "system.net.http.json.3.2.0.nupkg.sha512"
+    },
     "System.Numerics.Vectors/4.5.0": {
       "type": "package",
       "serviceable": true,
@@ -2338,6 +2362,13 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
+    },
+    "VNPay.NetCore/1.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fHWuj4Gep02jhqlwaOUOiFBageLx+HeTH9xeY2aNBdxuLCGwRnMOksDPTG60+BIFaJEOLA9rvLj9MMQoiReEgQ==",
+      "path": "vnpay.netcore/1.0.1",
+      "hashPath": "vnpay.netcore.1.0.1.nupkg.sha512"
     },
     "Domain/1.0.0": {
       "type": "project",

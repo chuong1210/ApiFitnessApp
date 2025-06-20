@@ -174,10 +174,10 @@ namespace FitnessApp.Controllers
         [ProducesResponseType(typeof(IResult<string>), StatusCodes.Status402PaymentRequired)]
         [ProducesResponseType(typeof(IResult<string>), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(IResult<string>), StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpgradeToPremium()
+        public async Task<IActionResult> UpgradeToPremium(String orderCode)
         {
             // Tạo command. Không cần tham số vì UserId lấy từ CurrentUserService trong Handler.
-            var command = new UpgradeToPremiumCommand();
+            var command = new UpgradeToPremiumCommand(orderCode);
 
             // Gửi command đến MediatR để Handler xử lý
             var result = await _mediator.Send(command);

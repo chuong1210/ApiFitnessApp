@@ -38,5 +38,12 @@ namespace Domain.Interfaces
         /// Marks a workout session entity for removal.
         /// </summary>
         void Remove(WorkoutSession session);
+
+        /// <summary>
+        /// Gets an IQueryable of all workout sessions, allowing for further filtering before execution.
+        /// </summary>
+        /// <returns>An IQueryable of WorkoutSession entities.</returns>
+        IQueryable<WorkoutSession> GetQueryable();
     }
+    
 }

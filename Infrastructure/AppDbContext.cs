@@ -41,6 +41,11 @@ namespace Infrastructure
         public DbSet<Goal> Goals { get; set; }
         // Infrastructure/Persistence/AppDbContext.cs
         public DbSet<PaymentTransaction> PaymentTransactions { get; set; }
+        public DbSet<WorkoutStep> WorkoutSteps { get; set; } // THÊM DÒNG NÀY
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<HeartRateLog> HeartRateLogs { get; set; } // <<--- THÊM DÒNG NÀY
+        public DbSet<SleepSchedule> SleepSchedules { get; set; } // <<--- THÊM DÒNG NÀY
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

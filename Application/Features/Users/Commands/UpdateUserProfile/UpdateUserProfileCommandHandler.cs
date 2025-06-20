@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Application.Common.Interfaces;
 
 namespace Application.Features.Users.Commands.UpdateUserProfile
 {
@@ -17,17 +18,37 @@ namespace Application.Features.Users.Commands.UpdateUserProfile
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILogger<UpdateUserProfileCommandHandler> _logger;
+        private readonly ICurrentUserService _currentUserService;
 
-        public UpdateUserProfileCommandHandler(IUnitOfWork unitOfWork, ILogger<UpdateUserProfileCommandHandler> logger)
+        public UpdateUserProfileCommandHandler(IUnitOfWork unitOfWork, ILogger<UpdateUserProfileCommandHandler> logger,ICurrentUserService currentUserService)
         {
             _unitOfWork = unitOfWork;
             _logger = logger;
+            _currentUserService = currentUserService;
         }
 
         public async Task<IResult<Unit>> Handle(UpdateUserProfileCommand request, CancellationToken cancellationToken)
         {
             try
             {
+                var currentUserId = _currentUserService.UserId;
+
+                // Kiểm tra xem người dùng có được phép cập nhật profile này không
+                // 1. Người dùng hiện tại phải được xác thực
+                if (!currentUserId.HasValue)
+                {
+                    return Result<Unit>.Unauthorized();
+                }
+                // 2. Người dùng chỉ được cập nhật profile của chính họ,
+                //    HOẶC họ phải có quyền admin (nếu có logic admin)
+                bool isAdmin = false; // await _userService.IsAdminAsync(currentUserId.Value); (Ví dụ)
+
+                if (request.UserId != currentUserId.Value && !isAdmin)
+                {
+                    _logger.LogWarning("User {CurrentUserId} attempted to update profile of User {TargetUserId} without permission.",
+                        currentUserId.Value, request.UserId);
+                    return Result<Unit>.Forbidden();
+                }
                 var user = await _unitOfWork.Users.GetByIdAsync(request.UserId, cancellationToken);
 
                 if (user == null)
@@ -37,7 +58,7 @@ namespace Application.Features.Users.Commands.UpdateUserProfile
                 }
 
                 // Gọi phương thức domain để cập nhật
-                user.UpdateProfile(request.Name, request.BirthDate, request.Gender, request.HeightCm);
+                user.UpdateProfile(request.Name, request.BirthDate, request.Gender, request.HeightCm,request.WeightKg);
 
                 // EF Core sẽ tự động theo dõi thay đổi trên 'user' entity
                 // Không cần gọi _unitOfWork.Users.Update(user);

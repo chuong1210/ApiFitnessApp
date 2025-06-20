@@ -41,5 +41,10 @@ namespace Domain.Interfaces
         /// Marks multiple workout plan item entities for removal.
         /// </summary>
         void RemoveRange(IEnumerable<WorkoutPlanItem> items);
+
+
+        IQueryable<WorkoutPlanItem> GetAllQueryable();
+
     }
+
 }

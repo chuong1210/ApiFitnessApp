@@ -13,5 +13,7 @@ namespace Domain.Interfaces
         Task<PaymentTransaction?> GetByOrderIdAsync(string orderId, CancellationToken cancellationToken = default);
         Task AddAsync(PaymentTransaction transaction, CancellationToken cancellationToken = default);
         void Update(PaymentTransaction transaction);
+
+        Task<PaymentTransaction?> FindByOrderIdAsync(string orderId);
     }
 }

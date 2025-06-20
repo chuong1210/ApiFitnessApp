@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,12 +18,18 @@ namespace Domain.Entities
         public string? VideoUrl { get; private set; }
         public string? ImageUrl { get; private set; }
 
+        public string? RequiredEquipment { get; private set; }
+
+        public WorkoutDifficultyLevel Difficulty { get; private set; }
+
+
         // Navigation property for relationship with WorkoutPlanItems
         public virtual ICollection<WorkoutPlanItem> WorkoutPlanItems { get; private set; } = new List<WorkoutPlanItem>();
+        public virtual ICollection<WorkoutStep> Steps { get; set; } = new List<WorkoutStep>(); // Cần có property này
 
         private Workout() { } // For EF Core
 
-        public static Workout Create(string name, string? description, string? targetMuscleGroup, int? defaultReps, int? defaultDurationSeconds, string? videoUrl = null, string? imageUrl = null)
+        public static Workout Create(string name, string? description, string? equipmentNeeded,string? targetMuscleGroup, int? defaultReps, int? defaultDurationSeconds, WorkoutDifficultyLevel difficulty, string? videoUrl = null, string? imageUrl = null)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Workout name is required.", nameof(name));
 
@@ -34,11 +41,13 @@ namespace Domain.Entities
                 DefaultReps = defaultReps > 0 ? defaultReps : null,
                 DefaultDurationSeconds = defaultDurationSeconds > 0 ? defaultDurationSeconds : null,
                 VideoUrl = videoUrl,
-                ImageUrl = imageUrl
+                ImageUrl = imageUrl,
+                Difficulty = difficulty,
+                RequiredEquipment = equipmentNeeded,
             };
         }
         // Method to update workout details
-        public void UpdateDetails(string name, string? description, string? targetMuscleGroup, int? defaultReps, int? defaultDurationSeconds, string? videoUrl = null, string? imageUrl = null)
+        public void UpdateDetails(string name, string? description, WorkoutDifficultyLevel difficulty, string? equipmentNeeded , string? targetMuscleGroup, int? defaultReps, int? defaultDurationSeconds, string? videoUrl = null, string? imageUrl = null)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("Workout name is required.", nameof(name));
             Name = name;
@@ -48,6 +57,8 @@ namespace Domain.Entities
             DefaultDurationSeconds = defaultDurationSeconds > 0 ? defaultDurationSeconds : null;
             VideoUrl = videoUrl;
             ImageUrl = imageUrl;
+            Difficulty = difficulty;
+            RequiredEquipment = equipmentNeeded; /* ... */
         }
     }
 

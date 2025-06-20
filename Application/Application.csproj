@@ -10,9 +10,7 @@
   <ItemGroup>
     <Folder Include="Features\Base\Queries\ListBase\" />
     <Folder Include="Features\DailyActivities\Commands\" />
-    <Folder Include="Features\DailyActivities\Queries\" />
-    <Folder Include="Features\Sleep\Commands\" />
-    <Folder Include="Features\Sleep\Queries\" />
+    <Folder Include="Features\NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +41,7 @@
     <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="2.1.11" />
     <PackageReference Include="StackExchange.Redis" Version="2.8.31" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.8.0" />
+    <PackageReference Include="VNPay.NetCore" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>

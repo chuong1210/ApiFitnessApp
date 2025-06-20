@@ -43,5 +43,11 @@ namespace Domain.Interfaces
         /// Marks a workout plan entity for removal (cascade should delete items).
         /// </summary>
         void Remove(WorkoutPlan workoutPlan);
+
+        Task<WorkoutPlan?> GetByIdWithDetailsAsync(int planId, CancellationToken cancellationToken = default);
+
+
+        IQueryable<WorkoutPlan> GetAllQueryable();
+
     }
 }

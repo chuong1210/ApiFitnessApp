@@ -147,6 +147,10 @@
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[8.8.0, )"
+            },
+            "VNPay.NetCore": {
+              "target": "Package",
+              "version": "[1.0.1, )"
             }
           },
           "imports": [
@@ -445,6 +449,10 @@
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[8.8.0, )"
+            },
+            "VNPay.NetCore": {
+              "target": "Package",
+              "version": "[1.0.1, )"
             }
           },
           "imports": [

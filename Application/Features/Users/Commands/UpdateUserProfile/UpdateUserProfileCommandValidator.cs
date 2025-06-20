@@ -22,6 +22,11 @@ namespace Application.Features.Users.Commands.UpdateUserProfile
             RuleFor(v => v.HeightCm)
                .GreaterThan(0).WithMessage("Height must be positive.")
                .When(x => x.HeightCm.HasValue);
+
+
+            RuleFor(v => v.WeightKg)
+               .GreaterThan(0).WithMessage("Weight must be positive.")
+               .When(x => x.WeightKg.HasValue);
         }
     }
     }

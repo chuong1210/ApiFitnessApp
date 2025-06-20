@@ -58,13 +58,14 @@ namespace Domain.Entities
         }
 
         // Methods for domain logic
-        public void UpdateProfile(string name, DateOnly? birthDate, Gender? gender, double? heightCm)
+        public void UpdateProfile(string name, DateOnly? birthDate, Gender? gender, double? heightCm,double? weightKg)
         {
             if (string.IsNullOrWhiteSpace(name)) throw new ArgumentException("User name is required.", nameof(name));
             Name = name;
             BirthDate = birthDate;
             Gender = gender;
             HeightCm = heightCm > 0 ? heightCm : null;
+            WeightKg = weightKg>0? weightKg : null;
         }
         public void SetPremiumStatus(bool isPremium)
         {

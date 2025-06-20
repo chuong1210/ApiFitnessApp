@@ -37,7 +37,7 @@ namespace FitnessApp.Controllers
             // Nên redirect về một trang trên frontend của bạn để hiển thị kết quả
             // Truyền trạng thái thành công/thất bại qua query string của URL redirect
 
-            string frontendRedirectUrl = "https://your-frontend.com/payment/result"; // URL trang kết quả frontend
+            string frontendRedirectUrl = "https://codepen.io/warrendunlop/pen/YmVKzm"; // URL trang kết quả frontend
 
             if (result.Succeeded)
             {

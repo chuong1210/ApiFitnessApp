@@ -14,7 +14,9 @@ namespace Application.Features.Users.Commands.UpdateUserProfile
        string Name,
        DateOnly? BirthDate,
        Gender? Gender,
-       double? HeightCm
+       double? HeightCm,
+       double? WeightKg
+
    // Không cho phép cập nhật Email, Password, Weight ở đây
    ) : IRequest<IResult<Unit>>; // Unit vì không cần trả về dữ liệu cụ thể
 }

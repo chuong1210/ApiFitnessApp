@@ -32,6 +32,11 @@ namespace Infrastructure.Persistence.Configurations
                 .HasColumnType("INTEGER");
 
             // --- Relationships ---
+            builder.Property(wp => wp.Difficulty)
+      // Lưu enum dưới dạng chuỗi (tên của enum, ví dụ: "Beginner", "Intermediate")
+      .HasConversion<string>()
+      // Giới hạn độ dài của cột nvarchar trong CSDL
+      .HasMaxLength(50);
 
             // WorkoutPlan has many WorkoutPlanItems
             builder.HasMany(wp => wp.Items)
@@ -47,6 +52,6 @@ namespace Infrastructure.Persistence.Configurations
                    .OnDelete(DeleteBehavior.SetNull); // If plan deleted, set PlanId in session to NULL
         }
     }
- 
+
 
 }

@@ -103,8 +103,9 @@ namespace Application.Features.Auth.Commands.Register
                 // 5. Lưu OTP vào Redis (dùng UserId làm key)
                 //    Cần xử lý nếu bước này lỗi sau khi đã lưu user
                 string otpKey = tempUserWithHash.UserId.ToString(); // Key là UserId
+                await _otpService.StoreOtpAsync(otpKey, otpCode);
 
-                  EmailDto mailDto = new EmailDto(
+                EmailDto mailDto = new EmailDto(
                    tempUserWithHash.Email,
                    "Your Account Verification Code",
                    otpCode
@@ -123,6 +124,7 @@ namespace Application.Features.Auth.Commands.Register
                 var jobId = _backgroundJobClient.Enqueue<IEmailService>( // Chỉ định service sẽ thực thi
                     emailService => emailService.SendOtpEmailAsync(mailDto
                     ));
+
 
                 _logger.LogInformation("Enqueued email OTP job {JobId} for User {UserId} to email {Email}.", jobId, user.UserId, user.Email);
                 var userDetailsDto = _mapper.Map<UserDto>(user); // Sử dụng AutoMapper

@@ -25,6 +25,7 @@ namespace Infrastructure.Services
         private readonly ILogger<EmailService> _logger;
         //private readonly IConfiguration _config; cách 2 nếu ko dùng IOption
         private readonly string _templateFolderPath; // Đường dẫn đến thư mục chứa template
+        private readonly string _templateFolderImagePath; // Đường dẫn đến thư mục chứa template
 
 
         public EmailService(IOptions<MailSettings> mailSettings, ILogger<EmailService> logger, IConfiguration config, IOptions<RedisSettings> redisSettings)
@@ -44,6 +45,8 @@ namespace Infrastructure.Services
 
             // Đường dẫn này sẽ trỏ đến thư mục bin/Debug hoặc bin/Release của project Infrastructure
             _templateFolderPath = Path.Combine(baseDirectory ?? string.Empty, "Assets", "EmailTemplates");
+            _templateFolderImagePath = Path.Combine(baseDirectory ?? string.Empty, "Assets", "EmailTemplates/Images");
+
 
         }
 
@@ -194,6 +197,8 @@ namespace Infrastructure.Services
 
                 // --- Đọc và xử lý template HTML ---
                 string templatePath = Path.Combine(_templateFolderPath, "PremiumUpgradeConfirmation.html");
+                string logoPath = Path.Combine(_templateFolderImagePath, "logo.png");
+
                 if (!File.Exists(templatePath))
                 {
                     _logger.LogError("Premium upgrade email template not found at: {Path}", templatePath);
@@ -207,7 +212,7 @@ namespace Infrastructure.Services
                 // Thay thế placeholders
                 htmlBody = htmlBody.Replace("{{UserName}}", mail.userName);
                 htmlBody = htmlBody.Replace("{{CurrentYear}}", DateTime.UtcNow.Year.ToString());
-                // htmlBody = htmlBody.Replace("URL_APP_LOGO", "URL_THUC_TE_CUA_LOGO"); // Thay thế URL logo nếu dùng URL
+                htmlBody = htmlBody.Replace("URL_APP_LOGO", logoPath); // Thay thế URL logo nếu dùng URL
                 // htmlBody = htmlBody.Replace("URL_GO_TO_APP", "URL_TRANG_CHU_APP");
                 // htmlBody = htmlBody.Replace("URL_UNSUBSCRIBE", "URL_HUY_DANG_KY_EMAIL");
                 // htmlBody = htmlBody.Replace("URL_PRIVACY_POLICY", "URL_CHINH_SACH_BAO_MAT");

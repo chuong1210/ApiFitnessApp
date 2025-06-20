@@ -1933,6 +1933,22 @@
           }
         }
       },
+      "System.Net.Http.Json/3.2.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Text.Json": "4.7.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/System.Net.Http.Json.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Net.Http.Json.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.Numerics.Vectors/4.5.0": {
         "type": "package",
         "compile": {
@@ -2242,6 +2258,21 @@
             "rid": "win"
           }
         }
+      },
+      "VNPay.NetCore/1.0.1": {
+        "type": "package",
+        "dependencies": {
+          "System.Net.Http.Json": "1.0.1"
+        },
+        "compile": {
+          "lib/net8.0/VNPay.NetCore.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/VNPay.NetCore.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Domain/1.0.0": {
         "type": "project",
@@ -4974,6 +5005,26 @@
         "system.memory.data.nuspec"
       ]
     },
+    "System.Net.Http.Json/3.2.0": {
+      "sha512": "6VUCQKGS9A0RGkIIfLpvAbBOQdTgsffQJ0OOanEMuCC/couJtjRhK65/3kE97IYi6z5kvXYvQW4buZ2rH5zsDA==",
+      "type": "package",
+      "path": "system.net.http.json/3.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/System.Net.Http.Json.dll",
+        "lib/net461/System.Net.Http.Json.xml",
+        "lib/netstandard2.0/System.Net.Http.Json.dll",
+        "lib/netstandard2.0/System.Net.Http.Json.xml",
+        "system.net.http.json.3.2.0.nupkg.sha512",
+        "system.net.http.json.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.Numerics.Vectors/4.5.0": {
       "sha512": "QQTlPTl06J/iiDbJCiepZ4H//BVraReU4O4EoRw1U02H5TLUIT7xn3GnDp9AXPSlJUDyFs4uWjWafNX6WrAojQ==",
       "type": "package",
@@ -5547,6 +5598,23 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "VNPay.NetCore/1.0.1": {
+      "sha512": "fHWuj4Gep02jhqlwaOUOiFBageLx+HeTH9xeY2aNBdxuLCGwRnMOksDPTG60+BIFaJEOLA9rvLj9MMQoiReEgQ==",
+      "type": "package",
+      "path": "vnpay.netcore/1.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net5.0/VNPay.NetCore.dll",
+        "lib/net6.0/VNPay.NetCore.dll",
+        "lib/net7.0/VNPay.NetCore.dll",
+        "lib/net8.0/VNPay.NetCore.dll",
+        "lib/net9.0/VNPay.NetCore.dll",
+        "lib/netcoreapp3.1/VNPay.NetCore.dll",
+        "vnpay.netcore.1.0.1.nupkg.sha512",
+        "vnpay.netcore.nuspec"
+      ]
+    },
     "Domain/1.0.0": {
       "type": "project",
       "path": "../Domain/Domain.csproj",
@@ -5579,7 +5647,8 @@
       "Ocelot >= 24.0.0",
       "SQLitePCLRaw.bundle_e_sqlite3 >= 2.1.11",
       "StackExchange.Redis >= 2.8.31",
-      "System.IdentityModel.Tokens.Jwt >= 8.8.0"
+      "System.IdentityModel.Tokens.Jwt >= 8.8.0",
+      "VNPay.NetCore >= 1.0.1"
     ]
   },
   "packageFolders": {
@@ -5728,6 +5797,10 @@
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",
             "version": "[8.8.0, )"
+          },
+          "VNPay.NetCore": {
+            "target": "Package",
+            "version": "[1.0.1, )"
           }
         },
         "imports": [
@@ -5751,6 +5824,16 @@
     }
   },
   "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "VNPay.NetCore 1.0.1 depends on System.Net.Http.Json (>= 1.0.1) but System.Net.Http.Json 1.0.1 was not found. An approximate best match of System.Net.Http.Json 3.2.0 was resolved.",
+      "libraryId": "System.Net.Http.Json",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
     {
       "code": "NU1608",
       "level": "Warning",

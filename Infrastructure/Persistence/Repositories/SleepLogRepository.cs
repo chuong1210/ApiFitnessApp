@@ -52,7 +52,13 @@ namespace Infrastructure.Persistence.Repositories
         {
             _context.SleepLogs.Update(sleepLog);
         }
-
+        public IQueryable<SleepLog> GetAllQueryable()
+        {
+            // Sử dụng AsNoTracking() vì IQueryable thường dùng cho các truy vấn
+            // phức tạp hơn mà không cần theo dõi thay đổi (cải thiện hiệu năng).
+            // Nếu bạn cần tracking, bỏ AsNoTracking() đi.
+            return _context.SleepLogs.AsNoTracking();
+        }
         public void Remove(SleepLog sleepLog)
         {
             _context.SleepLogs.Remove(sleepLog);
